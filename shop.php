@@ -94,7 +94,7 @@
 
                     <div class="shop__purchase_container">
 
-                        <form class="shop_form_container js-shop_form_container" id="shop_form" action="shop.php" accept-charset="UTF-8" method="post">
+                        <form class="shop_form_container js-shop_form_container" action="shop.php" accept-charset="UTF-8" method="post" id="shop_form">
                         
                             <div class="product_dropdown__container">
 
@@ -117,6 +117,8 @@
                                         <?php endforeach; ?>
 
                                     </select>
+
+                                    <div class="form__error form__error-alt js-form-error--shop-select-product hidden">* Select a valid product</div>
 
                                 </div>
 

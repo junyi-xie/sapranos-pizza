@@ -1417,13 +1417,13 @@ footer {
   margin-top: 2rem;
 }
 
-.checkout__wrapper .order_form {
+.checkout__wrapper .order_form_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.checkout__wrapper .order_form .checkout__container {
+.checkout__wrapper .order_form_container .checkout__container {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
@@ -1435,15 +1435,15 @@ footer {
   padding-right: 10px;
 }
 
-.checkout__wrapper .order_form .checkout__container .checkout_form {
+.checkout__wrapper .order_form_container .checkout__container .checkout_form {
   margin-bottom: 3rem;
 }
 
-.checkout__wrapper .order_form .checkout__container .checkout_form fieldset + fieldset {
+.checkout__wrapper .order_form_container .checkout__container .checkout_form fieldset + fieldset {
   margin-top: -1.5rem;
 }
 
-.checkout__wrapper .order_form .order_summary__container {
+.checkout__wrapper .order_form_container .order_summary__container {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
@@ -1564,6 +1564,10 @@ footer {
   font-size: 12px;
   margin: -0.75rem 0 0.875rem;
   width: 100%;
+}
+
+.form__error.form__error-alt {
+  margin: 0;
 }
 
 .checkout_form__footer {

@@ -1,7 +1,7 @@
     .checkout__wrapper {
         margin-top: 2rem;
 
-        .order_form {
+        .order_form_container {
             display: flex;
 
             .checkout__container {
@@ -132,6 +132,10 @@
         font-size: 12px;
         margin: -0.75rem 0 0.875rem;
         width: 100%;
+
+        &.form__error-alt {
+            margin: 0;
+        }
     }
    
 

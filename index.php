@@ -4,8 +4,6 @@
     include_once("inc/connect.php");
     include_once("inc/functions.php");
     include_once("inc/class.php");
-
-    printr($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -22,13 +20,19 @@
 
 <?php include_once("inc/header.php") ?>
 
-<img id="big" src="assets/images/layout/pizza-vegetariano.png" style="height: 200px; width: 200px;">
+<div class="site__content_container">
 
-<div id="thumbnails">
-    <a href="assets/images/layout/pizza-sopranos-deluxe.png"><img src="assets/images/layout/pizza-sopranos-deluxe.png" style="height: 200px; width: 200px;"></a>
-    <a href="assets/images/layout/pizza-tonno.png"><img src="assets/images/layout/pizza-tonno.png" style="height: 200px; width: 200px;"></a>
-    <a href="assets/images/layout/pizza-quattro-formaggio.png"><img src="assets/images/layout/pizza-quattro-formaggio.png" style="height: 200px; width: 200px;"></a>
-</div> 
+    <div class="site__main">
+
+        <div class="site__wrapper">
+            
+            <h1>Welcome!</h1>
+
+        </div>
+    
+    </div>
+
+</div>
 
 <?php include_once("inc/footer.php") ?>
 

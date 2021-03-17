@@ -2,26 +2,66 @@
 
     $(document).ready(function(){
 
+        $(".js-place-your-order").click(function(event) {
+            event.preventDefault();
+
+            // FIX THIS
+            var form = $('.js-order_form_container');
+            var validate = $('.js-checkout');
+
+            if(validate[0].checkValidity()) {
+                $.ajax({
+                    type: 'post',
+                    url: 'inc/ajax.php',
+                    data: {
+                        action: 'save_customer_information',
+                        data: form.serialize(),
+                    },
+                    success: function(result) {
+                        switch (result) {
+                            case 'true':
+                                form.submit();
+                            break;
+                            default:
+                                alert('Something went wrong...?!');
+                            break;                    
+                        }
+                    }
+                });
+            } else {
+                $('.js-form-error').addClass('hidden').removeClass('hidden');
+            }
+        })
+
+
         $(".js-add-to-cart").click(function(event) {
             event.preventDefault();
 
             var form = $('.js-shop_form_container');
+            var pizza = $('.js-product__type_dropdown');
 
-            $.ajax({
-                type: 'post',
-                url: 'inc/ajax.php',
-                data: {
-                    action: 'save_customer_order',
-                    cart: form.serialize(),
-                },
-                success: function(result) {
-                    switch (result) {
-                        case 'true':
-                            form.submit();
-                        break;                    
+            if(pizza[0].checkValidity()) {
+                $.ajax({
+                    type: 'post',
+                    url: 'inc/ajax.php',
+                    data: {
+                        action: 'save_customer_order',
+                        cart: form.serialize(),
+                    },
+                    success: function(result) {
+                        switch (result) {
+                            case 'true':
+                                form.submit();
+                            break;
+                            default:
+                                alert('Something went wrong...?!');
+                            break;                    
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                $('.js-form-error--shop-select-product').addClass('hidden').removeClass('hidden');
+            }
         });
 
 

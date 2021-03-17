@@ -44,7 +44,7 @@
 
             <div class="checkout__wrapper">
             
-                <form class="order_form" action="checkout.php" accept-charset="UTF-8" method="post" id="order_form">
+                <form class="order_form_container js-order_form_container" action="checkout.php" accept-charset="UTF-8" method="post" id="order_form">
 
                     <div class="checkout__container">
                     
@@ -156,7 +156,7 @@
 
                             <div class="checkout_form__footer">
                             
-                                <button class="button--transaction checkout_form_footer__submit" type="submit" value="Place your order">Place your order</button>
+                                <button class="button--transaction checkout_form_footer__submit js-place-your-order" type="submit" value="Place your order">Place your order</button>
 
                             </div>
 

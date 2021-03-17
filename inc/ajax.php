@@ -35,6 +35,10 @@
                 $bCustomerOrder = saveCustomerOrder($_POST['cart']);
                 echo json_encode($bCustomerOrder);
             break;
+            case 'save_customer_information':
+                $bCustomerInformation = saveCustomerData($_POST['data']);
+                echo json_encode($bCustomerInformation);
+            break;
         }
     }    
 ?>

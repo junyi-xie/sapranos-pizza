@@ -220,7 +220,6 @@
     }
 
 
-
     /**
      * Save the customer order in $_SESSION.
      *
