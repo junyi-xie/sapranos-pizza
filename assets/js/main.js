@@ -2,6 +2,13 @@
 
     $(document).ready(function(){
 
+        $(".js-precheckout-continue-shopping").click(function(event) {
+            event.preventDefault();
+
+            // MAYBE? CLEAR $_POST DATA
+            window.location.href = window.location.href;
+        });
+
         $(".js-place-your-order").click(function(event) {
             event.preventDefault();
 

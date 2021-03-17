@@ -1567,7 +1567,7 @@ footer {
 }
 
 .form__error.form__error-alt {
-  margin: 0;
+  margin: 0.25rem 0;
 }
 
 .checkout_form__footer {
