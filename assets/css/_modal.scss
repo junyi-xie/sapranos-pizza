@@ -1,36 +1,281 @@
     .modal-container {
-
+        transition: opacity 0.3s linear;
+        border-radius: 4px;
+        background-color: $white-alt;
+        border: none;
+        bottom: auto;
+        transform: translate(-50%, -50%);
+        right: auto;
+        left: 50%;
+        z-index: 8001;
+        position: fixed;
+        width: 100%;
+        height: auto;
+        max-width: 40rem;
+        max-height: 70vh;
+        top: 50%;
     }
 
     .modal-dialog {
-
+        box-shadow: none;
+        height: 100%;
+        max-height: 800px;
+        z-index: 8002;
+        position: relative;
+        display: inline-block;
+        width: 100%;
     }
 
     .modal-content {
-
+        padding-top: 50px;
+        position: relative;
     }
 
     .modal-header {
+        border: 0;
+        padding: 0;
+        position: relative;
 
+        .modal_close_button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            z-index: 1;
+            font-size: 24px;
+            line-height: 0;
+            padding: 0.5rem;
+            position: absolute;
+            background: none;
+            border-radius: 0;
+            color: $black-alt;
+            right: 1rem;
+            bottom: 0;
+        }
     }
 
     .modal-body {
+        padding: 0 1.5rem;
+    }
 
+    .precheckout__cart_item__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .precheckout__items_added {
+        margin-bottom: 0;
+        padding-right: 10px;
+        font-family: $font-tertiary;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .precheckout-go-to-cart {
+        color: $red;
+
+        &:hover {
+            color: $red-alt;
+        }
+    }
+
+    .precheckout__go_to_cart {
+        font-size: 14px;
+        color: $blue-alt;
+        font-weight: 600;
+        font-family: $font-quaternary;
+        white-space: nowrap;
+        cursor: pointer;
+        outline: none;
+
+        &:hover {
+            color: $red-alt;
+        }
+    }
+
+    .precheckout__cart_items {
+        background-color: $white;
+        padding: 10px 15px 10px 10px;
+        border-radius: 2px;
+        border-bottom: 1px solid $line;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .precheckout__cart_item__image {
+        width: 60px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    .precheckout_cart_item_image__thumbnail {
+        padding: 0;
+        width: 100%;
+        position: relative;
+        margin: 0;
+    }
+
+    .precheckout__cart_item__info {
+        flex: 1 1 auto;
+        width: 50%;
+        margin-right: 15px;
+        color: $black-alt;
+    }
+
+    .precheckout__cart_item__info__product {
+        display: block;
+        width: 100%;
+    }
+
+    .precheckout__cart_item_info__name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: $font-secondary;
+    }
+
+    .precheckout__cart_item__info__detail {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .precheckout__cart_item__info__detail--list {
+        margin-right: 5px;
+        padding: 0;
+    }
+
+    .precheckout__cart_item__info__detail--label {
+        color: $grey;    
+        display: inline-block;
+        font-size: 14px;
+
+        &:not(:last-of-type):after {
+            content: '•';
+            padding: 0 0.25rem;
+        }
+    }
+
+    .precheckout__cart_item__info__size {
+        width: 100%;
+        display: block;
+        overflow: hidden;
+    }
+
+    .precheckout__cart_item__info__size--label {
+        color: $grey;
+        font-size: 14px;
+    }   
+
+    .precheckout__cart_item__product__container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .precheckout__cart_item__info__price {
+        display: block;
+    }
+
+    .precheckout__cart_item__info__price--label {
+        color: #EA2D71;
+        font-size: 16px;
+        font-weight: 600;
+    }   
+
+    .precheckout__cart_item__info__quantity {
+        display: block; 
+        text-align: right;
+    }
+
+    .precheckout__cart_item__info__quantity--label {
+        color: #b8bdc5;
+        font-size: 14px;
+        font-weight: 600;
     }
 
     .modal-footer {
-
+        padding: 1.5rem;
+        width: 100%;
     }
 
+    .payment_options_container {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
+    .payment_options_actions {
+        margin: 0;
+        padding: 0;
+        display: inline;
+    }
 
+    .payment_options_actions--shopping_cart {
+        width: auto;
 
+        .button--transaction {
+            outline: none;
+            background-color: $green-alt;
+            border: 1px solid  $green-alt;
+            border-radius: 2px;
 
+            &:hover {
+                cursor: pointer;
+                background: $green;
+                border: 1px solid $green;
+            }
+        }
 
+        .payment_options--button {
+            font-weight: 600;
+            font-size: 1.25rem;
+            font-family: $font-secondary;
+            padding: 1rem 2.75rem;
+            width: 100%;
+            display: block;
+            color: $white;
+        }
+    }
 
+    .payment_options_info--shopping_cart {
+        width: auto;
+
+        .payment_options--link-alt {
+            border: 0;
+            background: transparent;
+            color: $blue-alt;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: $font-quaternary;
+
+            &:hover {
+                color: $line-alt;
+            }
+        }
+    }
+
+    .modal--open {
+        overflow: hidden;
+    }
+
+    .modal--inactive {
+        height: 0;
+        overflow-y: hidden;
+    }
 
     .modal_overlay {
-        display: none;
+        display: block;
         background-color: $grey;
         position: fixed;
         top: 0;

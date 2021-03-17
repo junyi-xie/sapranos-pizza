@@ -7,12 +7,12 @@
 
     if(isset($_POST) && !empty($_POST)) {
         // FIX THIS WITH AJAX and show MODAL
-        $bBoolean = saveCustomerOrder($_POST);
+        $bBoolean = saveCustomerOrder($_POST['cart']);
 
-        if($bBoolean) {
-            header("location: checkout.php");
-            exit();
-        }
+        // if($bBoolean) {
+            // header("location: checkout.php");
+            // exit();
+        // }
     }
 ?>
 
@@ -26,7 +26,7 @@
     <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis") ?>" media="screen">
 </head>
-<body>
+<body class="js-body modal--open">
 
 <?php include_once("inc/header.php") ?>
 
@@ -114,7 +114,7 @@
 
                                 <div class="product__type_dropdown_container">
 
-                                    <select class="product__type_dropdown js-product__type_dropdown" name="type_id" id="shop_type_dropdown" required>
+                                    <select class="product__type_dropdown js-product__type_dropdown" name="cart[type_id]" id="shop_type_dropdown" required>
 
                                         <option value selected disabled hidden>Select Pizza...</option>
  
@@ -168,7 +168,7 @@
 
                                     <div class="product__size_selector_menu_container">
 
-                                        <select class="product__size_selector_menu" name="size_id" id="shop_size_selector">
+                                        <select class="product__size_selector_menu" name="cart[size_id]" id="shop_size_selector">
 
                                             <?php foreach($aSizePizzas as $key => $aSize): ?>
 
@@ -192,7 +192,7 @@
 
                                     <div class="product__quantity_input_field_container">
                                 
-                                        <input class="product__quantity_input_field" type="number" name="quantity" min="1" max="999" value="1" id="shop_quantity_input">
+                                        <input class="product__quantity_input_field" type="number" name="cart[quantity]" min="1" max="999" value="1" id="shop_quantity_input">
                                     
                                     </div>
 
@@ -218,7 +218,7 @@
 
                                                 <span class="product__topping--label"><?= $aTopping['name']; ?> (+ €<?= number_format((float)$aTopping['price'], 2, '.', ''); ?>)</span>
 
-                                                <input class="product__topping_checkbox--type" type="checkbox" name="topping_id[<?= $aTopping['id']; ?>]" value="<?= $aTopping['name']; ?>">
+                                                <input class="product__topping_checkbox--type" type="checkbox" name="cart[topping_id][<?= $aTopping['id']; ?>]" value="<?= $aTopping['name']; ?>">
 
                                             </li>
 
@@ -250,8 +250,9 @@
 
 </div>
 
+<?php if(isset($_POST['cart']) && !empty($_POST['cart'])): ?>
 
-<div class="modal-container">
+<div class="modal-container js-modal_container">
 
     <div class="modal-dialog">
     
@@ -259,19 +260,105 @@
                                             
             <div class="modal-header">
                                                         
-                <!-- close button etc -->
+                <button type="button" class="modal_close_button js-modal_close_button">
+                
+                    <i class="fas fa-times"></i>
+                
+                </button>
 
             </div>
 
             <div class="modal-body">
-            
-                <!-- item that just got added display, foreach and stuff -->
+
+                <div class="precheckout__cart_item__header">
+                    
+                    <h3 class="precheckout__items_added">1 item added to <a class="precheckout-go-to-cart" href="cart">Cart</a></h3>
+
+                    <a class="precheckout__go_to_cart" href="cart.php">Go to cart</a>
                 
+                </div>
+
+                <a class="precheckout__cart_items" href="cart.php">
+                
+                    <div class="precheckout__cart_item__image">
+                                    
+                        <img class="precheckout_cart_item_image__thumbnail" src="assets/images/layout/pizza-pepperoni.png">
+
+                    </div>
+
+                    <div class="precheckout__cart_item__info">
+                    
+                        <div class="precheckout__cart_item__info__product">
+                            
+                            <span class="precheckout__cart_item_info__name">test</span>
+
+                        </div>
+                        
+                        <div class="precheckout__cart_item__info__detail">
+
+                            <!-- foreach topping shit -->
+
+                            <ul class="precheckout__cart_item__info__detail--list">
+                            
+                                <li class="precheckout__cart_item__info__detail--label">Pepperoni</li>
+                                <li class="precheckout__cart_item__info__detail--label">Cheese</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="precheckout__cart_item__info__size">
+
+                            <span class="precheckout__cart_item__info__size--label">S</span>
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="precheckout__cart_item__product__container">
+                    
+                        <div class="precheckout__cart_item__info__price">
+                        
+                            <span class="precheckout__cart_item__info__price--label">€19.98</span>
+
+                        </div>
+
+                        <div class="precheckout__cart_item__info__quantity">
+                        
+                            <span class="precheckout__cart_item__info__quantity--label">1x</span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
             </div>
 
             <div class="modal-footer">
             
-                <!-- options to continue shopping or go to cart -->
+                <div class="payment_options_container">
+
+                    <div class="payment_options_actions payment_options_actions--shopping_cart">
+                        
+                        <button type="button" class="button--transaction payment_options--button">Proceed to Checkout</button>
+                    
+                    </div>
+
+                    <div class="payment_options_info payment_options_info--shopping_cart">
+                    
+                        <span class="payment_options--link-alt js-precheckout-continue-shopping js-modal_close_button">Continue shopping</span>
+
+                    </div>
+
+                </div>
 
             </div>
         
@@ -281,8 +368,9 @@
 
 </div>
 
-<div class="modal_overlay"></div>
+<?php endif; ?>
 
+<div class="modal_overlay js-modal_overlay" id="modal-overlay"></div>
 
 <?php include_once("inc/footer.php") ?>
 

@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis") ?>" media="screen">
 </head>
-<body>
+<body class="js-body">
 
 <?php include_once("inc/header.php") ?>
 

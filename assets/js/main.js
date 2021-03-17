@@ -2,6 +2,15 @@
 
     $(document).ready(function(){
 
+        $(".js-modal_close_button").click(function(event) {
+            event.preventDefault();
+
+            $('.js-modal_container').addClass('modal--inactive');
+            $('.js-modal_overlay').addClass('hidden');
+            $('.js-body').removeClass('modal--open');
+        });
+
+
         $(".js-stack__nav_item .js-stack__nav_thumbnail").click(function(event) {
             event.preventDefault();
 

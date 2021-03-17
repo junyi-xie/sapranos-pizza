@@ -30,7 +30,7 @@
     <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis") ?>" media="screen">
 </head>
-<body>
+<body class="js-body">
 
 <?php include_once("inc/header.php") ?>
 
@@ -332,7 +332,11 @@
                     
                         <div class="order_summary__help">
                         
-                            <div class="coupon_code_link__container"><button type="button" class="coupon_code_link js-coupon-button" id="coupon_code_link">I have a coupon code</button></div>
+                            <div class="coupon_code_link__container">
+                            
+                                <button type="button" class="coupon_code_link js-coupon-button" id="coupon_code_link">I have a coupon code</button>
+                                
+                            </div>
 
                             <div class="coupon_code__wrapper js-coupon-code-wrapper hidden" id="coupon_code_box">
                                 
