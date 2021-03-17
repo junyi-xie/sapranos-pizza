@@ -32,7 +32,7 @@
                 echo json_encode($bItemRemoved);
             break;
             case 'save_customer_order':
-                $bCustomerOrder = saveCustomerOrder($_POST['items']);
+                $bCustomerOrder = saveCustomerOrder($_POST['cart']);
                 echo json_encode($bCustomerOrder);
             break;
         }

@@ -2,21 +2,24 @@
 
     $(document).ready(function(){
 
-        $(".js-add-to-cart").on('submit', function(event) {
+        $(".js-add-to-cart").on('click', function(event) {
             event.preventDefault();
+
+            console.log($('.js-shop_form_container').serializeArray());
 
             $.ajax({
                 type: 'post',
                 url: 'inc/ajax.php',
                 data: {
                     action: 'save_customer_order',
-                    items: $('.js-shop_form_container').serialize(),
+                    cart: $('.js-shop_form_container').serialize(),
                 },
                 success: function(result) {
-                    console.log(result);
+                    // console.log(result);
                 }
             });
         });
+
 
         $(".js-modal_close_button").click(function(event) {
             event.preventDefault();

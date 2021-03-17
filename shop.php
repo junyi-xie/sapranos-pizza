@@ -4,16 +4,6 @@
     include_once("inc/connect.php");
     include_once("inc/functions.php");
     include_once("inc/class.php");
-
-    if(isset($_POST) && !empty($_POST)) {
-        // FIX THIS WITH AJAX and show MODAL
-        $bBoolean = saveCustomerOrder($_POST['cart']);
-
-        // if($bBoolean) {
-            // header("location: checkout.php");
-            // exit();
-        // }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -264,7 +254,7 @@
                                             
             <div class="modal-header">
                                                         
-                <button type="button" class="modal_close_button js-modal_close_button"><i class="fas fa-times"></i></button>
+                <button type="button" class="modal_close_button js-modal_close_button" title="Close window"><i class="fas fa-times"></i></button>
 
             </div>
 
@@ -354,7 +344,7 @@
 
                     <div class="payment_options_actions payment_options_actions--shopping_cart">
                         
-                        <button type="button" class="button--transaction payment_options--button">Proceed to Checkout</button>
+                        <a class="button--transaction payment_options--button" href="checkout.php">Proceed to Checkout</a>
                     
                     </div>
 
