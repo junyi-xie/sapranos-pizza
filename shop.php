@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis") ?>" media="screen">
 </head>
-<body class="js-body <?php if(isset($_POST['cart']) && !empty($_POST['cart'])): ?>modal--open<?php endif; ?>">
+<body class="js-body <?php if(isset($_POST) && !empty($_POST)): ?>modal--open<?php endif; ?>">
 
 <?php include_once("inc/header.php") ?>
 
@@ -106,7 +106,7 @@
 
                                 <div class="product__type_dropdown_container">
 
-                                    <select class="product__type_dropdown js-product__type_dropdown" name="cart[type_id]" id="shop_type_dropdown" required>
+                                    <select class="product__type_dropdown js-product__type_dropdown" name="type_id" id="shop_type_dropdown" required>
 
                                         <option value selected disabled hidden>Select Pizza...</option>
  
@@ -160,7 +160,7 @@
 
                                     <div class="product__size_selector_menu_container">
 
-                                        <select class="product__size_selector_menu" name="cart[size_id]" id="shop_size_selector">
+                                        <select class="product__size_selector_menu" name="size_id" id="shop_size_selector">
 
                                             <?php foreach($aSizePizzas as $key => $aSize): ?>
 
@@ -184,7 +184,7 @@
 
                                     <div class="product__quantity_input_field_container">
                                 
-                                        <input class="product__quantity_input_field" type="number" name="cart[quantity]" min="1" max="999" value="1" id="shop_quantity_input">
+                                        <input class="product__quantity_input_field" type="number" name="quantity" min="1" max="999" value="1" id="shop_quantity_input">
                                     
                                     </div>
 
@@ -210,7 +210,7 @@
 
                                                 <span class="product__topping--label"><?= $aTopping['name']; ?> (+ €<?= number_format((float)$aTopping['price'], 2, '.', ''); ?>)</span>
 
-                                                <input class="product__topping_checkbox--type" type="checkbox" name="cart[topping_id][<?= $aTopping['id']; ?>]" value="<?= $aTopping['name']; ?>">
+                                                <input class="product__topping_checkbox--type" type="checkbox" name="topping_id[<?= $aTopping['id']; ?>]" value="<?= $aTopping['name']; ?>">
 
                                             </li>
 
@@ -242,7 +242,7 @@
 
 </div>  
 
-<?php if(isset($_POST['cart']) && !empty($_POST['cart'])): ?>
+<?php if(isset($_POST) && !empty($_POST)): ?>
 
 <?php $iPrecheckoutPrice = 0.00; ?>
 
@@ -262,7 +262,7 @@
 
                 <div class="precheckout__cart_item__header">
                     
-                    <h3 class="precheckout__items_added"><?= $_POST['cart']['quantity']; ?> item(s) added to <a class="precheckout-go-to-cart" href="cart">Cart</a></h3>
+                    <h3 class="precheckout__items_added"><?= $_POST['quantity']; ?> item(s) added to <a class="precheckout-go-to-cart" href="cart">Cart</a></h3>
 
                     <a class="precheckout__go_to_cart" href="cart.php">Go to cart</a>
                 
@@ -270,7 +270,7 @@
 
                 <a class="precheckout__cart_items" href="cart.php">
 
-                    <?php $aTypeDetails = $pdo->query("SELECT * FROM images AS i LEFT JOIN pizzas_type AS pt ON pt.image_id = i.id WHERE 1 AND pt.id = ". $_POST['cart']['type_id'] ." ORDER BY pt.id LIMIT 1")->fetch(PDO::FETCH_ASSOC); ?>
+                    <?php $aTypeDetails = $pdo->query("SELECT * FROM images AS i LEFT JOIN pizzas_type AS pt ON pt.image_id = i.id WHERE 1 AND pt.id = ". $_POST['type_id'] ." ORDER BY pt.id LIMIT 1")->fetch(PDO::FETCH_ASSOC); ?>
 
                     <div class="precheckout__cart_item__image">
                                     
@@ -292,7 +292,7 @@
 
                             <ul class="precheckout__cart_item__info__detail--list">
 
-                                <?php if(!empty($_POST['cart']['topping_id'])): foreach($_POST['cart']['topping_id'] as $iToppingId => $sToppingName):?>
+                                <?php if(!empty($_POST['topping_id'])): foreach($_POST['topping_id'] as $iToppingId => $sToppingName):?>
                             
                                 <?php $aToppingDetails = selectAllById('pizzas_topping', $iToppingId); ?>
 
@@ -308,7 +308,7 @@
 
                         <div class="precheckout__cart_item__info__size">
 
-                            <?php $aSizeDetails = selectAllById('pizzas_size', $_POST['cart']['size_id']); ?>
+                            <?php $aSizeDetails = selectAllById('pizzas_size', $_POST['size_id']); ?>
 
                             <span class="precheckout__cart_item__info__size--label"><?= $aSizeDetails['size']; ?></span>
                             
@@ -322,13 +322,13 @@
                     
                         <div class="precheckout__cart_item__info__price">
                         
-                            <span class="precheckout__cart_item__info__price--label">€<?= number_format((float)$iPrecheckoutPrice * $_POST['cart']['quantity'], 2, '.', ''); ?></span>
+                            <span class="precheckout__cart_item__info__price--label">€<?= number_format((float)$iPrecheckoutPrice * $_POST['quantity'], 2, '.', ''); ?></span>
 
                         </div>
 
                         <div class="precheckout__cart_item__info__quantity">
                         
-                            <span class="precheckout__cart_item__info__quantity--label"><?= $_POST['cart']['quantity']; ?>x</span>
+                            <span class="precheckout__cart_item__info__quantity--label"><?= $_POST['quantity']; ?>x</span>
 
                         </div>
 

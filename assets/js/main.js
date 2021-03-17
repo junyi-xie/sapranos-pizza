@@ -2,20 +2,24 @@
 
     $(document).ready(function(){
 
-        $(".js-add-to-cart").on('click', function(event) {
+        $(".js-add-to-cart").click(function(event) {
             event.preventDefault();
 
-            console.log($('.js-shop_form_container').serializeArray());
+            var form = $('.js-shop_form_container');
 
             $.ajax({
                 type: 'post',
                 url: 'inc/ajax.php',
                 data: {
                     action: 'save_customer_order',
-                    cart: $('.js-shop_form_container').serialize(),
+                    cart: form.serialize(),
                 },
                 success: function(result) {
-                    // console.log(result);
+                    switch (result) {
+                        case 'true':
+                            form.submit();
+                        break;                    
+                    }
                 }
             });
         });

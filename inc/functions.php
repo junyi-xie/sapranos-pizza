@@ -201,28 +201,20 @@
 
 
     /**
-     * Put the customer order in a $_SESSION with the help of saveInSession() function.
+     * Put the customer order in a $_SESSION with the help of saveOrderSession() function.
      *
-     * @param array $order
+     * @param mixed $order
      *
      * @return boolean
      */
     function saveCustomerOrder($order) {
 
-        // $params = array();
-        // parse_str($_GET, $params);
-        // printr
-        // $resizedata = json_decode($order ,true);
-        // $resizeval = $resizedata;
-        // printr($resizeval);
-
-        // $order = unserialize('cart%5Btype_id%5D=2&cart%5Bsize_id%5D=2&cart%5Bquantity%5D=1');
-
-        return $order;
-
-        if (!is_array($order)) return false;
+        $params = array();
+        parse_str($order, $params);
+        
+        if (!is_array($params)) return false;
                 
-            saveOrderSession($order);
+            saveOrderSession($params);
 
         return true;
     }
