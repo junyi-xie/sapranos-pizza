@@ -26,7 +26,7 @@
     <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis") ?>" media="screen">
 </head>
-<body class="js-body modal--open">
+<body class="js-body <?php if(isset($_POST['cart']) && !empty($_POST['cart'])): ?>modal--open<?php endif; ?>">
 
 <?php include_once("inc/header.php") ?>
 
@@ -97,12 +97,14 @@
                         <p class="shop__description--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident sapiente possimus sint amet ducimus repellat veniam natus. Eum pariatur non eius perspiciatis obcaecati distinctio consequatur modi voluptatum, deserunt vel praesentium!</p>
 
                         <p class="shop__description--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident sapiente possimus sint amet ducimus repellat veniam natus. Eum pariatur non eius perspiciatis obcaecati distinctio consequatur modi voluptatum, deserunt vel praesentium!</p>
+                        
+                        <p class="shop__description--text"><span class="bold">Note:</span> you will pay extra for the pizza size.</p>
 
                     </div>
 
                     <div class="shop__purchase_container">
 
-                        <form class="shop_form_container" id="shop_form" action="shop.php" accept-charset="UTF-8" method="post">
+                        <form class="shop_form_container js-shop_form_container" id="shop_form" action="shop.php" accept-charset="UTF-8" method="post">
                         
                             <div class="product_dropdown__container">
 
@@ -232,7 +234,7 @@
 
                             <div class="shop_transaction">
 
-                                <button class="shop_button--transaction shop_form__submit" type="submit" value="Add to Cart">Add to Cart</button>
+                                <button class="shop_button--transaction shop_form__submit js-add-to-cart" type="submit" value="Add to Cart">Add to Cart</button>
 
                             </div>
 
@@ -248,9 +250,11 @@
 
     </div>
 
-</div>
+</div>  
 
 <?php if(isset($_POST['cart']) && !empty($_POST['cart'])): ?>
+
+<?php $iPrecheckoutPrice = 0.00; ?>
 
 <div class="modal-container js-modal_container">
 
@@ -260,11 +264,7 @@
                                             
             <div class="modal-header">
                                                         
-                <button type="button" class="modal_close_button js-modal_close_button">
-                
-                    <i class="fas fa-times"></i>
-                
-                </button>
+                <button type="button" class="modal_close_button js-modal_close_button"><i class="fas fa-times"></i></button>
 
             </div>
 
@@ -272,17 +272,19 @@
 
                 <div class="precheckout__cart_item__header">
                     
-                    <h3 class="precheckout__items_added">1 item added to <a class="precheckout-go-to-cart" href="cart">Cart</a></h3>
+                    <h3 class="precheckout__items_added"><?= $_POST['cart']['quantity']; ?> item(s) added to <a class="precheckout-go-to-cart" href="cart">Cart</a></h3>
 
                     <a class="precheckout__go_to_cart" href="cart.php">Go to cart</a>
                 
                 </div>
 
                 <a class="precheckout__cart_items" href="cart.php">
-                
+
+                    <?php $aTypeDetails = $pdo->query("SELECT * FROM images AS i LEFT JOIN pizzas_type AS pt ON pt.image_id = i.id WHERE 1 AND pt.id = ". $_POST['cart']['type_id'] ." ORDER BY pt.id LIMIT 1")->fetch(PDO::FETCH_ASSOC); ?>
+
                     <div class="precheckout__cart_item__image">
                                     
-                        <img class="precheckout_cart_item_image__thumbnail" src="assets/images/layout/pizza-pepperoni.png">
+                        <img class="precheckout_cart_item_image__thumbnail" src="assets/images/layout/<?= $aTypeDetails['link']; ?>">
 
                     </div>
 
@@ -290,25 +292,25 @@
                     
                         <div class="precheckout__cart_item__info__product">
                             
-                            <span class="precheckout__cart_item_info__name">test</span>
+                            <span class="precheckout__cart_item_info__name"><?= $aTypeDetails['name']; ?></span>
+
+                            <?php $iPrecheckoutPrice += $aTypeDetails['price']; ?>
 
                         </div>
                         
                         <div class="precheckout__cart_item__info__detail">
 
-                            <!-- foreach topping shit -->
-
                             <ul class="precheckout__cart_item__info__detail--list">
+
+                                <?php if(!empty($_POST['cart']['topping_id'])): foreach($_POST['cart']['topping_id'] as $iToppingId => $sToppingName):?>
                             
-                                <li class="precheckout__cart_item__info__detail--label">Pepperoni</li>
-                                <li class="precheckout__cart_item__info__detail--label">Cheese</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
-                                <li class="precheckout__cart_item__info__detail--label">Paper</li>
+                                <?php $aToppingDetails = selectAllById('pizzas_topping', $iToppingId); ?>
+
+                                <li class="precheckout__cart_item__info__detail--label"><?= $sToppingName; ?></li>
+
+                                <?php $iPrecheckoutPrice += $aToppingDetails['price']; ?>
+
+                                <?php endforeach; endif; ?>
 
                             </ul>
 
@@ -316,7 +318,11 @@
 
                         <div class="precheckout__cart_item__info__size">
 
-                            <span class="precheckout__cart_item__info__size--label">S</span>
+                            <?php $aSizeDetails = selectAllById('pizzas_size', $_POST['cart']['size_id']); ?>
+
+                            <span class="precheckout__cart_item__info__size--label"><?= $aSizeDetails['size']; ?></span>
+                            
+                            <?php $iPrecheckoutPrice += $aSizeDetails['price']; ?>
 
                         </div>
                         
@@ -326,13 +332,13 @@
                     
                         <div class="precheckout__cart_item__info__price">
                         
-                            <span class="precheckout__cart_item__info__price--label">€19.98</span>
+                            <span class="precheckout__cart_item__info__price--label">€<?= number_format((float)$iPrecheckoutPrice * $_POST['cart']['quantity'], 2, '.', ''); ?></span>
 
                         </div>
 
                         <div class="precheckout__cart_item__info__quantity">
                         
-                            <span class="precheckout__cart_item__info__quantity--label">1x</span>
+                            <span class="precheckout__cart_item__info__quantity--label"><?= $_POST['cart']['quantity']; ?>x</span>
 
                         </div>
 
@@ -368,9 +374,9 @@
 
 </div>
 
-<?php endif; ?>
-
 <div class="modal_overlay js-modal_overlay" id="modal-overlay"></div>
+
+<?php endif; ?>
 
 <?php include_once("inc/footer.php") ?>
 

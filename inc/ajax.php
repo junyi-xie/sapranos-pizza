@@ -31,6 +31,10 @@
                 $bItemRemoved = cartRemoveItem($_POST['key']);
                 echo json_encode($bItemRemoved);
             break;
+            case 'save_customer_order':
+                $bCustomerOrder = saveCustomerOrder($_POST['items']);
+                echo json_encode($bCustomerOrder);
+            break;
         }
     }    
 ?>

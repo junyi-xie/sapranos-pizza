@@ -134,6 +134,14 @@ body {
   display: none !important;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.normal {
+  font-weight: normal;
+}
+
 .display-mobile {
   display: block;
 }
@@ -2123,7 +2131,7 @@ footer {
 }
 
 .precheckout__cart_item__info__price--label {
-  color: #EA2D71;
+  color: #ee2761;
   font-size: 16px;
   font-weight: 600;
 }
@@ -2221,7 +2229,6 @@ footer {
 }
 
 .modal_overlay {
-  display: block;
   background-color: #6a6f72;
   position: fixed;
   top: 0;

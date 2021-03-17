@@ -186,7 +186,7 @@
     }
 
     .precheckout__cart_item__info__price--label {
-        color: #EA2D71;
+        color: $red;
         font-size: 16px;
         font-weight: 600;
     }   
@@ -197,7 +197,7 @@
     }
 
     .precheckout__cart_item__info__quantity--label {
-        color: #b8bdc5;
+        color: $grey-alt;
         font-size: 14px;
         font-weight: 600;
     }
@@ -275,7 +275,6 @@
     }
 
     .modal_overlay {
-        display: block;
         background-color: $grey;
         position: fixed;
         top: 0;

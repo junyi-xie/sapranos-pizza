@@ -207,7 +207,18 @@
      *
      * @return boolean
      */
-    function saveCustomerOrder($order = array()) {
+    function saveCustomerOrder($order) {
+
+        // $params = array();
+        // parse_str($_GET, $params);
+        // printr
+        // $resizedata = json_decode($order ,true);
+        // $resizeval = $resizedata;
+        // printr($resizeval);
+
+        // $order = unserialize('cart%5Btype_id%5D=2&cart%5Bsize_id%5D=2&cart%5Bquantity%5D=1');
+
+        return $order;
 
         if (!is_array($order)) return false;
                 

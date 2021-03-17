@@ -2,6 +2,22 @@
 
     $(document).ready(function(){
 
+        $(".js-add-to-cart").on('submit', function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                type: 'post',
+                url: 'inc/ajax.php',
+                data: {
+                    action: 'save_customer_order',
+                    items: $('.js-shop_form_container').serialize(),
+                },
+                success: function(result) {
+                    console.log(result);
+                }
+            });
+        });
+
         $(".js-modal_close_button").click(function(event) {
             event.preventDefault();
 
