@@ -670,7 +670,7 @@
         /**
          * Create an invoice with the appropriate getters and other data. Make it well structured and easy to read.
          */
-        private function createInvoice()
+        public function createInvoice()
         {
             // TO DO.
 

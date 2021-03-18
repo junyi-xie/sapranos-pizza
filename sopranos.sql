@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2021 at 06:40 PM
+-- Generation Time: Mar 18, 2021 at 12:16 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -40,13 +40,6 @@ CREATE TABLE `accounts` (
   `last_login` bigint(14) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `accounts`
---
-
-INSERT INTO `accounts` (`id`, `image_id`, `username`, `password`, `email`, `phone`, `admin`, `account_created`, `last_login`) VALUES
-(1, NULL, 'junyi', '$2y$10$gzkmyuFldhJmEo4uQKjrMOzHNGuc3Xeb0O.LkLREvOc3Ux5JFHyaq', 'yunyi.xie@outlook.com', '0636560377', 1, 20210204111921, 20210204111921);
-
 -- --------------------------------------------------------
 
 --
@@ -58,7 +51,7 @@ CREATE TABLE `branches` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
-  `phone` varchar(15) NOT NULL DEFAULT '',
+  `phone` varchar(20) NOT NULL DEFAULT '',
   `zipcode` varchar(255) NOT NULL DEFAULT '',
   `adres` varchar(255) NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
@@ -71,11 +64,11 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `name`, `email`, `phone`, `zipcode`, `adres`, `city`, `country`, `status`) VALUES
-(1, 'Sopranos Pizzabar', 'denhaag@sopranos.nl', '', '', '', 'The Hague', 'The Netherlands', 1),
-(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.nl', '', '', '', 'Rotterdam', 'The Netherlands', 0),
-(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.nl', '', '', '', 'Amsterdam', 'The Netherlands', 0),
-(4, 'Sopranos Pizzabar', 'utrecht@sopranos.nl', '', '', '', 'Utrecht', 'The Netherlands', 0),
-(5, 'Sopranos Pizzabar', 'gouda@sopranos.nl', '', '', '', 'Gouda', 'The Netherlands', 0);
+(1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'The Hague', 'The Netherlands', 0),
+(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Rotterdam', 'The Netherlands', 0),
+(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Amsterdam', 'The Netherlands', 0),
+(4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Utrecht', 'The Netherlands', 1),
+(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Gouda', 'The Netherlands', 0);
 
 -- --------------------------------------------------------
 
@@ -99,8 +92,8 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `code`, `discount`, `type`, `quantity`, `valid`, `expire`) VALUES
-(1, 'DISCOUNT10', 10, 1, 87, 20210209000000, 20210525000000),
-(2, 'FREE30', 30, 1, 4, 20210209120250, 20210407000000);
+(1, 'DISCOUNT10', 10, 1, 98, 20210209000000, 20210525000000),
+(2, 'FREE30', 30, 1, 48, 20210209120250, 20210407000000);
 
 -- --------------------------------------------------------
 
@@ -212,7 +205,6 @@ INSERT INTO `pizzas_size` (`id`, `name`, `size`, `price`) VALUES
 DROP TABLE IF EXISTS `pizzas_topping`;
 CREATE TABLE `pizzas_topping` (
   `id` int(11) NOT NULL,
-  `image_id` int(11) DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `quantity` int(11) NOT NULL DEFAULT 0,
   `price` float(10,3) NOT NULL DEFAULT 0.000
@@ -222,17 +214,17 @@ CREATE TABLE `pizzas_topping` (
 -- Dumping data for table `pizzas_topping`
 --
 
-INSERT INTO `pizzas_topping` (`id`, `image_id`, `name`, `quantity`, `price`) VALUES
-(1, NULL, 'Pepperoni', 116, 1.000),
-(2, NULL, 'Mushrooms', 120, 0.500),
-(3, NULL, 'Onions', 138, 0.500),
-(4, NULL, 'Sausage', 132, 1.500),
-(5, NULL, 'Bacon', 132, 1.500),
-(6, NULL, 'Cheese', 134, 0.750),
-(7, NULL, 'Black olives', 136, 0.500),
-(8, NULL, 'Green peppers', 136, 0.500),
-(9, NULL, 'Pineapple', 130, 1.000),
-(10, NULL, 'Spinach', 132, 0.500);
+INSERT INTO `pizzas_topping` (`id`, `name`, `quantity`, `price`) VALUES
+(1, 'Pepperoni', 989, 1.000),
+(2, 'Mushrooms', 999, 0.500),
+(3, 'Onions', 995, 0.500),
+(4, 'Sausage', 999, 1.500),
+(5, 'Bacon', 997, 1.500),
+(6, 'Cheese', 999, 0.750),
+(7, 'Black Olives', 994, 0.500),
+(8, 'Green Peppers', 999, 0.500),
+(9, 'Pineapple', 994, 1.000),
+(10, 'Spinach', 999, 0.500);
 
 -- --------------------------------------------------------
 
@@ -254,11 +246,11 @@ CREATE TABLE `pizzas_type` (
 --
 
 INSERT INTO `pizzas_type` (`id`, `image_id`, `name`, `quantity`, `price`) VALUES
-(1, 2, 'Tonno', 66, 2.150),
-(2, 3, 'Vegetariano', 94, 3.450),
-(3, 1, 'Quattro Formaggio', 100, 3.750),
-(4, 4, 'Sopranos Deluxe', 90, 4.300),
-(5, 5, 'Pepperoni', 34, 1.250);
+(1, 2, 'Tonno', 987, 2.150),
+(2, 3, 'Vegetariano', 995, 3.450),
+(3, 1, 'Quattro Formaggio', 998, 3.750),
+(4, 4, 'Sopranos Deluxe', 999, 4.300),
+(5, 5, 'Pepperoni', 999, 1.250);
 
 -- --------------------------------------------------------
 
@@ -335,8 +327,7 @@ ALTER TABLE `pizzas_size`
 -- Indexes for table `pizzas_topping`
 --
 ALTER TABLE `pizzas_topping`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `images_id` (`image_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pizzas_type`
@@ -361,7 +352,7 @@ ALTER TABLE `toppings_combination`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `branches`
@@ -379,7 +370,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -391,13 +382,13 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `orders_pizza`
 --
 ALTER TABLE `orders_pizza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `pizzas_size`
@@ -421,7 +412,7 @@ ALTER TABLE `pizzas_type`
 -- AUTO_INCREMENT for table `toppings_combination`
 --
 ALTER TABLE `toppings_combination`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- Constraints for dumped tables
@@ -447,12 +438,6 @@ ALTER TABLE `orders_pizza`
   ADD CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `size_id` FOREIGN KEY (`size_id`) REFERENCES `pizzas_size` (`id`),
   ADD CONSTRAINT `type_id` FOREIGN KEY (`type_id`) REFERENCES `pizzas_type` (`id`);
-
---
--- Constraints for table `pizzas_topping`
---
-ALTER TABLE `pizzas_topping`
-  ADD CONSTRAINT `images_id` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`);
 
 --
 -- Constraints for table `pizzas_type`
