@@ -26,8 +26,6 @@
 
         <div class="site__wrapper">
             
-            <h1>Welcome!</h1>
-
             <?= printr($_SESSION); ?>
 
         </div>

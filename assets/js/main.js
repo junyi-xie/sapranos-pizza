@@ -6,9 +6,17 @@
             event.preventDefault();
 
             var form = $('.js-order_form_container');
-            // var validate = $('.js-checkout');
+            var validate = true;
 
-            // if (validate[0].checkValidity()) {
+            $('.js-checkout-form-required').each(function() {
+                if (!$(this).val()) {
+
+                    validate = false;
+                    $(this).next().addClass('hidden').removeClass('hidden');
+                } 
+            });
+
+            if (validate) {
                 $.ajax({
                     type: 'post',
                     url: 'inc/ajax.php',
@@ -17,20 +25,17 @@
                         data: form.serialize(),
                     },
                     success: function(result) {
-                        console.log(result);
                         switch (result) {
                             case 'true':
-                                // form.submit();
+                                form.submit();
                             break;
                             default:
-                                // alert('Something went wrong...?! Please close your browser and start your order over.');
+                                alert('Something went wrong...?! Please close your browser and start your order process over.');
                             break;                    
                         }
                     }
                 });
-            // } else {
-                // $('.js-form-error').addClass('hidden').removeClass('hidden');
-            // }
+            }
         })
 
 
@@ -54,7 +59,7 @@
                                 form.submit();
                             break;
                             default:
-                                alert('Something went wrong...?! Please close your browser and start your order over.');
+                                alert('Something went wrong...?! Please close your browser and start your order process over.');
                             break;                    
                         }
                     }
@@ -194,7 +199,7 @@
             var input = field.prop('defaultValue');
             var value = field.val();
 
-            if(input === value) {
+            if (input === value) {
                 switch (option) {
                     case true:
                         button.find('.js-cancel_cart_item').addClass('hidden').removeClass('hidden');
@@ -371,7 +376,7 @@
             }
         });
 
-        
+
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Checkout · Sopranos Pizzabar</title>
+    <title><?= isset($_GET['page']) && $_GET['page'] == 'checkout' ? (!empty($_SESSION['sopranos']) && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer']) ? 'Thank you for your order' : 'Silence is golden')  : 'Checkout'; ?> · Sopranos Pizzabar</title>
     <meta charset="UTF-8">
     <meta name="author" content="Junyi Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,19 @@
 
 <?php include_once("inc/header.php") ?>
 
-<?php if (!empty($_SESSION['sopranos']['order']) && count($_SESSION['sopranos']['order']) > 0): ?>
+<?php if(!empty($_GET['page']) && $_GET['page'] == 'checkout' && !empty($_SESSION['sopranos'] && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer']))): ?>
+
+<!-- PRINT INVOICE ETC, MESSAGE ABOUT EMAIL BEING SENT -->
+
+    <?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo); ?>
+
+    <h1 class="text-center" style="margin: 60px 0px 20px 0px; font-size: 48px; letter-spacing: 2px;">Thank you for your order at <?= $aSopranosBranches['name']; ?></h1>
+
+    <h2 class="text-center" style="margin: 0 0px 600px 0px; font-size: 40px; letter-spacing: 2px;">Total: €<?= $SopranosOrders->getPrice(); ?> EUR</h2>
+
+<!-- DOWNLOAD BUTTON IN VOICE BLAH BLAH BLAh -->
+
+<?php elseif (!empty($_SESSION['sopranos']['order']) && count($_SESSION['sopranos']['order']) > 0): ?>
 
 <div class="site__content_container">
 
@@ -30,7 +42,7 @@
 
             <div class="checkout__wrapper">
             
-                <form class="order_form_container js-order_form_container" action="checkout.php" accept-charset="UTF-8" method="post" id="order_form">
+                <form class="order_form_container js-order_form_container" action="checkout.php?page=checkout" accept-charset="UTF-8" method="post" id="order_form">
 
                     <div class="checkout__container">
                     
@@ -48,11 +60,11 @@
                                     
                                     <legend class="checkout__legend">Contact info</legend>
 
-                                    <input class="form__textfield form__textfield--full js-checkout-email" type="email" name="customer[email]" placeholder="Email address" id="order_form_email" required>
+                                    <input class="form__textfield form__textfield--full js-checkout-email js-checkout-form-required" type="email" name="customer[email]" placeholder="Email address" id="order_form_email" required>
 
                                     <div class="form__error js-form-error--checkout-email hidden">* Enter a valid email address</div>
 
-                                    <input class="form__textfield form__textfield--full js-checkout-phone" type="tel" name="customer[phone]" placeholder="Phone number" id="order_form_phone" required>
+                                    <input class="form__textfield form__textfield--full js-checkout-phone js-checkout-form-required" type="tel" name="customer[phone]" placeholder="Phone number" id="order_form_phone" required>
 
                                     <div class="form__error js-form-error--checkout-phone hidden">* Enter a valid phone number</div>
 
@@ -70,7 +82,7 @@
 
                                         <div class="checkout__input--half">
 
-                                            <input class="form__textfield form__textfield--full js-shipping-first-name" type="text" name="customer[first_name]" placeholder="First name" id="order_form_first_name" required>
+                                            <input class="form__textfield form__textfield--full js-shipping-first-name js-checkout-form-required" type="text" name="customer[first_name]" placeholder="First name" id="order_form_first_name" required>
 
                                             <div class="form__error js-form-error--first-name hidden">* Enter your first name</div>
 
@@ -78,7 +90,7 @@
 
                                         <div class="checkout__input--half">
 
-                                            <input class="form__textfield form__textfield--full js-shipping-last-name" type="text" name="customer[last_name]" placeholder="Last name" id="order_form_last_name" required>
+                                            <input class="form__textfield form__textfield--full js-shipping-last-name js-checkout-form-required" type="text" name="customer[last_name]" placeholder="Last name" id="order_form_last_name" required>
 
                                             <div class="form__error js-form-error--last-name hidden">* Enter your last name</div>
 
@@ -86,7 +98,7 @@
 
                                     </div>
                                         
-                                    <input class="form__textfield form__textfield--full js-shipping-address" type="text" name="customer[address]" placeholder="Street address" id="order_form_address" required>
+                                    <input class="form__textfield form__textfield--full js-shipping-address js-checkout-form-required" type="text" name="customer[address]" placeholder="Street address" id="order_form_address" required>
 
                                     <div class="form__error js-form-error--shipping-address hidden">* Enter a valid address</div>
 
@@ -96,7 +108,7 @@
 
                                         <div class="checkout__input--half">
 
-                                            <input class="form__textfield form__textfield--full js-shipping-city" type="text" name="customer[city]" placeholder="City" id="order_form_city" required>
+                                            <input class="form__textfield form__textfield--full js-shipping-city js-checkout-form-required" type="text" name="customer[city]" placeholder="City" id="order_form_city" required>
 
                                             <div class="form__error js-form-error--shipping-city hidden">* Enter a valid city</div>
                                         
@@ -104,7 +116,7 @@
 
                                         <div class="checkout__input--half">
 
-                                            <input class="form__textfield form__textfield--full js-shipping-province" type="text" name="customer[province]" placeholder="Province" id="order_form_province" required>
+                                            <input class="form__textfield form__textfield--full js-shipping-province js-checkout-form-required" type="text" name="customer[province]" placeholder="Province" id="order_form_province" required>
 
                                             <div class="form__error js-form-error--shipping-province hidden">* Enter a valid province</div>
 
@@ -116,7 +128,7 @@
 
                                         <div class="checkout__input--half">
 
-                                            <input class="form__textfield form__textfield--full js-shipping-zipcode" type="text" name="customer[zipcode]" placeholder="Postal code" id="order_form_zip" required>
+                                            <input class="form__textfield form__textfield--full js-shipping-zipcode js-checkout-form-required" type="text" name="customer[zipcode]" placeholder="Postal code" id="order_form_zip" required>
                                             
                                             <div class="form__error js-form-error--shipping-zip hidden">* Enter a valid zip code</div>
 
@@ -124,7 +136,7 @@
 
                                         <div class="checkout__input--half">
 
-                                            <select class="form__textfield form__textfield--full form__select_menu js-shipping-country" type="text" name="customer[country]" placeholder="Country" id="order_form_country" required>
+                                            <select class="form__textfield form__textfield--full form__select_menu js-shipping-country js-checkout-form-required" type="text" name="customer[country]" placeholder="Country" id="order_form_country" required>
 
                                                 <?= getListCountry(); ?>
 
