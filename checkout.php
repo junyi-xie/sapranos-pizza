@@ -4,20 +4,6 @@
     include_once("inc/connect.php");
     include_once("inc/functions.php");
     include_once("inc/class.php");
-
-
-    if(isset($_POST) && !empty($_POST)) {
-        // FIX THIS WITH AJAX
-        
-        $bBoolean = saveCustomerData($_POST);
-
-        /*
-        if($bBoolean) {
-            $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo);
-            exit($SopranosOrders->getPrice() .'order complete');
-        }
-        */
-    }    
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +14,7 @@
     <meta name="author" content="Junyi Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis") ?>" media="screen">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?<?php echo date("YmdHis"); ?>" media="screen">
 </head>
 <body class="js-body">
 
@@ -372,7 +358,7 @@
 
 <?php else: ?>
 
-    <?php header('Location: shop.php'); exit; ?>
+    <h1 class="text-center" style="margin: 60px 0px 600px 0px; font-size: 40px; letter-spacing: 2px;">Silence is golden.</h1>
 
 <?php endif; ?>
 

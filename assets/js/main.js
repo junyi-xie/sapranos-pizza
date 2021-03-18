@@ -2,21 +2,13 @@
 
     $(document).ready(function(){
 
-        $(".js-precheckout-continue-shopping").click(function(event) {
-            event.preventDefault();
-
-            // MAYBE? CLEAR $_POST DATA
-            window.location.href = window.location.href;
-        });
-
         $(".js-place-your-order").click(function(event) {
             event.preventDefault();
 
-            // FIX THIS
             var form = $('.js-order_form_container');
-            var validate = $('.js-checkout');
+            // var validate = $('.js-checkout');
 
-            if(validate[0].checkValidity()) {
+            // if (validate[0].checkValidity()) {
                 $.ajax({
                     type: 'post',
                     url: 'inc/ajax.php',
@@ -25,19 +17,20 @@
                         data: form.serialize(),
                     },
                     success: function(result) {
+                        console.log(result);
                         switch (result) {
                             case 'true':
-                                form.submit();
+                                // form.submit();
                             break;
                             default:
-                                alert('Something went wrong...?!');
+                                // alert('Something went wrong...?! Please close your browser and start your order over.');
                             break;                    
                         }
                     }
                 });
-            } else {
-                $('.js-form-error').addClass('hidden').removeClass('hidden');
-            }
+            // } else {
+                // $('.js-form-error').addClass('hidden').removeClass('hidden');
+            // }
         })
 
 
@@ -47,7 +40,7 @@
             var form = $('.js-shop_form_container');
             var pizza = $('.js-product__type_dropdown');
 
-            if(pizza[0].checkValidity()) {
+            if (pizza[0].checkValidity()) {
                 $.ajax({
                     type: 'post',
                     url: 'inc/ajax.php',
@@ -61,7 +54,7 @@
                                 form.submit();
                             break;
                             default:
-                                alert('Something went wrong...?!');
+                                alert('Something went wrong...?! Please close your browser and start your order over.');
                             break;                    
                         }
                     }
@@ -367,7 +360,7 @@
                 case 'order_form_province':
                 case 'order_form_zip':
                 case 'order_form_country':
-                    if(!input.val()){
+                    if (!input.val()) {
                         input.addClass('error--inline');
                         input.next().removeClass('hidden');
                     }  else {
@@ -378,4 +371,8 @@
             }
         });
 
+        
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     });
