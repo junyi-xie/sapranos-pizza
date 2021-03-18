@@ -1,5 +1,3 @@
-<?php
-/*
 <footer class="site__footer">
         
     <div class="site__footer_wrapper">
@@ -22,13 +20,13 @@
 
                     <li class="nav__item"><a class="nav__item_link" title="Home" href="index.php">Home</a></li>    
 
-                    <li class="nav__item"><a class="nav__item_link" title="About us" href="about.php">About us</a></li>                
+                    <li class="nav__item"><a class="nav__item_link" title="About us" href="about.php">About Us</a></li>                
 
-                    <li class="nav__item"><a class="nav__item_link" title="Store page" href="shop.php">Store page</a></li>      
+                    <li class="nav__item"><a class="nav__item_link" title="Store page" href="shop.php">Store Page</a></li>      
 
                     <li class="nav__item"><a class="nav__item_link" title="Contact" href="contact.php">Contact</a></li>    
 
-                    <li class="nav__item"><a class="nav__item_link" title="Shopping cart" href="cart.php">Shopping cart</a></li>  
+                    <li class="nav__item"><a class="nav__item_link" title="Shopping cart" href="cart.php">Shopping Cart</a></li>  
 
                 </ul>
 
@@ -82,11 +80,7 @@
 
             <div class="footer__legal">
             
-                <div class="site__copyright">
-
-                    <p>Copyright &copy; <?php echo date("Y")?> Sopranos Pizzabar. All Rights Reserved.</p>
-
-                </div>
+                <div class="site__copyright">Copyright &copy; <?php echo date("Y")?> Sopranos Pizzabar. All Rights Reserved.</div>
 
             </div>
 
@@ -95,5 +89,3 @@
     </div>
 
 </footer>
-*/
-?>

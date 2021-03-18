@@ -40,17 +40,18 @@
             }
 
             .nav__item {
+                font-weight: 400;
                 display: block;
+                font-family: $font-secondary;
                 margin-bottom: 10px;
                 padding-right: 5px;
-                color: $grey;
+                color: $black;
 
                 .nav__item_link {
-                    color: $grey;
+                    color: $black;
                     
                     &:hover {
-                        color: $black;
-                        opacity: 0.8;
+                        color: $space-grey
                     }
                 }
 
@@ -58,7 +59,7 @@
                 .icon__twitter_link,
                 .icon__instagram_link,
                 .icon__pinterest_link {
-                    color: $grey;
+                    color: $black;
                 }
 
                 .icon__facebook_link:hover {
@@ -158,8 +159,10 @@
         justify-content: center;
 
         .site__copyright {
+            font-family: $font-quaternary;
+            letter-spacing: 1px;
             font-size: 14px;
-            color: $grey;
+            color: $black-alt;
             text-align: center;
         }
     }

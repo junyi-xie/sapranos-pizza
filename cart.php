@@ -32,7 +32,7 @@
 
             <div class="empty_shopping_cart--center">
 
-                <h1>Your cart is empty.</h1>
+                <h1 class="empty_shopping_cart-title text-center">Your cart is empty.</h1>
             
             </div>
 

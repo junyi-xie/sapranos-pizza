@@ -6,7 +6,7 @@
                 
             <div class="notification__message">
                 
-                <span class="notification__message_text">test</span>
+                <span class="notification__message_text">Hello, how are you?!?</span>
 
             </div>
             
@@ -48,7 +48,7 @@
 
                                 <div class="ts-icon-cart"><i class="fas fa-shopping-cart"></i></div>
 
-                                <span class="site__shopping-cart-count js-shopping-cart-count"><?=$iShoppingCartCount?></span>
+                                <span class="site__shopping-cart-count js-shopping-cart-count"><?= $iShoppingCartCount; ?></span>
                             
                             </div>
 
