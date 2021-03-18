@@ -8,7 +8,7 @@
 
     date_default_timezone_set('Europe/Amsterdam');
 
-    $hostname 	= "localhost";
+    $hostname 	= "127.0.0.1";
     $username	= "root";
     $password 	= "";
     $dbname		= "sopranos";

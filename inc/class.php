@@ -142,7 +142,7 @@
 
             if(is_array($config) && array_key_exists('number', $config) && array_key_exists('coupon', $config) && array_key_exists('order', $config) && array_key_exists('customer', $config)) {
                 $this->setNumber($config['number']);
-                $this->setCouponCode($config['coupon']);
+                $this->setCoupon($config['coupon']);
                 $this->setOrder($config['order']);
                 $this->setCustomer($config['customer']);
 
@@ -150,10 +150,8 @@
                 $this->insertCustomerData();
                 $this->insertOrderData();
                 $this->setPizzaData();
-
-                if(!empty($this->getCoupon())) { 
-                    $this->applyCoupon(); 
-                }
+                $this->applyCoupon(); 
+                // $this->createInvoice();
             } else {
                 throw new \Exception('Error: __construct() - Configuration data is missing...');
             }
@@ -169,7 +167,7 @@
          * 
          * @throws \Exception Coupon code is not a string.
          */
-        private function setCouponCode($coupon_code = '') 
+        protected function setCouponCode($coupon_code = '') 
         {
 
             if(is_string($coupon_code)) {
@@ -610,7 +608,7 @@
 
             $aPriceSql = $this->pdo->prepare($sSql);
             $aPriceSql->execute(array(':id' => $id));
-            $Output = $aPriceSql->fetch();
+            $Output = $aPriceSql->fetch(\PDO::FETCH_ASSOC);
 
             if(!empty($Output['price']) && $Output['price'] > 0) {
 
@@ -644,6 +642,10 @@
                 $aCoupon = $this->pdo->query($sSql);
                 $Output = $aCoupon->fetch(\PDO::FETCH_ASSOC);
 
+                    if(!$Output) {
+                        throw new \Exception('Error: applyCoupon() - Coupon is out of stock or id is missing...');  
+                    }   
+
                 if($aCoupon->rowCount() > 0) {
                     
                     switch ($Output['type']) {
@@ -662,8 +664,6 @@
 
                 return false; 
             }
-
-            throw new \Exception('Error: applyCoupon() - Coupon is out of stock or id is missing...');  
         } 
 
 

@@ -271,10 +271,13 @@
 
         $bEmail = isEmailValid($params['customer']['email']);
 
+        $aCoupons = selectValidCoupons(date("YmdHis"));
+        $coupon = validateCouponCode($aCoupons, $params['coupon']);
+
             if (!$bEmail) return false; 
             if (!is_array($params)) return false;
 
-        saveInSession('coupon', $params['coupon']);            
+        saveInSession('coupon', $coupon);            
         saveInSession('customer', $params['customer']);            
 
         return true;
