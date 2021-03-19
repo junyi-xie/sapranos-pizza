@@ -20,18 +20,60 @@
 
 <?php include_once("inc/header.php") ?>
 
-<?php if(!empty($_GET['page']) && $_GET['page'] == 'checkout' && !empty($_SESSION['sopranos'] && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer']))): ?>
+<?php if(!empty($_SESSION['sopranos'] && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer'])) && !empty($_GET['page']) && $_GET['page'] == 'checkout'): ?>
 
-<!-- PRINT INVOICE ETC, MESSAGE ABOUT EMAIL BEING SENT -->
 
-    <?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo); ?>
+    <?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo);
 
-    <h1 class="text-center" style="margin: 60px 0px 20px 0px; font-size: 48px; letter-spacing: 2px;">Thank you for your order at <?= $aSopranosBranches['name']; ?></h1>
+    // CONSTRUCT MESSAGE LAYOUT. TO DO
+    $customerdetails = $SopranosOrders->getCustomer();
+    $sendermail = $aSopranosBranches['email'];
+    $sendername = $aSopranosBranches['name'];
+    $targetmail = $customerdetails['email'];
+    $targetname = $customerdetails['first_name'] .' '. $customerdetails['last_name']; 
 
-    <h2 class="text-center" style="margin: 0 0px 600px 0px; font-size: 40px; letter-spacing: 2px;">Total: €<?= $SopranosOrders->getPrice(); ?> EUR</h2>
+    // $test = sendMail($sendermail, $sendername, $targetmail, $targetname, 'testmail');
 
-    <?= $SopranosOrders->createInvoice(); ?>
-<!-- DOWNLOAD BUTTON IN VOICE BLAH BLAH BLAh -->
+    // printr($test);
+    ?>
+
+<div class="checkout_order__container">
+
+    <div class="checkout_order--wrapper">
+
+        <div class="checkout_order__edit site__wrapper">
+
+            <div class="checkout_order__header">
+
+                <h1 class="checkout_order__title">Thank you.</h1>
+
+                <p class="checkout_order__subtitle">Your order was completed successfully.</p>
+
+            </div>
+
+            <div class="checkout_order__mail--details">
+
+                <div class="checkout_order__mail--image">
+                
+                    <img class="checkout_order__mail--thumb" src="assets/images/layout/mail.png">
+                
+                </div>
+
+                <p class="checkout_order__mail--text">An email receipt including the details about your order has been sent to the email address provided. Please keep it for your records.</p>
+
+            </div>
+
+            <div class="checkout_order__shop_again">
+
+                <p class="checkout_order__shop_again-text">If you wish to continue shopping, click here to go direct to the <a class="checkout_order__shop_again--link-alt" href="shop.php">shopping page.</a></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <?php elseif (!empty($_SESSION['sopranos']['order']) && count($_SESSION['sopranos']['order']) > 0): ?>
 
@@ -371,7 +413,7 @@
 
 <?php else: ?>
 
-    <h1 class="text-center" style="margin: 60px 0px 600px 0px; font-size: 40px; letter-spacing: 2px;">Silence is golden.</h1>
+    <h1 class="text-center" style="margin-top: 60px; margin-bottom: 600px; font-size: 48px; letter-spacing: 2px;">Silence is golden.</h1>
 
 <?php endif; ?>
 

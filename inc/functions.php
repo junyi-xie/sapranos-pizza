@@ -1,6 +1,12 @@
 <?php
     /* Copyright (c) - 2021 by Junyi Xie */
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require 'inc/class/PHPMailer/src/Exception.php';
+    require 'inc/class/PHPMailer/src/PHPMailer.php';
+    require 'inc/class/PHPMailer/src/SMTP.php';
 
     /**
      * print_r but fancier.
@@ -713,6 +719,37 @@
     }
 
 
+    /**
+     * Send a mail to the customer with their purchase information and stuff. Uses PHPMailer to send the mail.
+     *
+     * @return string
+     */
+    function sendMail($senderMail = '', $senderName = '', $targetMail = '', $targetName = '', $subject = '') {
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'f6027eef23f34f';
+        $mail->Password = 'acc3e9b4118491';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 2525;
+
+        $mail->setFrom($senderMail, $senderName);
+        $mail->addAddress($targetMail, $targetName);
+        $mail->isHTML(true);
+
+        $mail->Subject = $subject; 
+        $mail->Body    = '<h1> A test mail </h1>';
+        $mail->AltBody = 'Mail has been sent!';
+
+        if (!$mail->send()) {
+            return $mail->ErrorInfo;
+        } else {
+            return 'Message has been sent';
+        }
+    }
+
+    
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
     $aTypePizzas = selectAllById('pizzas_type');

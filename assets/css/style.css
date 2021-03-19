@@ -1923,6 +1923,101 @@ footer {
   color: #32b259;
 }
 
+.checkout_order__container {
+  margin-top: 4rem;
+}
+
+.checkout_order--wrapper {
+  min-height: 100%;
+  height: auto;
+  padding: 0;
+}
+
+.checkout_order__edit {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.checkout_order__header {
+  display: block;
+  position: relative;
+}
+
+.checkout_order__title {
+  font-size: 48px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 800;
+  color: #0a0918;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 1rem;
+}
+
+.checkout_order__subtitle {
+  font-size: 32px;
+  text-align: center;
+  font-weight: normal;
+  color: #0a0918;
+  font-family: "Noto Sans", sans-serif;
+  padding-bottom: 3rem;
+}
+
+.checkout_order__mail--details {
+  width: 65%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 2rem;
+}
+
+.checkout_order__mail--image {
+  display: block;
+  position: relative;
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.checkout_order__mail--thumb {
+  width: 100%;
+  outline: none;
+}
+
+.checkout_order__mail--text {
+  display: inline-block;
+  text-align: left;
+  color: #0a0918;
+  font-size: 18px;
+}
+
+.checkout_order__shop_again {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.checkout_order__shop_again-text {
+  color: #0a0918;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.checkout_order__shop_again--link-alt {
+  text-decoration: underline;
+  color: #0a0918;
+  font-weight: 600;
+}
+
+.checkout_order__shop_again--link-alt:hover {
+  color: #6c7478;
+}
+
 .modal-container {
   -webkit-transition: opacity 0.3s linear;
   transition: opacity 0.3s linear;
