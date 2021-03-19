@@ -1948,7 +1948,7 @@ footer {
   text-align: center;
   letter-spacing: 1px;
   font-weight: 800;
-  color: #0a0918;
+  color: #282562;
   font-family: "Poppins", sans-serif;
   padding-bottom: 1rem;
 }
@@ -2010,12 +2010,12 @@ footer {
 
 .checkout_order__shop_again--link-alt {
   text-decoration: underline;
-  color: #0a0918;
+  color: #282562;
   font-weight: 600;
 }
 
 .checkout_order__shop_again--link-alt:hover {
-  color: #6c7478;
+  color: #5ec8d5;
 }
 
 .modal-container {

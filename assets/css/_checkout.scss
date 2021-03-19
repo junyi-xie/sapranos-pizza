@@ -481,7 +481,7 @@
         text-align: center;
         letter-spacing: 1px;
         font-weight: 800;
-        color: $black-alt;
+        color: $indigo;
         font-family: $font-primary;
         padding-bottom: 1rem;
     }
@@ -539,10 +539,10 @@
 
     .checkout_order__shop_again--link-alt {
         text-decoration: underline;
-        color: $black-alt;
+        color: $indigo;
         font-weight: 600;
 
         &:hover {
-            color: $space-grey;
+            color: $blue-alt;
         }
     }
