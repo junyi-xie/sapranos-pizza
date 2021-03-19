@@ -7,7 +7,7 @@
      * Sopranos Pizzabar Orders Class.
      *     
      * @author Junyi Xie
-     * @version 1.1 [UPDATED TO AUTOMATICALLY RUN]
+     * @version 1.1.4
      */
     class Orders 
     {
@@ -140,18 +140,17 @@
                 }
                 
 
-            if(is_array($config) && array_key_exists('number', $config) && array_key_exists('coupon', $config) && array_key_exists('order', $config) && array_key_exists('customer', $config)) {
+            if(is_array($config) && array_key_exists('number', $config) && array_key_exists('order', $config) && array_key_exists('coupon', $config) && array_key_exists('customer', $config)) {
                 $this->setNumber($config['number']);
-                $this->setCoupon($config['coupon']);
                 $this->setOrder($config['order']);
+                $this->setCoupon($config['coupon']);
                 $this->setCustomer($config['customer']);
 
                 /* [DO NOT CHANGE ORDER, THE FUNCTIONS NEED TO BE CALLED IN THIS SPECIFIC ORDER TO FUNCTION PROPERLY] */
-                $this->insertCustomerData();
-                $this->insertOrderData();
-                $this->setPizzaData();
-                $this->applyCoupon(); 
-                // $this->createInvoice();
+                // $this->insertCustomerData();
+                // $this->insertOrderData();
+                // $this->setPizzaData();
+                // $this->applyCoupon(); 
             } else {
                 throw new \Exception('Error: __construct() - Configuration data is missing...');
             }
@@ -668,18 +667,6 @@
 
 
         /**
-         * Create an invoice with the appropriate getters and other data. Make it well structured and easy to read.
-         */
-        public function createInvoice()
-        {
-            // TO DO.
-
-            // LINK SOME PDF LIBRARY TO USE
-            // AND LINK PHPMAILER TO SEND IT TO THEIR EMAIL
-        }
-
-
-        /**
          * Total Price Setter.
          *
          * @param float $price
@@ -1001,7 +988,7 @@
          */
         public function __destruct() 
         {
-            return clearSession();
+            // return clearSession();
         }
     }
 ?>

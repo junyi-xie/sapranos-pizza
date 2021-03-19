@@ -30,6 +30,7 @@
 
     <h2 class="text-center" style="margin: 0 0px 600px 0px; font-size: 40px; letter-spacing: 2px;">Total: €<?= $SopranosOrders->getPrice(); ?> EUR</h2>
 
+    <?= $SopranosOrders->createInvoice(); ?>
 <!-- DOWNLOAD BUTTON IN VOICE BLAH BLAH BLAh -->
 
 <?php elseif (!empty($_SESSION['sopranos']['order']) && count($_SESSION['sopranos']['order']) > 0): ?>
