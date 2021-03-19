@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?= isset($_GET['page']) && $_GET['page'] == 'checkout' ? (!empty($_SESSION['sopranos']) && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer']) ? 'Thank you for your order' : 'Silence is golden')  : 'Checkout'; ?> · Sopranos Pizzabar</title>
+    <title>Checkout · Sopranos Pizzabar</title>
     <meta charset="UTF-8">
     <meta name="author" content="Junyi Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -413,7 +413,7 @@
 
 <?php else: ?>
 
-    <h1 class="text-center" style="margin-top: 60px; margin-bottom: 600px; font-size: 48px; letter-spacing: 2px;">Silence is golden.</h1>
+    <h1 class="text-center" style="margin-top: 5rem; margin-bottom: 50rem; font-size: 4rem;">Silence is golden.</h1>
 
 <?php endif; ?>
 
