@@ -4,10 +4,11 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    require 'inc/class/PHPMailer/src/Exception.php';
-    require 'inc/class/PHPMailer/src/PHPMailer.php';
-    require 'inc/class/PHPMailer/src/SMTP.php';
+    require 'class/PHPMailer/src/Exception.php';
+    require 'class/PHPMailer/src/PHPMailer.php';
+    require 'class/PHPMailer/src/SMTP.php';
 
+    
     /**
      * print_r but fancier.
      *
