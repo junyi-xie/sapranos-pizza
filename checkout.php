@@ -22,28 +22,9 @@
 
 <?php if(!empty($_SESSION['sopranos'] && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer'])) && !empty($_GET['page']) && $_GET['page'] == 'checkout'): ?>
 
+<?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo); ?>
 
-    <?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo);
-
-    // CONSTRUCT MESSAGE LAYOUT. TO DO
-    $customerdetails = $SopranosOrders->getCustomer();
-    $sendermail = $aSopranosBranches['email'];
-    $sendername = $aSopranosBranches['name'];
-    $targetmail = $customerdetails['email'];
-    $targetname = $customerdetails['first_name'] .' '. $customerdetails['last_name']; 
-
-
-    // $test = sendMail($sendermail, $sendername, $targetmail, $targetname, 'testmail', $appel);
-    ?>
-
-
-
-    <?php $test = sendMail($SopranosOrders->getCustomer(), $SopranosOrders->getOrder(), $SopranosOrders->getNumber(), $SopranosOrders->getCoupon()); ?>
-
-    <?php 
-    // printr($appel);
-    printr($test);
-    ?>
+<?php sendMail($SopranosOrders->getCustomer(), $SopranosOrders->getOrder(), $SopranosOrders->getNumber(), $SopranosOrders->getCoupon()); ?>
 
 <div class="checkout_order__container">
 

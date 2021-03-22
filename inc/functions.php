@@ -723,233 +723,51 @@
     /**
      * Send a mail to the customer with their purchase information and stuff. Uses PHPMailer to send the mail.
      * 
-     * @params array $customer
-     * @params array $order
-     * @params int $invoice
-     * @params int|null $coupon
+     * @params array $CustomerArray
+     * @params array $OrderArray
+     * @params int $InvoiceNumber
+     * @params int|null $CouponNumber
      *
-     * @return string
+     * @return mixed
      */
-    function sendMail($customer = array(), $order = array(), $invoice = 0, $coupon = null) {
+    function sendMail($CustomerArray = array(), $OrderArray = array(), $InvoiceNumber = 0, $CouponNumber = null) {
 
-        global $aSopranosBranches;
-        global $iShoppingCartCount;
-        global $pdo;
-
-        $sTemplate = '';
-        $iTotalPrice = 0.00;
+        if(empty($iShoppingCartCount)) {
+            global $iShoppingCartCount;
+        }
 
 
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'f6027eef23f34f';
-        $mail->Password = 'acc3e9b4118491';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 2525;
+        $mail->Username = 'username';
+        $mail->Password = 'password';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
 
 
-        $sContactInformation = $customer['email'] . '<br>' . $customer['phone'] .'<br>';
-        $sFullName = $customer['first_name'] .' '. $customer['last_name'];
-        $sFullAddress = $customer['address'] .'<br>'. $customer['city'] .' '. $customer['zipcode'] .'<br>'. $customer['country'];
-        $bEmailValid = isEmailValid($customer['email']);
+        $sFullName = $CustomerArray['first_name'] .' '. $CustomerArray['last_name'];
+        $bEmailValid = isEmailValid($CustomerArray['email']);
 
         if (!$bEmailValid) return false;
-        $sEmail = $customer['email'];
+        $sEmail = $CustomerArray['email'];
+        
 
-
-        $mail->setFrom($aSopranosBranches['email'], $aSopranosBranches['name']);
+        $mail->setFrom('info@sopranos.com', 'Sopranos Pizzabar');
         $mail->addAddress($sEmail, $sFullName);
 
         $mail->isHTML(true);
-        $mail->AddEmbeddedImage('assets/images/layout/sopranos-logo-footer.png', 'sopranos_logo_footer');
-        $mail->AddEmbeddedImage('assets/images/layout/sopranos-logo-header.png', 'sopranos_logo_header');
-
+        $mail->AddEmbeddedImage('assets/images/layout/sopranos-logo-footer.png', 'sopranos_logo');
 
         $mail->CharSet = "UTF-8";
-        $mail->Subject = 'Thank you for your order at '. $aSopranosBranches['name'] .' with order no. '. $invoice .' of '. $iShoppingCartCount .' item(s)'; 
-
-        $sTemplate .= '
-            <!DOCTYPE html>
-            <html lang="en">
-                <head>
-                    <meta charset="utf-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <style>
-                        body {
-                            font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-                            text-align: center;
-                            color: #777;
-                        }
-            
-                        .invoice-box {
-                            max-width: 800px;
-                            margin: auto;
-                            padding: 30px;
-                            border: 1px solid #eee;
-                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-                            font-size: 16px;
-                            line-height: 24px;
-                            font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-                            color: #555;
-                        }
-            
-                        .invoice-box table {
-                            width: 100%;
-                            line-height: inherit;
-                            text-align: left;
-                            border-collapse: collapse;
-                        }
-            
-                        .invoice-box table td {
-                            padding: 5px;
-                            vertical-align: top;
-                        }
-            
-                        .invoice-box table tr td:nth-child(2) {
-                            text-align: right;
-                        }
-            
-                        .invoice-box table tr.top table td {
-                            padding-bottom: 20px;
-                        }
-            
-                        .invoice-box table tr.top table td.title {
-                            font-size: 45px;
-                            line-height: 45px;
-                            color: #333;
-                        }
-            
-                        .invoice-box table tr.information table td {
-                            padding-bottom: 40px;
-                        }
-            
-                        .invoice-box table tr.heading td {
-                            background: #eee;
-                            border-bottom: 1px solid #ddd;
-                            font-weight: bold;
-                        }
-                        
-                        .invoice-box table tr.item td {
-                            border-bottom: 1px solid #eee;
-                        }
-            
-                        .invoice-box table tr.item.last td {
-                            border-bottom: none;
-                        }
-            
-                        .invoice-box table tr.total td:nth-child(2) {
-                            border-top: 2px solid #eee;
-                            font-weight: bold;
-                        }
-            
-                        @media only screen and (max-width: 600px) {
-                            .invoice-box table tr.top table td {
-                                width: 100%;
-                                display: block;
-                                text-align: center;
-                            }
-            
-                            .invoice-box table tr.information table td {
-                                width: 100%;
-                                display: block;
-                                text-align: center;
-                            }
-                        }
-                    </style>
-                </head>
-            
-                <body>
-                    <div class="invoice-box">
-                        <table>
-                            <tr class="top">
-                                <td colspan="2">
-                                    <table>
-                                        <tr>
-                                            <td class="title">
-                                                <img src="cid:sopranos_logo_footer" alt="Company logo" style="width: 100%; max-width: 300px" />
-                                            </td>
-            
-                                            <td>
-                                                Order no. '. $invoice .'<br>
-                                                '. $sContactInformation .'<br>
-                                                '. $sFullName .'<br>
-                                                '. $sFullAddress .'<br>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-            
-                            <tr class="information">
-                                <td colspan="2">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                '. $aSopranosBranches['name'] .'<br>
-                                                '. $aSopranosBranches['address'] .'<br>
-                                                '. $aSopranosBranches['city'] .', '. $aSopranosBranches['zipcode'] .'
-                                            </td>                                               
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-            
-                            <tr class="heading">
-                                <td>Item</td>
-            
-                                <td>Price</td>
-                            </tr>
-                            ';
-            
-                            if(!empty($order) && is_array($order)) {
-                                foreach($order as $key => $item) {
-                                    $iSubTotal = 0.00;
-
-                                    $aSizeData = selectAllById('pizzas_size', $item['size_id']);
-                                    $aTypeData = selectAllById('pizzas_type', $item['type_id']);
-
-                                    $iSubTotal += $aSizeData['price'] * $item['quantity'];
-                                    $iSubTotal += $aTypeData['price'] * $item['quantity'];
-
-                                    $sTemplate .= '<tr class="item"><td>'. $aTypeData['name'] .' • '. $aSizeData['size'];
-
-                                    if(!empty($item['topping_id']) && is_array($item['topping_id'])) {
-                                        foreach($item['topping_id'] as $iToppingId => $iToppingName) {
-                                            $aToppingData = selectAllById('pizzas_topping', $iToppingId);
-                                            $iSubTotal += $aToppingData['price'] * $item['quantity'];
-
-                                            $sTemplate .= ' • '. $iToppingName;
-                                        }
-                                    }
-
-                                    $sTemplate .= '</td><td>€'.number_format((float)$iSubTotal, 2, '.', '').' EUR</td></tr>';
-
-                                    $iTotalPrice += $iSubTotal;
-                                }
-                            }
-
-
-                            $sTemplate .= '
-                            
-                            <tr class="total">
-                                <td></td>
-            
-                                <td>Order total: €'.number_format((float)$iTotalPrice, 2, '.', '').' EUR</td>
-                            </tr>
-                        </table>
-                    </div>
-                </body>
-            </html>
-        ';
-
-        $mail->Body    = $sTemplate;
-
+        $mail->Subject = 'Thank you for your order at Sopranos Pizzabar with order no. '. $InvoiceNumber .' of '. $iShoppingCartCount .' item(s)'; 
+        $mail->Body = '<div style="text-align: center;"><img src="cid:sopranos_logo"><br/><h1>Thank you for your purchase(s).</h1></div>';
+        
         if (!$mail->send()) {
             return $mail->ErrorInfo;
         } else {
-            return 'Message has been sent';
+            return true;
         }
     }
 
