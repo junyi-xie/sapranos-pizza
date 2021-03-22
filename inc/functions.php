@@ -737,6 +737,7 @@
         global $pdo;
 
         $sTemplate = '';
+        $iTotalPrice = 0.00;
 
 
         $mail = new PHPMailer();
@@ -749,7 +750,9 @@
         $mail->Port = 2525;
 
 
+        $sContactInformation = $customer['email'] . '<br>' . $customer['phone'] .'<br>';
         $sFullName = $customer['first_name'] .' '. $customer['last_name'];
+        $sFullAddress = $customer['address'] .'<br>'. $customer['city'] .' '. $customer['zipcode'] .'<br>'. $customer['country'];
         $bEmailValid = isEmailValid($customer['email']);
 
         if (!$bEmailValid) return false;
@@ -764,57 +767,20 @@
         $mail->AddEmbeddedImage('assets/images/layout/sopranos-logo-header.png', 'sopranos_logo_header');
 
 
-        if(!empty($order) && is_array($order)) {
-            foreach($order as $key => $val) {
-
-                
-                // printr($val);
-                // printr($key);
-
-            }
-        }
-
-        // exit();
-
+        $mail->CharSet = "UTF-8";
         $mail->Subject = 'Thank you for your order at '. $aSopranosBranches['name'] .' with order no. '. $invoice .' of '. $iShoppingCartCount .' item(s)'; 
 
         $sTemplate .= '
             <!DOCTYPE html>
             <html lang="en">
                 <head>
-                    <meta charset="utf-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-            
-                    <title>A simple, clean, and responsive HTML invoice template</title>
-            
-                    <!-- Favicon -->
-                    <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
-            
-                    <!-- Invoice styling -->
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <style>
                         body {
                             font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
                             text-align: center;
                             color: #777;
-                        }
-            
-                        body h1 {
-                            font-weight: 300;
-                            margin-bottom: 0px;
-                            padding-bottom: 0px;
-                            color: #000;
-                        }
-            
-                        body h3 {
-                            font-weight: 300;
-                            margin-top: 10px;
-                            margin-bottom: 20px;
-                            font-style: italic;
-                            color: #555;
-                        }
-            
-                        body a {
-                            color: #06f;
                         }
             
                         .invoice-box {
@@ -864,11 +830,7 @@
                             border-bottom: 1px solid #ddd;
                             font-weight: bold;
                         }
-            
-                        .invoice-box table tr.details td {
-                            padding-bottom: 20px;
-                        }
-            
+                        
                         .invoice-box table tr.item td {
                             border-bottom: 1px solid #eee;
                         }
@@ -899,11 +861,6 @@
                 </head>
             
                 <body>
-                    <h1>A simple, clean, and responsive HTML invoice template</h1>
-                    <h3>Because sometimes, all you need is something simple.</h3>
-                    Find the code on <a href="https://github.com/sparksuite/simple-html-invoice-template">GitHub</a>. Licensed under the
-                    <a href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>.<br /><br /><br />
-            
                     <div class="invoice-box">
                         <table>
                             <tr class="top">
@@ -915,9 +872,10 @@
                                             </td>
             
                                             <td>
-                                                Invoice #: 123<br />
-                                                Created: January 1, 2015<br />
-                                                Due: February 1, 2015
+                                                Order no. '. $invoice .'<br>
+                                                '. $sContactInformation .'<br>
+                                                '. $sFullName .'<br>
+                                                '. $sFullAddress .'<br>
                                             </td>
                                         </tr>
                                     </table>
@@ -928,29 +886,14 @@
                                 <td colspan="2">
                                     <table>
                                         <tr>
-                                            <td>'. $aSopranosBranches['name'] .'<br/>'. $aSopranosBranches['address'] .'<br/>'. $aSopranosBranches['city'] .', '. $aSopranosBranches['zipcode'] .'
-                                            </td>
-            
                                             <td>
-                                                Acme Corp.<br />
-                                                John Doe<br />
-                                                john@example.com
-                                            </td>
+                                                '. $aSopranosBranches['name'] .'<br>
+                                                '. $aSopranosBranches['address'] .'<br>
+                                                '. $aSopranosBranches['city'] .', '. $aSopranosBranches['zipcode'] .'
+                                            </td>                                               
                                         </tr>
                                     </table>
                                 </td>
-                            </tr>
-            
-                            <tr class="heading">
-                                <td>Payment Method</td>
-            
-                                <td>Check #</td>
-                            </tr>
-            
-                            <tr class="details">
-                                <td>Check</td>
-            
-                                <td>1000</td>
                             </tr>
             
                             <tr class="heading">
@@ -958,29 +901,42 @@
             
                                 <td>Price</td>
                             </tr>
+                            ';
             
-                            <tr class="item">
-                                <td>Website design</td>
-            
-                                <td>$300.00</td>
-                            </tr>
-            
-                            <tr class="item">
-                                <td>Hosting (3 months)</td>
-            
-                                <td>$75.00</td>
-                            </tr>
-            
-                            <tr class="item last">
-                                <td>Domain name (1 year)</td>
-            
-                                <td>$10.00</td>
-                            </tr>
-            
+                            if(!empty($order) && is_array($order)) {
+                                foreach($order as $key => $item) {
+                                    $iSubTotal = 0.00;
+
+                                    $aSizeData = selectAllById('pizzas_size', $item['size_id']);
+                                    $aTypeData = selectAllById('pizzas_type', $item['type_id']);
+
+                                    $iSubTotal += $aSizeData['price'] * $item['quantity'];
+                                    $iSubTotal += $aTypeData['price'] * $item['quantity'];
+
+                                    $sTemplate .= '<tr class="item"><td>'. $aTypeData['name'] .' • '. $aSizeData['size'];
+
+                                    if(!empty($item['topping_id']) && is_array($item['topping_id'])) {
+                                        foreach($item['topping_id'] as $iToppingId => $iToppingName) {
+                                            $aToppingData = selectAllById('pizzas_topping', $iToppingId);
+                                            $iSubTotal += $aToppingData['price'] * $item['quantity'];
+
+                                            $sTemplate .= ' • '. $iToppingName;
+                                        }
+                                    }
+
+                                    $sTemplate .= '</td><td>€'.number_format((float)$iSubTotal, 2, '.', '').' EUR</td></tr>';
+
+                                    $iTotalPrice += $iSubTotal;
+                                }
+                            }
+
+
+                            $sTemplate .= '
+                            
                             <tr class="total">
                                 <td></td>
             
-                                <td>Total: $385.00</td>
+                                <td>Order total: €'.number_format((float)$iTotalPrice, 2, '.', '').' EUR</td>
                             </tr>
                         </table>
                     </div>
