@@ -147,10 +147,10 @@
                 $this->setCustomer($config['customer']);
 
                 /* [DO NOT CHANGE ORDER, THE FUNCTIONS NEED TO BE CALLED IN THIS SPECIFIC ORDER TO FUNCTION PROPERLY] */
-                // $this->insertCustomerData();
-                // $this->insertOrderData();
-                // $this->setPizzaData();
-                // $this->applyCoupon(); 
+                $this->insertCustomerData();
+                $this->insertOrderData();
+                $this->setPizzaData();
+                $this->applyCoupon(); 
             } else {
                 throw new \Exception('Error: __construct() - Configuration data is missing...');
             }
