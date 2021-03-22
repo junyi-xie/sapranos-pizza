@@ -988,7 +988,7 @@
          */
         public function __destruct() 
         {
-            // return clearSession();
+            return clearSession();
         }
     }
 ?>
