@@ -36,7 +36,7 @@
 
                     <li class="nav__item"><?= $aSopranosBranches['name']; ?></li>    
 
-                    <li class="nav__item"><?= $aSopranosBranches['adres']; ?></li>                
+                    <li class="nav__item"><?= $aSopranosBranches['address']; ?></li>                
 
                     <li class="nav__item"><?= $aSopranosBranches['zipcode']."\t".$aSopranosBranches['city']; ?></li> 
 

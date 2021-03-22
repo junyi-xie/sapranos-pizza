@@ -32,9 +32,17 @@
     $targetmail = $customerdetails['email'];
     $targetname = $customerdetails['first_name'] .' '. $customerdetails['last_name']; 
 
-    // $test = sendMail($sendermail, $sendername, $targetmail, $targetname, 'testmail');
 
-    // printr($test);
+    // $test = sendMail($sendermail, $sendername, $targetmail, $targetname, 'testmail', $appel);
+    ?>
+
+
+
+    <?php $test = sendMail($SopranosOrders->getCustomer(), $SopranosOrders->getOrder(), $SopranosOrders->getNumber(), $SopranosOrders->getCoupon()); ?>
+
+    <?php 
+    // printr($appel);
+    printr($test);
     ?>
 
 <div class="checkout_order__container">
