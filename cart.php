@@ -80,7 +80,7 @@
 
                                             <div class="shopping_cart_item__image--thumbnail">
 
-                                                <?php $aSqlType = $pdo->query("SELECT pt.*, i.* FROM pizzas_type AS pt LEFT JOIN images AS i ON i.id = pt.image_id WHERE 1 AND pt.quantity > 0 AND pt.id = ".$aOrderItem['type_id']." LIMIT 1")->fetch(PDO::FETCH_ASSOC); ?>
+                                                <?php $aSqlType = queryHandler("SELECT pt.*, i.* FROM pizzas_type AS pt", "images AS i ON i.id = pt.image_id", "pt.quantity > 0 AND pt.id = '". $aOrderItem['type_id'] ."'", "pt.id ASC", 1); ?>
 
                                                 <img src="assets/images/layout/<?= $aSqlType['link']; ?>">
 

@@ -20,7 +20,7 @@
 
 <?php include_once("inc/header.php") ?>
 
-<?php if(!empty($_SESSION['sopranos'] && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer'])) && !empty($_GET['page']) && $_GET['page'] == 'checkout'): ?>
+<?php if(!empty($_SESSION['sopranos'] && !empty($_SESSION['sopranos']['number']) && !empty($_SESSION['sopranos']['order']) && !empty($_SESSION['sopranos']['customer'])) && !empty($_GET['go']) && $_GET['go'] == 'checkout'): ?>
 
 <?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo); ?>
 
@@ -74,7 +74,7 @@
 
             <div class="checkout__wrapper">
             
-                <form class="order_form_container js-order_form_container" action="checkout.php?page=checkout" accept-charset="UTF-8" method="post" id="order_form">
+                <form class="order_form_container js-order_form_container" action="checkout.php?go=checkout" accept-charset="UTF-8" method="post" id="order_form">
 
                     <div class="checkout__container">
                     
@@ -236,7 +236,7 @@
 
                                                 <div class="order_summary__item_image_thumbnail">
 
-                                                    <?php $aSqlType = $pdo->query("SELECT pt.*, i.* FROM pizzas_type AS pt LEFT JOIN images AS i ON i.id = pt.image_id WHERE 1 AND pt.quantity > 0 AND pt.id = ".$aOrderItem['type_id']." LIMIT 1")->fetch(PDO::FETCH_ASSOC); ?>
+                                                    <?php $aSqlType = queryHandler("SELECT pt.*, i.* FROM pizzas_type AS pt", "images AS i ON i.id = pt.image_id", "pt.quantity > 0 AND pt.id = '". $aOrderItem['type_id'] ."'", "pt.id ASC", 1); ?>
 
                                                     <img src="assets/images/layout/<?= $aSqlType['link']; ?>">  
 

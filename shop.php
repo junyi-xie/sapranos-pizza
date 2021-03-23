@@ -34,7 +34,7 @@
                     
                         <div class="image_stack__inner">
 
-                            <?php $aSqlTypeImages = $pdo->query("SELECT * FROM images AS i LEFT JOIN pizzas_type AS pt ON pt.image_id = i.id WHERE 1 ORDER BY pt.id LIMIT 0, 100")->fetchAll(PDO::FETCH_ASSOC); ?> 
+                            <?php $aSqlTypeImages = queryHandler("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id > 0", "pt.id ASC", 100); ?>
 
                             <div class="image_stack__images">
                             
@@ -271,8 +271,8 @@
                 </div>
 
                 <a class="precheckout__cart_items" href="cart.php">
-
-                    <?php $aTypeDetails = $pdo->query("SELECT * FROM images AS i LEFT JOIN pizzas_type AS pt ON pt.image_id = i.id WHERE 1 AND pt.id = ". $_POST['type_id'] ." ORDER BY pt.id LIMIT 1")->fetch(PDO::FETCH_ASSOC); ?>
+                    
+                    <?php $aTypeDetails = queryHandler("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id = '". $_POST['type_id'] ."'", "pt.id ASC", 1); ?>
 
                     <div class="precheckout__cart_item__image">
                                     
