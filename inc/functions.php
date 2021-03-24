@@ -1203,10 +1203,6 @@
                                             <h5>Billing Information</h5>
                                             <p>'.$ShippingAddress.'</p>
                                         </div>
-                                        <div class="columns">
-                                            <h5>Payment Information</h5>
-                                            <p>Credit Card<br>Card Type: Visa<br>&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 1234</p>
-                                        </div>
                                     </div>
                                 </section>
 
