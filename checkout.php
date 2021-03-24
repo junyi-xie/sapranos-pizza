@@ -24,7 +24,7 @@
 
 <?php $SopranosOrders = new Sopranos\Orders($_SESSION['sopranos'], $pdo); ?>
 
-<?php sendMail($SopranosOrders->getCustomer(), $SopranosOrders->getOrder(), $SopranosOrders->getNumber(), $SopranosOrders->getCoupon()); ?>
+<?php sendMail($SopranosOrders->getCustomer(), $SopranosOrders->getOrder(), $SopranosOrders->getNumber(), $SopranosOrders->getCoupon(), $SopranosOrders->getPrice()); ?>
 
 <div class="checkout_order__container">
 
