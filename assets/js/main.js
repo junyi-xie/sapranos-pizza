@@ -2,6 +2,13 @@
 
     $(document).ready(function(){
 
+        $(".js-login-attempt").click(function(event) {
+            event.preventDefault();
+
+            console.log('click!');
+        });
+        
+
         $(".js-place-your-order").click(function(event) {
             event.preventDefault();
 

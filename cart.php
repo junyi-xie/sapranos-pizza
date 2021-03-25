@@ -80,7 +80,7 @@
 
                                             <div class="shopping_cart_item__image--thumbnail">
 
-                                                <?php $aSqlType = queryHandler("SELECT pt.*, i.* FROM pizzas_type AS pt", "images AS i ON i.id = pt.image_id", "pt.quantity > 0 AND pt.id = '". $aOrderItem['type_id'] ."'", "pt.id ASC", 1); ?>
+                                                <?php $aSqlType = queryOperator("SELECT pt.*, i.* FROM pizzas_type AS pt", "images AS i ON i.id = pt.image_id", "pt.quantity > 0 AND pt.id = '". $aOrderItem['type_id'] ."'", "pt.id ASC", 1); ?>
 
                                                 <img src="assets/images/layout/<?= $aSqlType['link']; ?>">
 

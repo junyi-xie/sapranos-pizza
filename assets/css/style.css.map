@@ -12,7 +12,8 @@
         "_cart.scss",
         "_shop.scss",
         "_checkout.scss",
-        "_modal.scss"
+        "_modal.scss",
+        "_login.scss"
     ],
     "names": [],
     "file": "style.css"

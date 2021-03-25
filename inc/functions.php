@@ -404,7 +404,7 @@
      * 
      * @return mixed
      */
-    function queryHandler($sql = '', $join = '', $where = '', $order = '', $limit = 0) {
+    function queryOperator($sql = '', $join = '', $where = '', $order = '', $limit = 0) {
 
         if(empty($pdo)) {
             global $pdo;
@@ -816,6 +816,20 @@
     }
 
 
+
+    /**
+     * Verifies the user attempt to login. Check if certain parameters match and return true if this is the case. Else it is false.
+     * 
+     * @return boolean
+     */
+    function verifyLogin() {
+
+
+
+        return false;
+    }
+
+
     
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
@@ -823,7 +837,7 @@
     $aSizePizzas = selectAllById('pizzas_size');
     $aToppingPizzas = selectAllById('pizzas_topping');
 
-    $aSopranosBranches = selectAllById('branches', 5);
+    $aSopranosBranches = queryOperator('SELECT * FROM branches', '', 'status = 1', 'id DESC', 1);
 
     $iShoppingCartCount = isset($_SESSION['sopranos']['order']) ? cartItemCount($_SESSION['sopranos']['order']) : 0;
 ?>

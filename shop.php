@@ -34,7 +34,7 @@
                     
                         <div class="image_stack__inner">
 
-                            <?php $aSqlTypeImages = queryHandler("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id > 0", "pt.id ASC", 100); ?>
+                            <?php $aSqlTypeImages = queryOperator("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id > 0", "pt.id ASC", 100); ?>
 
                             <div class="image_stack__images">
                             
@@ -272,7 +272,7 @@
 
                 <a class="precheckout__cart_items" href="cart.php">
                     
-                    <?php $aTypeDetails = queryHandler("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id = '". $_POST['type_id'] ."'", "pt.id ASC", 1); ?>
+                    <?php $aTypeDetails = queryOperator("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id = '". $_POST['type_id'] ."'", "pt.id ASC", 1); ?>
 
                     <div class="precheckout__cart_item__image">
                                     
