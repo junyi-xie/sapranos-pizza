@@ -24,10 +24,10 @@
 
     <form class="form_login__body js-login-body" action="login.php" accept-charset="UTF-8" method="post" id="">
     
-    
-        <input type="text" name="username">
-        <input type="password" name="password">
-    
+        <input type="email" name="email">
+        <input type="password" name="password"> 
+        <input type="checkbox" name="remember">
+
         <input class="js-login-attempt" type="submit" value="Login">    
 
     </form>

@@ -816,13 +816,12 @@
     }
 
 
-
     /**
-     * Verifies the user attempt to login. Check if certain parameters match and return true if this is the case. Else it is false.
+     * Verifies the user attempt to login. Check if certain parameters match and return true if this is the case. Else it is false. Or return the error message.
      * 
      * @params string $info
      * 
-     * @return boolean
+     * @return mixed
      */
     function verifyLogin($info = '') {
 
@@ -836,21 +835,25 @@
 
         if (!empty($params) && isset($params)) {
 
-            if(empty($params['username'])) {
-                $error['username'] = '';
+            if (empty($params['email'])) {
+                $error['email'] = 'Fill in your email address.';
             }
 
-            if(empty($params['password'])) {
-                $error['password'] = '';
+            if (empty($params['password'])) {
+                $error['password'] = 'Fill in your password.';
             }
         }
 
 
-        $sql = "SELECT * FROM accounts WHERE 1 AND username = :username OR email = :email LIMIT 1";
+        if (isset($error) && $error !== '') {
+            return $error;
+        }
+
+
+        $sql = "SELECT * FROM accounts WHERE 1 AND email = :email LIMIT 1";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindParam(':username', $params['username']);
-        $stmt->bindParam(':email', $params['username']);
+        $stmt->bindParam(':email', $params['email']);
         $stmt->execute();
 
         $aAccounts = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -860,18 +863,48 @@
             }
 
         
-        if ($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() > 0 ) {
 
             if (password_verify($params['password'], $aAccounts['password'])) {
 
-                return setcookie('account_id', $aAccounts['id'], time() + 86400, "/");
-            } else {
-                return false;
-            }
-        }
+                $bLastLogin = $pdo->prepare('UPDATE accounts SET last_login = :last_login WHERE 1 AND id = :id LIMIT 1')->execute(array(':last_login' => date("YmdHis"), ':id' => $aAccounts['id']));
 
-        return false;
+                    if (!$bLastLogin) return false;
+
+                if (isset($params['remember']) && $params['remember'] !== '') {
+
+                    return setcookie('uid', $aAccounts['id'], time() + 86400, "/");
+
+                } else {
+
+                    $_SESSION['profile']['uid'] = $aAccounts['id']; return true;
+
+                }
+
+            } else {
+
+                return 'Incorrect password.';
+            }
+
+        } else {
+
+            return 'Invalid email address.';
+        }
     }
+
+
+    /**
+     * Create a new account for those who don't have an account. They will need to provide a valid email address, name and password. Optional is their phone number. Make sure to clean the user input.
+     * 
+     * @return boolean
+     */
+    function createNewAccount() {
+
+        // create new account
+
+        return true;
+    }
+
 
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
