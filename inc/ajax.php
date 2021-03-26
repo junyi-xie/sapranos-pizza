@@ -39,6 +39,10 @@
                 $bCustomerInformation = saveCustomerData($_POST['data']);
                 echo json_encode($bCustomerInformation);
             break;
+            case 'login_verify_account':
+                $aLoginOutput = verifyLogin($_POST['info']);
+                echo json_encode($aLoginOutput);
+            break;
         }
     }    
 ?>

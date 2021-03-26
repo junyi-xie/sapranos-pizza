@@ -26,6 +26,7 @@
 
         <div class="site__wrapper">
             
+            <?= printr($_COOKIE); ?>
             <?= printr($_SESSION); ?>
 
         </div>

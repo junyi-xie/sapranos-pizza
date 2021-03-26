@@ -5,7 +5,22 @@
         $(".js-login-attempt").click(function(event) {
             event.preventDefault();
 
-            console.log('click!');
+            var login_form = $('.js-login-body');
+
+            $.ajax({
+                type: 'post',
+                url: 'inc/ajax.php',
+                data: {
+                    action: 'login_verify_account',
+                    info: login_form.serialize(),
+                },
+                success: function(result) {
+                    console.log(result);    
+                }
+            });
+
+            
+
         });
         
 

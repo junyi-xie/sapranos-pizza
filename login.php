@@ -20,6 +20,7 @@
     
     <h1 class="text-center">Hi... W.I.P...</h1>
 
+    <div>Login to Sopranos Pizzabar</div>
 
     <form class="form_login__body js-login-body" action="login.php" accept-charset="UTF-8" method="post" id="">
     
@@ -31,17 +32,6 @@
 
     </form>
 
-    <?php
-
-    printr($_POST);
-
-
-
-
-
-
-
-    ?>
 
 <?php print('<!--'.date("YmdHis").'-->'); $jsFiles = getFiles(); echo loadFiles($jsFiles); ?>
 

@@ -820,17 +820,60 @@
     /**
      * Verifies the user attempt to login. Check if certain parameters match and return true if this is the case. Else it is false.
      * 
+     * @params string $info
+     * 
      * @return boolean
      */
-    function verifyLogin() {
+    function verifyLogin($info = '') {
+
+        if (empty($pdo)) {
+            global $pdo;
+        }
+
+        $params = array();
+        parse_str($info, $params);
 
 
+        if (!empty($params) && isset($params)) {
+
+            if(empty($params['username'])) {
+                $error['username'] = '';
+            }
+
+            if(empty($params['password'])) {
+                $error['password'] = '';
+            }
+        }
+
+
+        $sql = "SELECT * FROM accounts WHERE 1 AND username = :username OR email = :email LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':username', $params['username']);
+        $stmt->bindParam(':email', $params['username']);
+        $stmt->execute();
+
+        $aAccounts = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$aAccounts) {
+                return false;
+            }
+
+        
+        if ($stmt->rowCount() > 0) {
+
+            if (password_verify($params['password'], $aAccounts['password'])) {
+
+                return setcookie('account_id', $aAccounts['id'], time() + 86400, "/");
+            } else {
+                return false;
+            }
+        }
 
         return false;
     }
 
 
-    
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
     $aTypePizzas = selectAllById('pizzas_type');
