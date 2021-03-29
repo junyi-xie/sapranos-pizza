@@ -18,13 +18,25 @@
 </head>
 <body class="js-body">
 
+<?php if(isset($_GET['go']) && $_GET['go'] == 'signup'): ?>
+
+    <h1>Signup!</h1>
+
+    <!-- create sign up page -->
+
+<?php else: ?>
+
     <div class="authentication">
 
         <div class="authentication__header">
             
             <div class="authentication_header__left">
 
-                <img class="site__logo_sopranos" src="assets/images/layout/sopranos-logo-header.png" alt="Sopranos Logo" title="Sopranos Pizzabar">
+                <a href="index.php">
+                
+                    <img class="site__logo_sopranos" src="assets/images/layout/sopranos-logo-header.png" alt="Sopranos Logo" title="Sopranos Pizzabar">
+                
+                </a>
 
             </div>
 
@@ -107,6 +119,7 @@
                 <div class="authentication__section">
 
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut rem alias tempora exercitationem deleniti quam facere, praesentium ex amet molestiae aspernatur non quibusdam obcaecati quas, est corrupti sint autem eveniet.
+                
                 </div>
 
             </div>
@@ -120,6 +133,8 @@
         </div>
 
     </div>
+
+<?php endif; ?>
 
 <?php print('<!--'.date("YmdHis").'-->'); $jsFiles = getFiles(); echo loadFiles($jsFiles); ?>
 
