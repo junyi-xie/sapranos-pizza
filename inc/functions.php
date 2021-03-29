@@ -871,7 +871,7 @@
 
                     if (!$bLastLogin) return false;
 
-                if (isset($params['remember']) && $params['remember'] !== '') {
+                if (isset($params['cookie']) && $params['cookie'] !== '') {
 
                     return setcookie('uid', $aAccounts['id'], time() + 86400, "/");
 
@@ -883,12 +883,12 @@
 
             } else {
 
-                return 'Incorrect password.';
+                return $error['password'] = 'Incorrect password.';
             }
 
         } else {
 
-            return 'Invalid email address.';
+            return $error['email'] = 'Invalid email address.';
         }
     }
 

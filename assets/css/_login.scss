@@ -1,3 +1,231 @@
+    .authentication {
+        font-family: $font-primary;
+        font-size: 12px;
+        display: flex;
+        max-width: 100%;
+        width: 100%;
+        min-height: 800px;
+        height: 100vh;
+        margin: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        left: auto;
+        max-height: 100%;
+        overflow-y: auto;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: translate(0);
+    }
+    
+    .authentication__header {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 15px;
+        color: $black-alt;
+        text-align: center;
+
+        .authentication_header__left {
+            width: 150px;
+            text-align: left;
+
+            .site__logo_sopranos {
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+            }
+        }
+
+        .authentication_header__right {
+            background-color: $black-alt;
+            opacity: 1;
+            flex: none;
+            text-align: right;
+
+            .button-signup {
+                color: $white;
+                text-decoration: none;
+                font-size: 1em;
+                line-height: 1.5;
+                padding: 0.4375rem 1.75rem;
+                border: 0;
+                border-radius: 2px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 150ms;
+                display: inline-block;
+                position: relative;
+            }
+        }
+    }
+
+    .login__label {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        .login__title {
+            font-family: $font-primary;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: $black-alt;
+            margin: 0;
+        }
+    }
+
+    .content_wrap {
+        width: 100%;
+        max-width: 1080px;
+    }
+
+    .authentication__body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        padding-top: 50px;
+        max-width: 1080px;
+    }
+
+    .authentication__section {
+        flex: 0 0 50%;
+        max-width: 50%;
+        width: 100%;
+        position: relative;
+        float: left;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        &:last-child:before {
+            content: 'or';
+            background: $white;
+            position: absolute;
+            left: 0;
+            margin-left: -5px;
+            padding: 8px 0;
+        }
+    }
+    
+    .authentication_login_form__section {
+        border-right: thin solid $grey-alt;
+    }
+
+    .authentication_section__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .authentication_section__body {
+        color: $black-alt;
+        width: auto;
+    }
+
+    .authentication__form_container {
+        text-align: left;
+    }
+
     .form_login__body {
-        
+        width: 100%;
+        position: relative;
+    }
+
+    .email_auth_form {
+        display: block;
+    }
+
+    .form__email-container,
+    .form__password-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .login__form_label {
+            font-weight: bold;
+            font-size: 1em;
+            line-height: 1;
+        }
+
+        .login__input {
+            height: 45px;
+            font-size: 1em;
+            margin-top: 7px;
+            max-width: 25rem;
+            appearance: none;
+            width: 100%;
+            background-color: $white;
+            border: 1px solid $line-alt;
+            margin-bottom: 1.25em;
+            padding: 0.6875rem 0.875rem;
+            color: $black-alt;
+            border-radius: 2px;
+            transition: border-color .15s, background-color .15s;
+
+            &:focus {
+                border-color: $orange;
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .form__option {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .cookie--wrapper {
+            position: relative;
+        }
+
+        span {
+            margin-left: 2px;
+        }
+    }
+
+    .forn__footer_login {
+        margin-top: 20px;
+        position: relative;
+
+        .form__login--button {
+            width: 100%;
+            font-weight: normal;
+            background-color: $black-alt;
+            height: 45px;
+            font-size: 1.25em;
+            max-width: 25rem;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+            line-height: 1.5;
+            padding: 0.4375rem 1.75rem;
+            border: 0;
+            border-radius: 2px;
+            color: $white;
+            transition: all 150ms;
+            display: inline-block;
+            user-select: none;
+        }
+    }
+
+    
+    .privacy__terms {
+        text-align: center;
+        z-index: 100;
+        position: relative;
+        color: $grey;
+        margin-top: 100px;
+
+        p {
+            font-size: .75rem;
+        }
+
+        a {
+            color: $grey;
+            text-decoration: underline;
+        }
     }

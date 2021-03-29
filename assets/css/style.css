@@ -2344,4 +2344,293 @@ footer {
   -webkit-transition: opacity 0.3s linear;
   transition: opacity 0.3s linear;
 }
+
+.authentication {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  min-height: 800px;
+  height: 100vh;
+  margin: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  left: auto;
+  max-height: 100%;
+  overflow-y: auto;
+  position: relative;
+  right: auto;
+  top: auto;
+  -webkit-transform: translate(0);
+          transform: translate(0);
+}
+
+.authentication__header {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 15px;
+  color: #0a0918;
+  text-align: center;
+}
+
+.authentication__header .authentication_header__left {
+  width: 150px;
+  text-align: left;
+}
+
+.authentication__header .authentication_header__left .site__logo_sopranos {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.authentication__header .authentication_header__right {
+  background-color: #0a0918;
+  opacity: 1;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  text-align: right;
+}
+
+.authentication__header .authentication_header__right .button-signup {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0.4375rem 1.75rem;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 600;
+  -webkit-transition: all 150ms;
+  transition: all 150ms;
+  display: inline-block;
+  position: relative;
+}
+
+.login__label {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login__label .login__title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #0a0918;
+  margin: 0;
+}
+
+.content_wrap {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.authentication__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding-top: 50px;
+  max-width: 1080px;
+}
+
+.authentication__section {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  max-width: 50%;
+  width: 100%;
+  position: relative;
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.authentication__section:last-child:before {
+  content: 'or';
+  background: white;
+  position: absolute;
+  left: 0;
+  margin-left: -5px;
+  padding: 8px 0;
+}
+
+.authentication_login_form__section {
+  border-right: thin solid #b8bdc5;
+}
+
+.authentication_section__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.authentication_section__body {
+  color: #0a0918;
+  width: auto;
+}
+
+.authentication__form_container {
+  text-align: left;
+}
+
+.form_login__body {
+  width: 100%;
+  position: relative;
+}
+
+.email_auth_form {
+  display: block;
+}
+
+.form__email-container,
+.form__password-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form__email-container .login__form_label,
+.form__password-container .login__form_label {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.form__email-container .login__input,
+.form__password-container .login__input {
+  height: 45px;
+  font-size: 1em;
+  margin-top: 7px;
+  max-width: 25rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d8dae0;
+  margin-bottom: 1.25em;
+  padding: 0.6875rem 0.875rem;
+  color: #0a0918;
+  border-radius: 2px;
+  -webkit-transition: border-color .15s, background-color .15s;
+  transition: border-color .15s, background-color .15s;
+}
+
+.form__email-container .login__input:focus,
+.form__password-container .login__input:focus {
+  border-color: #f58220;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form__option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.form__option .cookie--wrapper {
+  position: relative;
+}
+
+.form__option span {
+  margin-left: 2px;
+}
+
+.forn__footer_login {
+  margin-top: 20px;
+  position: relative;
+}
+
+.forn__footer_login .form__login--button {
+  width: 100%;
+  font-weight: normal;
+  background-color: #0a0918;
+  height: 45px;
+  font-size: 1.25em;
+  max-width: 25rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  cursor: pointer;
+  line-height: 1.5;
+  padding: 0.4375rem 1.75rem;
+  border: 0;
+  border-radius: 2px;
+  color: white;
+  -webkit-transition: all 150ms;
+  transition: all 150ms;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.privacy__terms {
+  text-align: center;
+  z-index: 100;
+  position: relative;
+  color: #6a6f72;
+  margin-top: 100px;
+}
+
+.privacy__terms p {
+  font-size: .75rem;
+}
+
+.privacy__terms a {
+  color: #6a6f72;
+  text-decoration: underline;
+}
 /*# sourceMappingURL=style.css.map */

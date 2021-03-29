@@ -2,10 +2,10 @@
 
     $(document).ready(function(){
 
-        $(".js-login-attempt").click(function(event) {
+        $(".js-email-login-submit").click(function(event) {
             event.preventDefault();
 
-            var login_form = $('.js-login-body');
+            var login_form = $('.js-email-login-form');
 
             $.ajax({
                 type: 'post',
@@ -15,12 +15,23 @@
                     info: login_form.serialize(),
                 },
                 success: function(result) {
-                    console.log(result);    
+                    data = JSON.parse(result);
+                    email = $('.js-login-email-error');
+                    password = $('.js-login-password-error');
+
+                    console.log(data);
+
+
+                    switch (data) {
+                        case data.email:
+                            console.log('t2');
+                        break;
+                        case data.password:
+                            console.log('t');
+                        break;
+                    }    
                 }
             });
-
-            
-
         });
         
 
