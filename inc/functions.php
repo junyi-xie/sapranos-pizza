@@ -832,6 +832,7 @@
         $params = array();
         parse_str($info, $params);
 
+        $incorrect = array();
 
         if (!empty($params) && isset($params)) {
 
@@ -858,10 +859,6 @@
 
         $aAccounts = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if (!$aAccounts) {
-                return false;
-            }
-
         
         if ($stmt->rowCount() > 0 ) {
 
@@ -883,13 +880,15 @@
 
             } else {
 
-                return $error['password'] = 'Incorrect password.';
+                $incorrect['password'] = 'Incorrect password';
             }
 
         } else {
 
-            return $error['email'] = 'Invalid email address.';
+            $incorrect['email'] = 'Invalid email address';
         }
+
+        return $incorrect;
     }
 
 

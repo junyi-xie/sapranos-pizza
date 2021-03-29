@@ -74,7 +74,7 @@
 
                                             <input class="login__input" type="password" name="password" placeholder="Password" required>
 
-                                            <div class="form__error js-login-password-error hidden">* Enter a valid email address</div> 
+                                            <div class="form__error js-login-password-error hidden">* Enter a valid password</div> 
 
                                         </div>
 

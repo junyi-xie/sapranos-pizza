@@ -16,20 +16,25 @@
                 },
                 success: function(result) {
                     data = JSON.parse(result);
-                    email = $('.js-login-email-error');
-                    password = $('.js-login-password-error');
 
-                    console.log(data);
+                    var email_error = $('.js-login-email-error');
+                    var password_error = $('.js-login-password-error');
 
+                    email_error.removeClass('hidden').addClass('hidden');
+                    password_error.removeClass('hidden').addClass('hidden');
 
-                    switch (data) {
-                        case data.email:
-                            console.log('t2');
-                        break;
-                        case data.password:
-                            console.log('t');
-                        break;
-                    }    
+                    if (data !== true && data !== false) {
+                        $.each(data, function(key, value) {
+                            switch (key) {
+                                case 'email':
+                                    email_error.html(value).addClass('hidden').removeClass('hidden');
+                                break;
+                                case 'password':
+                                    password_error.html(value).addClass('hidden').removeClass('hidden');
+                                break;
+                            } 
+                        });
+                    }
                 }
             });
         });
@@ -324,7 +329,6 @@
                                                 $('.js-discount_tax_label').html('('+coupon_data.discount+'%)');
  
                                                 $('.js-order_summary_section').each(function(index) {
-
                                                     if (!$('#order_summary_section-'+index).length) { index++; } 
 
                                                     var item_quantity = parseInt($('#order_summary__item_quantity-'+index).text().replace(/[^0-9\.]/g, ''));
