@@ -376,9 +376,9 @@
                                     
                                     <input class="form__textfield form__textfield--full js-coupon-code" placeholder="Enter your code here" type="text" name="coupon" id="order_form_coupon_code">
                                     
-                                    <button type="button" class="button--apply js-coupon-apply" id="coupon_code_apply">Apply</button>
+                                    <button class="button--apply js-coupon-apply" type="button" id="coupon_code_apply">Apply</button>
 
-                                    <button type="button" class="button--apply js-coupon-applying disabled hidden" id="promo_code_applying">Applying…</button>
+                                    <button class="button--apply js-coupon-applying disabled hidden" type="button" id="promo_code_applying">Applying…</button>
 
                                 </div>
                                 

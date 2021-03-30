@@ -1,16 +1,16 @@
     .authentication {
         font-family: $font-primary;
-        font-size: 12px;
+        font-size: 14px;
         display: flex;
         max-width: 100%;
         width: 100%;
-        min-height: 800px;
-        height: 100vh;
+        height: 100%;
+        max-height: 100%;
         margin: 0;
+        padding: 0;
         justify-content: center;
         flex-wrap: wrap;
         left: auto;
-        max-height: 100%;
         overflow-y: auto;
         position: relative;
         right: auto;
@@ -19,7 +19,6 @@
     }
     
     .authentication__header {
-        position: absolute;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -65,12 +64,13 @@
     .login__label {
         width: 100%;
         display: flex;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: center;
+        margin-bottom: 30px;
 
         .login__title {
             font-family: $font-primary;
-            font-size: 1.5em;
+            font-size: 2em;
             font-weight: 600;
             color: $black-alt;
             margin: 0;
@@ -100,7 +100,7 @@
         padding-left: 20px;
         padding-right: 20px;
 
-        &:last-child:before {
+        &.option_auth_login__form:before {
             content: 'or';
             background: $white;
             position: absolute;
@@ -152,7 +152,7 @@
         .login__input {
             height: 45px;
             font-size: 1em;
-            margin-top: 7px;
+            margin-top: 10px;
             max-width: 25rem;
             appearance: none;
             width: 100%;
@@ -179,15 +179,16 @@
 
         .cookie--wrapper {
             position: relative;
+            margin: 0;
         }
 
         span {
-            margin-left: 2px;
+            margin-left: 5px;
         }
     }
 
     .forn__footer_login {
-        margin-top: 20px;
+        margin-top: 30px;
         position: relative;
 
         .form__login--button {
@@ -211,6 +212,35 @@
         }
     }
 
+    .authentication__form_container_wrapper {
+        text-align: right;
+    }
+
+    .authentication__button--create {
+        color: $black-alt;
+        border: 1px solid $line-alt;
+        font-size: 1em;
+        width: 100%;
+        max-width: 25rem;
+        margin-bottom: 10px;
+        text-align: center;
+        height: 40px;
+    }
+
+    .auth_login_message {
+        padding-top: 3px;
+        margin: 0;
+    }
+
+    .auth_logo_icon {
+        float: left;
+        text-align: center;
+        width: 25px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     
     .privacy__terms {
         text-align: center;

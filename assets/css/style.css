@@ -142,6 +142,24 @@ body {
   font-weight: normal;
 }
 
+.button {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.4375rem 1.75rem;
+  border: 0;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  -webkit-transition: all 150ms;
+  transition: all 150ms;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: inline-block;
+}
+
 .display-mobile {
   display: block;
 }
@@ -2347,22 +2365,22 @@ footer {
 
 .authentication {
   font-family: "Poppins", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   max-width: 100%;
   width: 100%;
-  min-height: 800px;
-  height: 100vh;
+  height: 100%;
+  max-height: 100%;
   margin: 0;
+  padding: 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   left: auto;
-  max-height: 100%;
   overflow-y: auto;
   position: relative;
   right: auto;
@@ -2372,7 +2390,6 @@ footer {
 }
 
 .authentication__header {
-  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2429,17 +2446,18 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 30px;
 }
 
 .login__label .login__title {
   font-family: "Poppins", sans-serif;
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: 600;
   color: #0a0918;
   margin: 0;
@@ -2478,7 +2496,7 @@ footer {
   padding-right: 20px;
 }
 
-.authentication__section:last-child:before {
+.authentication__section.option_auth_login__form:before {
   content: 'or';
   background: white;
   position: absolute;
@@ -2542,7 +2560,7 @@ footer {
 .form__password-container .login__input {
   height: 45px;
   font-size: 1em;
-  margin-top: 7px;
+  margin-top: 10px;
   max-width: 25rem;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -2580,14 +2598,15 @@ footer {
 
 .form__option .cookie--wrapper {
   position: relative;
+  margin: 0;
 }
 
 .form__option span {
-  margin-left: 2px;
+  margin-left: 5px;
 }
 
 .forn__footer_login {
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative;
 }
 
@@ -2615,6 +2634,42 @@ footer {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.authentication__form_container_wrapper {
+  text-align: right;
+}
+
+.authentication__button--create {
+  color: #0a0918;
+  border: 1px solid #d8dae0;
+  font-size: 1em;
+  width: 100%;
+  max-width: 25rem;
+  margin-bottom: 10px;
+  text-align: center;
+  height: 40px;
+}
+
+.auth_login_message {
+  padding-top: 3px;
+  margin: 0;
+}
+
+.auth_logo_icon {
+  float: left;
+  text-align: center;
+  width: 25px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .privacy__terms {

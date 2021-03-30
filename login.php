@@ -42,7 +42,7 @@
 
             <div class="authentication_header__right">
 
-                <a class="button-signup" href="login.php?go=signup">Create account. (W.I.P)</a>
+                <a class="button-signup" href="login.php?go=signup">Create account</a>
 
             </div>
 
@@ -116,10 +116,29 @@
                 
                 </div>
 
-                <div class="authentication__section">
+                <div class="authentication__section option_auth_login__form">
 
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut rem alias tempora exercitationem deleniti quam facere, praesentium ex amet molestiae aspernatur non quibusdam obcaecati quas, est corrupti sint autem eveniet.
-                
+                    <div class="authentication_section__content">
+
+                        <div class="authentication_section__body">
+                        
+                            <div class="authentication__form_container_wrapper">
+                            
+                                <a class="button authentication__button--create" href="login.php?go=signup">
+                                
+                                    <div class="auth_logo_icon"><i class="fas fa-user-plus"></i></div>
+
+                                    <div class="auth_login_message">Create an account</div>
+                                
+                                </a>
+                            
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+
+
                 </div>
 
             </div>
