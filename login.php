@@ -50,7 +50,7 @@
 
     </div>
 
-    <div class="authentication__section">
+    <div class="authentication__section authentication__signup_form_section">
 
         <div class="authentication_section__content authentication_section__content_signup">
 
@@ -88,7 +88,7 @@
 
                             <input class="form__textfield__signup_input form__textfield__confirm_password js-signup-required-field" type="password" name="password_confirmation" placeholder="Confirm Password" required>
 
-                            <div class="form__error js-signup-password-confirm-error hidden">* Password confirmation doesn't match password</div>
+                            <div class="form__error js-signup-password-confirm-error hidden">* Enter your password again</div>
                         
                             <div class="authentication__privacy_message">
                                 
