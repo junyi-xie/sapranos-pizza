@@ -905,7 +905,7 @@
             global $pdo;
         }
 
-        
+
         $params = array();
         parse_str($data, $params);
 
@@ -964,7 +964,7 @@
                 INSERT INTO accounts
                 SET 
                     image_id = null, 
-                    full_name = :fullname,
+                    name = :name,
                     password = :password,
                     email = :email,
                     phone = 0,
@@ -975,7 +975,7 @@
 
             $aInsertSql = $pdo->prepare($sSql);
 
-            $aInsertSql->bindValue(':fullname', $params['name']);
+            $aInsertSql->bindValue(':name', $params['name']);
             $aInsertSql->bindValue(':password', password_hash($params['password'], PASSWORD_DEFAULT));
             $aInsertSql->bindValue(':email', $params['email']);
             $aInsertSql->bindValue(':today', date("YmdHis"));
