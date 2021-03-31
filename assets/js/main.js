@@ -7,9 +7,17 @@
 
             var signup_form = $('.js-signup-email-form');
 
-
-            console.log(signup_form.serialize());
-
+            $.ajax({
+                type: 'post',
+                url: 'inc/ajax.php',
+                data: {
+                    action: 'create_new_account_signup',
+                    signup: signup_form.serialize(),
+                },
+                success: function(result) {
+                    console.log(result);
+                }
+            });
         });
 
 
@@ -29,18 +37,26 @@
                     data = JSON.parse(result);
 
                     var email_error = $('.js-login-email-error');
+                    var email_input = email_error.prev();
                     var password_error = $('.js-login-password-error');
+                    var password_input = password_error.prev();
 
+                    
                     email_error.removeClass('hidden').addClass('hidden');
+                    email_input.addClass('error--inline').removeClass('error--inline');
                     password_error.removeClass('hidden').addClass('hidden');
+                    password_input.addClass('error--inline').removeClass('error--inline');
+
 
                     if (data !== true && data !== false) {
                         $.each(data, function(key, value) {
                             switch (key) {
                                 case 'email':
+                                    email_input.removeClass('error--inline').addClass('error--inline');
                                     email_error.html(value).addClass('hidden').removeClass('hidden');
                                 break;
                                 case 'password':
+                                    password_input.removeClass('error--inline').addClass('error--inline');
                                     password_error.html(value).addClass('hidden').removeClass('hidden');
                                 break;
                             } 
@@ -61,6 +77,7 @@
                 if (!$(this).val()) {
 
                     validate = false;
+                    $(this).removeClass('error--inline').addClass('error--inline');
                     $(this).next().addClass('hidden').removeClass('hidden');
                 } 
             });

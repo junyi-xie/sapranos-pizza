@@ -162,6 +162,11 @@
 
     .email_auth_form {
         display: block;
+
+        .error--inline {
+            color: $red!important;
+            border-color: $red!important;
+        }
     }
 
     .form__email-container,
@@ -273,7 +278,7 @@
         padding-bottom: 20px;
 
         .authentication_section__body__title {
-            font-family: 'Poppins', sans-serif;
+            font-family: $font-primary;
             font-size: 2em;
             font-weight: 600;
             color: $black-alt;
@@ -300,8 +305,8 @@
         padding-left: 0px;
 
         .authentication__info__image {
-            background-image: url("../images/layout/lol.gif");
-            max-height: 100%;
+            background-color: $orange-alt;
+            background-image: url("../images/layout/signup.svg");
             height: 100vh;
             width: 100%;
             background-size: auto 100%;

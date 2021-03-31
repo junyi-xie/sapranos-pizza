@@ -43,6 +43,10 @@
                 $aLoginOutput = verifyLogin($_POST['info']);
                 echo json_encode($aLoginOutput);
             break;
+            case 'create_new_account_signup':
+                $bNewAccount = createNewAccount($_POST['signup']);
+                echo json_encode($bNewAccount);
+            break;
         }
     }    
 ?>

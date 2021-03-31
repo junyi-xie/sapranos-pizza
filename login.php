@@ -68,27 +68,11 @@
 
                         <div class="email_auth_form">
 
-                            <label class="form__label">Your full name</label>
+                            <label class="form__label">Your name</label>
 
-                            <div class="checkout_form__row">
+                            <input class="form__textfield__signup_input" type="text" name="full_name" placeholder="Full Name" required>
 
-                                <div class="checkout__input--half">
-
-                                    <input class="form__textfield__signup_input" type="text" name="first_name" placeholder="John" required>
-
-                                    <div class="form__error hidden">* Enter your first name</div>
-
-                                </div>
-
-                                <div class="checkout__input--half">
-
-                                    <input class="form__textfield__signup_input" type="text" name="last_name" placeholder="Doe" required>
-
-                                    <div class="form__error hidden">* Enter your last name</div>
-
-                                </div>
-                        
-                            </div>
+                            <div class="form__error hidden">* Enter your name</div>                        
 
                             <label class="form__label">Email</label>
 
@@ -105,7 +89,6 @@
                             <input class="form__textfield__signup_input form__textfield__confirm_password" type="password" name="password_confirmation" placeholder="Confirm Password" required>
 
                             <div class="form__error hidden">* Password confirmation doesn't match password</div>
-
                         
                             <div class="authentication__privacy_message">
                                 

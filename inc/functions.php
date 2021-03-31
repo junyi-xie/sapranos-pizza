@@ -895,18 +895,37 @@
     /**
      * Create a new account for those who don't have an account. They will need to provide a valid email address, name and password. Optional is their phone number. Make sure to clean the user input.
      * 
+     * @params string $data
+     * 
      * @return boolean
      */
-    function createNewAccount() {
+    function createNewAccount($data = '') {
 
-        // create new account
+        if (empty($pdo)) {
+            global $pdo;
+        }
 
+        $params = array();
+        parse_str($data, $params);
+
+    
+
+        $aAccountExist = $pdo->prepare("SELECT * FROM accounts WHERE email = :email LIMIT 1");
+
+        $aAccountExist->bindParam(':email', $params['email']);
+        $aAccountExist->execute();
+
+        $aAccountExist->fetch(PDO::FETCH_ASSOC);
+
+        if ($aAccountExist->rowCount() > 0) {
+            $errors['email'] = 'Email is already in use';
+        }
 
         // check if email === email
         // check if confirm password == passwowrd
         // check if email exists, if it does tell them it exists
+        //  if no errors do insert stuff
 
-        return true;
     }
 
 
