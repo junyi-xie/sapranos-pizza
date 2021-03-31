@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 12:15 PM
+-- Generation Time: Mar 31, 2021 at 01:15 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `image_id` int(11) DEFAULT 0,
-  `username` varchar(255) NOT NULL DEFAULT '',
+  `full_name` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `phone` varchar(15) NOT NULL DEFAULT '',
@@ -67,8 +67,8 @@ INSERT INTO `branches` (`id`, `name`, `email`, `phone`, `zipcode`, `address`, `c
 (1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'The Hague', 'The Netherlands', 0),
 (2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Rotterdam', 'The Netherlands', 0),
 (3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Amsterdam', 'The Netherlands', 0),
-(4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Utrecht', 'The Netherlands', 1),
-(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Gouda', 'The Netherlands', 0);
+(4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Utrecht', 'The Netherlands', 0),
+(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Gouda', 'The Netherlands', 1);
 
 -- --------------------------------------------------------
 
