@@ -10,11 +10,11 @@
         font-family: $font-primary;
         line-height: 1.5;
         color: $blue;
+        height: 100%;
     }
     
     .site__content_container {
         height: auto;
-        min-height: 100%;
     }
 
     .site__main {

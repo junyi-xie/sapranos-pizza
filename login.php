@@ -22,7 +22,7 @@
 
 <div class="authentication">
 
-    <div class="authentication__header authentication__header--alt">
+    <div class="authentication__header">
     
         <div class="authentication_header__left">
 
@@ -70,25 +70,25 @@
 
                             <label class="form__label">Your name</label>
 
-                            <input class="form__textfield__signup_input" type="text" name="full_name" placeholder="Full Name" required>
+                            <input class="form__textfield__signup_input js-signup-required-field" type="text" name="name" placeholder="Full Name" required>
 
-                            <div class="form__error hidden">* Enter your name</div>                        
+                            <div class="form__error js-signup-name-error hidden">* Enter your name</div>                        
 
                             <label class="form__label">Email</label>
 
-                            <input class="form__textfield__signup_input" type="email" name="email" placeholder="you@example.com" required>
+                            <input class="form__textfield__signup_input js-signup-required-field" type="email" name="email" placeholder="you@example.com" required>
 
-                            <div class="form__error hidden">* Enter a valid email address</div>
+                            <div class="form__error js-signup-email-error hidden">* Enter a valid email address</div>
 
                             <label class="form__label">Password</label>
 
-                            <input class="form__textfield__signup_input form__textfield__signup_password" type="password" name="password" placeholder="Password" required>
+                            <input class="form__textfield__signup_input form__textfield__signup_password js-signup-required-field" type="password" name="password" placeholder="Password" required>
 
-                            <div class="form__error hidden">* Enter a valid password</div>
+                            <div class="form__error js-signup-password-error hidden">* Enter a valid password</div>
 
-                            <input class="form__textfield__signup_input form__textfield__confirm_password" type="password" name="password_confirmation" placeholder="Confirm Password" required>
+                            <input class="form__textfield__signup_input form__textfield__confirm_password js-signup-required-field" type="password" name="password_confirmation" placeholder="Confirm Password" required>
 
-                            <div class="form__error hidden">* Password confirmation doesn't match password</div>
+                            <div class="form__error js-signup-password-confirm-error hidden">* Password confirmation doesn't match password</div>
                         
                             <div class="authentication__privacy_message">
                                 

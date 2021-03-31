@@ -6,7 +6,7 @@
             event.preventDefault();
 
             var signup_form = $('.js-signup-email-form');
-
+    
             $.ajax({
                 type: 'post',
                 url: 'inc/ajax.php',
@@ -15,7 +15,61 @@
                     signup: signup_form.serialize(),
                 },
                 success: function(result) {
-                    console.log(result);
+                    data = JSON.parse(result);
+
+                    var name = $('.js-signup-name-error');
+                    var email = $('.js-signup-email-error');
+                    var password = $('.js-signup-password-error');
+                    var password_confirm = $('.js-signup-password-confirm-error');
+
+                    var name_input = name.prev();
+                    var email_input = email.prev();
+                    var password_input = password.prev();
+                    var password_confirm_input = password_confirm.prev();
+
+
+                    name.removeClass('hidden').addClass('hidden');
+                    name_input.addClass('error--inline').removeClass('error--inline');
+
+                    email.removeClass('hidden').addClass('hidden');
+                    email_input.addClass('error--inline').removeClass('error--inline');
+
+                    password.removeClass('hidden').addClass('hidden');
+                    password_input.addClass('error--inline').removeClass('error--inline');
+                    
+                    password_confirm.removeClass('hidden').addClass('hidden');
+                    password_confirm_input.addClass('error--inline').removeClass('error--inline');
+
+
+                    if (data === true) {
+
+                        // login success message
+
+                    } else if(data !== false) {
+                        $.each(data, function(key, value) {
+                            switch (key) {
+                                case 'name':
+                                    name.html(value).addClass('hidden').removeClass('hidden');
+                                    name_input.removeClass('error--inline').addClass('error--inline');
+                                break;
+                                case 'email':
+                                    email.html(value).addClass('hidden').removeClass('hidden');
+                                    email_input.removeClass('error--inline').addClass('error--inline');
+                                break;
+                                case 'password':
+                                    password.html(value).addClass('hidden').removeClass('hidden');
+                                    password_input.removeClass('error--inline').addClass('error--inline');
+                                break;
+                                case 'password_confirmation':
+                                    password_confirm.html(value).addClass('hidden').removeClass('hidden');
+                                    password_confirm_input.prev().removeClass('error--inline').addClass('error--inline');
+                                break;
+                            } 
+                        });
+                    } else {
+
+                        // error msg or something blah.
+                    }
                 }
             });
         });
@@ -48,7 +102,11 @@
                     password_input.addClass('error--inline').removeClass('error--inline');
 
 
-                    if (data !== true && data !== false) {
+                    if (data === true) {
+
+                        //  success login. redirect o rsomething
+
+                    } else if(data !== false) {
                         $.each(data, function(key, value) {
                             switch (key) {
                                 case 'email':
@@ -61,6 +119,8 @@
                                 break;
                             } 
                         });
+                    } else {
+                        // something went wrong
                     }
                 }
             });

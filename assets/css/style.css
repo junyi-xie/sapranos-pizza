@@ -66,11 +66,11 @@ body {
   font-family: "Poppins", sans-serif;
   line-height: 1.5;
   color: #212032;
+  height: 100%;
 }
 
 .site__content_container {
   height: auto;
-  min-height: 100%;
 }
 
 .site__main {
@@ -2403,9 +2403,6 @@ footer {
   padding: 15px;
   color: #0a0918;
   text-align: center;
-}
-
-.authentication__header.authentication__header--alt {
   position: absolute;
   z-index: 100;
 }
@@ -2465,9 +2462,9 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -2539,7 +2536,7 @@ footer {
 }
 
 .authentication_section__content.authentication_section__content_signup {
-  margin: 75px 0;
+  margin: 70px 0;
 }
 
 .authentication_section__body {
@@ -2705,7 +2702,7 @@ footer {
 }
 
 .authentication_section__body__header {
-  padding-bottom: 20px;
+  padding-bottom: 25px;
 }
 
 .authentication_section__body__header .authentication_section__body__title {
@@ -2713,7 +2710,6 @@ footer {
   font-size: 2em;
   font-weight: 600;
   color: #0a0918;
-  margin-bottom: 20px;
 }
 
 .authentication__privacy_message {
@@ -2736,9 +2732,8 @@ footer {
 }
 
 .authentication__info .authentication__info__image {
-  background-color: #fbab1c;
-  background-image: url("../images/layout/signup.svg");
-  height: 100vh;
+  background-color: black;
+  height: 100%;
   width: 100%;
   background-size: auto 100%;
   background-repeat: no-repeat;
@@ -2771,10 +2766,11 @@ footer {
 }
 
 .form__textfield__signup_input.form__textfield__signup_password {
-  margin-bottom: 5px;
+  font-size: 1em;
 }
 
 .form__textfield__signup_input.form__textfield__confirm_password {
+  margin-top: 0px;
   margin-bottom: 20px;
 }
 

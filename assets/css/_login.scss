@@ -26,11 +26,8 @@
         padding: 15px;
         color: $black-alt;
         text-align: center;
-
-        &.authentication__header--alt {
-            position: absolute;
-            z-index: 100;
-        }
+        position: absolute;
+        z-index: 100;
 
         .authentication_header__left {
             width: 150px;
@@ -83,7 +80,7 @@
     .login__label {
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: center;
         margin-bottom: 30px;
 
@@ -138,7 +135,7 @@
         flex-direction: column;
 
         &.authentication_section__content_signup {
-            margin: 75px 0;
+            margin: 70px 0;
         }
     }
 
@@ -275,14 +272,13 @@
     }
 
     .authentication_section__body__header {
-        padding-bottom: 20px;
+        padding-bottom: 25px;
 
         .authentication_section__body__title {
             font-family: $font-primary;
             font-size: 2em;
             font-weight: 600;
             color: $black-alt;
-            margin-bottom: 20px;
         }
     }
 
@@ -305,9 +301,8 @@
         padding-left: 0px;
 
         .authentication__info__image {
-            background-color: $orange-alt;
-            background-image: url("../images/layout/signup.svg");
-            height: 100vh;
+            background-color: $black;
+            height: 100%;
             width: 100%;
             background-size: auto 100%;
             background-repeat: no-repeat;
@@ -337,10 +332,11 @@
         transition: border-color .15s, background-color .15s;
 
         &.form__textfield__signup_password {
-            margin-bottom: 5px;
+            font-size: 1em;
         }
 
         &.form__textfield__confirm_password {
+            margin-top: 0px;
             margin-bottom: 20px;
         }
 

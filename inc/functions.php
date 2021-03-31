@@ -897,7 +897,7 @@
      * 
      * @params string $data
      * 
-     * @return boolean
+     * @return mixed
      */
     function createNewAccount($data = '') {
 
@@ -905,10 +905,46 @@
             global $pdo;
         }
 
+        
         $params = array();
         parse_str($data, $params);
 
-    
+        $errors = array();
+
+        if (!empty($params) && isset($params)) {
+
+            if (empty($params['name'])) {
+                $errors['name'] = 'Fill in your full name.';
+            }
+
+            if (empty($params['email'])) {
+                $errors['email'] = 'Fill in your email address.';
+            }
+
+            if (empty($params['password'])) {
+                $errors['password'] = 'Enter your desired password.';
+            }
+
+            if (empty($params['password_confirmation'])) {
+                $errors['password_confirmation'] = 'Enter your password again.';
+            }
+        }
+
+        if (isset($errors) && count($errors) > 0) {
+            return $errors;
+        }
+
+        $bValidEmail = isEmailValid($params['email']);
+
+        if (!$bValidEmail) {
+            $errors['email'] = 'Email is not valid.'; return $errors;
+        }
+
+
+        if ($params['password'] !== $params['password_confirmation'] && $params['password_confirmation'] !== $params['password']) {
+            $errors['password_confirmation'] = 'Password confirmation doesn\'t match Password.'; return $errors;
+        }
+
 
         $aAccountExist = $pdo->prepare("SELECT * FROM accounts WHERE email = :email LIMIT 1");
 
@@ -918,14 +954,40 @@
         $aAccountExist->fetch(PDO::FETCH_ASSOC);
 
         if ($aAccountExist->rowCount() > 0) {
-            $errors['email'] = 'Email is already in use';
+            $errors['email'] = 'Email is already in use.'; return $errors;
         }
 
-        // check if email === email
-        // check if confirm password == passwowrd
-        // check if email exists, if it does tell them it exists
-        //  if no errors do insert stuff
 
+        if (count($errors) === 0 && !empty($params)) {
+
+            $sSql = "
+                INSERT INTO accounts
+                SET 
+                    image_id = null, 
+                    full_name = :fullname,
+                    password = :password,
+                    email = :email,
+                    phone = 0,
+                    admin = 0,
+                    account_created = :today, 
+                    last_login = 0
+            ";
+
+            $aInsertSql = $pdo->prepare($sSql);
+
+            $aInsertSql->bindValue(':fullname', $params['name']);
+            $aInsertSql->bindValue(':password', password_hash($params['password'], PASSWORD_DEFAULT));
+            $aInsertSql->bindValue(':email', $params['email']);
+            $aInsertSql->bindValue(':today', date("YmdHis"));
+
+            $aInsertSql->execute();
+
+            if(!$aInsertSql) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
