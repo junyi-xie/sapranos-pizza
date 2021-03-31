@@ -2,6 +2,17 @@
 
     $(document).ready(function(){
 
+        $(".js-signup-email-submit").click(function(event) {
+            event.preventDefault();
+
+            var signup_form = $('.js-signup-email-form');
+
+
+            console.log(signup_form.serialize());
+
+        });
+
+
         $(".js-email-login-submit").click(function(event) {
             event.preventDefault();
 

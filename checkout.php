@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Checkout · Sopranos Pizzabar</title>
+    <title>Sopranos</title>
     <meta charset="UTF-8">
     <meta name="author" content="Junyi Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

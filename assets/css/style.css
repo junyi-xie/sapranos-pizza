@@ -2405,6 +2405,11 @@ footer {
   text-align: center;
 }
 
+.authentication__header.authentication__header--alt {
+  position: absolute;
+  z-index: 100;
+}
+
 .authentication__header .authentication_header__left {
   width: 150px;
   text-align: left;
@@ -2417,12 +2422,26 @@ footer {
 }
 
 .authentication__header .authentication_header__right {
-  background-color: #0a0918;
   opacity: 1;
   -webkit-box-flex: 0;
       -ms-flex: none;
           flex: none;
   text-align: right;
+}
+
+.authentication__header .authentication_header__right.authentication__signup {
+  background-color: #0a0918;
+}
+
+.authentication__header .authentication_header__right .login__text {
+  margin-right: 2px;
+  font-size: 12px;
+}
+
+.authentication__header .authentication_header__right .button-login-link {
+  color: #0a0918;
+  font-size: 12px;
+  text-decoration: underline;
 }
 
 .authentication__header .authentication_header__right .button-signup {
@@ -2519,9 +2538,17 @@ footer {
           flex-direction: column;
 }
 
+.authentication_section__content.authentication_section__content_signup {
+  margin: 75px 0;
+}
+
 .authentication_section__body {
   color: #0a0918;
   width: auto;
+}
+
+.authentication_section__body.authentication_section__body_alt {
+  width: 25rem;
 }
 
 .authentication__form_container {
@@ -2670,6 +2697,100 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.authentication_section__body__header {
+  padding-bottom: 20px;
+}
+
+.authentication_section__body__header .authentication_section__body__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  color: #0a0918;
+  margin-bottom: 20px;
+}
+
+.authentication__privacy_message {
+  color: #0a0918;
+  text-align: left;
+  font-size: 10px;
+  margin-bottom: 1em;
+  line-height: 1.75;
+  margin-top: 1rem;
+}
+
+.authentication__privacy_message a {
+  color: #0a0918;
+  text-decoration: underline;
+}
+
+.authentication__info {
+  padding-right: 50px;
+  padding-left: 0px;
+}
+
+.authentication__info .authentication__info__image {
+  background-image: url("../images/layout/lol.gif");
+  max-height: 100%;
+  height: 100vh;
+  width: 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.form__label {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.form__textfield__signup_input {
+  height: 45px;
+  font-size: 1em;
+  margin-top: 10px;
+  max-width: 25rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d8dae0;
+  margin-bottom: 1.25em;
+  padding: 0.6875rem 0.875rem;
+  color: #0a0918;
+  border-radius: 2px;
+  -webkit-transition: border-color .15s, background-color .15s;
+  transition: border-color .15s, background-color .15s;
+}
+
+.form__textfield__signup_input.form__textfield__signup_password {
+  margin-bottom: 5px;
+}
+
+.form__textfield__signup_input.form__textfield__confirm_password {
+  margin-bottom: 20px;
+}
+
+.form__textfield__signup_input:focus {
+  border-color: #f58220;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.button_signup_submit {
+  background-color: #0a0918;
+  width: 100%;
+  height: 45px;
+  font-size: 1em;
+  margin-top: 7px;
+  max-width: 25rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-weight: normal;
 }
 
 .privacy__terms {

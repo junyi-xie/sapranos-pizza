@@ -901,6 +901,11 @@
 
         // create new account
 
+
+        // check if email === email
+        // check if confirm password == passwowrd
+        // check if email exists, if it does tell them it exists
+
         return true;
     }
 
