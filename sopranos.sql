@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `image_id` int(11) DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `fullname` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `phone` varchar(15) NOT NULL DEFAULT '',

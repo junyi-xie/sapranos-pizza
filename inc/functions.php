@@ -964,7 +964,7 @@
                 INSERT INTO accounts
                 SET 
                     image_id = null, 
-                    name = :name,
+                    fullname = :name,
                     password = :password,
                     email = :email,
                     phone = 0,
