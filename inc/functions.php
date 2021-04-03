@@ -1002,8 +1002,8 @@
 
         if (empty($page)) return false;
 
-        header("Location: $page");
-        exit;
+        header("Location: ". $page);
+        exit();
     }
 
 
