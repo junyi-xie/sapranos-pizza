@@ -56,6 +56,8 @@
 
             <div class="authentication_section__body authentication_section__body_alt">
 
+                <div class="form__message js-email-login-error-container hidden"></div>
+
                 <div class="authentication_section__body__header">
 
                     <h2 class="authentication_section__body__title">Signup to Sopranos</h2>
@@ -150,7 +152,9 @@
 
                 <div class="authentication_section__content">
 
-                    <div class="authentication_section__body">
+                    <div class="authentication_section__body authentication_section__body_alt">
+
+                        <div class="form__message js-email-login-error-container hidden"></div>
 
                         <div class="authentication__form_container">
 

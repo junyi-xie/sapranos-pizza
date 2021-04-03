@@ -991,6 +991,22 @@
     }
 
 
+    /**
+     * Redirect page to desired input.
+     * 
+     * @params string $page
+     * 
+     * @return void|boolean
+     */
+    function redirectPage($page = '') {
+
+        if (empty($page)) return false;
+
+        header("Location: $page");
+        exit;
+    }
+
+
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 

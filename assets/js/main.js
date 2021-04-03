@@ -17,6 +17,8 @@
                 success: function(result) {
                     data = JSON.parse(result);
 
+                    var message = $('.js-email-login-error-container');             
+
                     var name = $('.js-signup-name-error');
                     var email = $('.js-signup-email-error');
                     var password = $('.js-signup-password-error');
@@ -40,10 +42,14 @@
                     password_confirm.removeClass('hidden').addClass('hidden');
                     password_confirm_input.addClass('error--inline').removeClass('error--inline');
 
+                    message.removeClass('hidden').addClass('hidden');
 
                     if (data === true) {
 
-                        // login success message
+                        signup_form[0].reset();
+                        message.removeClass('form__message--success').addClass('form__message--success');
+                        message.html('Account successfully created, click <a href="login.php">here</a> to login.');
+                        message.addClass('hidden').removeClass('hidden');
 
                     } else if(data !== false) {
                         $.each(data, function(key, value) {
@@ -62,13 +68,16 @@
                                 break;
                                 case 'password_confirmation':
                                     password_confirm.html(value).addClass('hidden').removeClass('hidden');
-                                    password_confirm_input.prev().removeClass('error--inline').addClass('error--inline');
+                                    password_confirm_input.removeClass('error--inline').addClass('error--inline');
                                 break;
                             } 
                         });
                     } else {
 
-                        // error msg or something blah.
+                        signup_form[0].reset();
+                        message.removeClass('form__message--error').addClass('form__message--error');
+                        message.html('Something went wrong, please try again...');
+                        message.addClass('hidden').removeClass('hidden');
                     }
                 }
             });
@@ -90,6 +99,8 @@
                 success: function(result) {
                     data = JSON.parse(result);
 
+                    var message = $('.js-email-login-error-container');
+
                     var email_error = $('.js-login-email-error');
                     var email_input = email_error.prev();
                     var password_error = $('.js-login-password-error');
@@ -101,12 +112,13 @@
                     password_error.removeClass('hidden').addClass('hidden');
                     password_input.addClass('error--inline').removeClass('error--inline');
 
+                    message.removeClass('hidden').addClass('hidden');
 
                     if (data === true) {
 
-                        //  success login. redirect o rsomething
-
-                    } else if(data !== false) {
+                        window.location.href = "dashboard.php"; 
+                                               
+                    } else if (data !== false) {
                         $.each(data, function(key, value) {
                             switch (key) {
                                 case 'email':
@@ -120,7 +132,11 @@
                             } 
                         });
                     } else {
-                        // something went wrong
+
+                        login_form[0].reset();
+                        message.removeClass('form__message--error').addClass('form__message--error');
+                        message.html('Something went wrong, please try again...');
+                        message.addClass('hidden').removeClass('hidden');
                     }
                 }
             });

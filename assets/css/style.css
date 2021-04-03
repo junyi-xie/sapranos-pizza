@@ -539,6 +539,7 @@ footer {
   text-align: center;
 }
 
+/* hello. */
 .shopping_cart__container {
   margin-top: 2rem;
 }
@@ -2628,6 +2629,7 @@ footer {
 .form__option .cookie--wrapper {
   position: relative;
   margin: 0;
+  outline: 0;
 }
 
 .form__option span {
@@ -2779,6 +2781,33 @@ footer {
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.form__message {
+  background-color: #b8bdc5;
+  border-radius: 2px;
+  color: white;
+  font-size: .875rem;
+  font-weight: 600;
+  margin: 1rem auto;
+  padding: .5rem 2rem .5rem 1rem;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.form__message a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.form__message.form__message--error, .form__message.form__message--alert {
+  background-color: #af1e48;
+}
+
+.form__message.form__message--success {
+  background-color: #32b259;
 }
 
 .button_signup_submit {
