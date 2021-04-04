@@ -2,11 +2,6 @@
 
     $(document).ready(function(){
 
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
-        
-
         $(".js-signup-email-submit").click(function(event) {
             event.preventDefault();
 
@@ -121,7 +116,8 @@
 
                     if (data === true) {
 
-                        window.location.href = "dashboard.php"; 
+                        login_form[0].reset();
+                        window.location.href = "dashboard.php?from=login&method?=email&auth=false"; 
                                                
                     } else if (data !== false) {
                         $.each(data, function(key, value) {

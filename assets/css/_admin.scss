@@ -1,3 +1,177 @@
-    .site__content_container {
-        
+    .dashboard__container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
+        background-color: $white;
+    }
+
+    .dashboard__header {
+        height: 60px;
+        position: relative;
+    }
+
+    .dashboard__actionbar {
+        position: absolute;
+        top: 0;
+        z-index: 100;
+    }
+
+    .dashboard__actionbar_inner {
+        right: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid $line-alt;
+        background-color: $white;
+        top: 0;
+        position: fixed;
+        height: 60px;
+    }
+
+    .dashboard__actionbar_profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1.5rem;
+    }
+
+    .dashboard__actionbar_name {
+        border-left: 2px solid $line;
+        padding-left: 10px;
+        margin-right: 0.5rem;
+        font-size: 16px;
+        color: $black-alt;
+        font-weight: 600;
+        font-family: $font-secondary;
+    }
+
+    .dashboard__actionbar_avatar {
+        border-radius: 50%;
+        width: auto;
+        display: inline-block;
+        height: 50px;
+        background-color: $black-alt;
+        overflow: hidden;
+        color: $white;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .dashboard__sidebar {
+        min-width: 280px;
+        max-width: 280px;
+        height: 100%;
+        background-color: $ocean;
+        color: $white;
+        z-index: 101;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .dashboard__sidebar_inner {
+        padding: 2rem 1.25rem 0 1.25rem;
+        margin: 0;
+        height: 100%;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: stretch;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .dashboard__sidebar_heading {
+        margin-bottom: 20px;
+    }
+
+    .dashboard__sidebar_logo {
+        color: $white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard__sidebar_menu {
+        padding: 0;
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        position: relative;
+        font-size: 16px;
+    }
+
+    .dashboard__sidebar_menu__item {
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+
+    .dashboard__sidebar_menu__item_link {
+        color: $void-alt;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $void;
+        padding: 15px 0;
+
+        i {
+            width: 30px;
+            height: auto;
+        }
+
+        span {
+            text-align: left;
+            height: auto;
+            overflow: hidden;
+        }
+
+        &:hover {
+            color: $white;
+        }
+    }
+
+    .dashboard__sidebar_dropdown_submenu {
+        margin-left: 15px;
+        font-size: 14px;
+    }
+
+    .dashboard__sidebar_dropdown_toggle {
+        white-space: nowrap;
+        position: relative;
+
+        &::after {
+            display: inline-block;
+            margin-left: .255em;
+            vertical-align: .255em;
+            content: "";
+            border-top: .3em solid;
+            border-right: .3em solid transparent;
+            border-bottom: 0;
+            border-left: .3em solid transparent;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    .dashboard__content {
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        flex: 1 1;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .dashboard__overview {
+        display: flex;
+        padding: 25px 30px;
     }

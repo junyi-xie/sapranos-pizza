@@ -29,7 +29,7 @@
      *
      * @return array
      */
-    function getFiles($dir = 'assets\js', $ext = 'js') {
+    function getFiles($dir = '', $ext = '') {
 
         $handle = opendir($dir);
 
@@ -1002,7 +1002,7 @@
 
         if (empty($page)) return false;
 
-        header("Location: ". $page);
+        header("Location: $page");
         exit();
     }
 

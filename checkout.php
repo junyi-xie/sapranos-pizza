@@ -400,15 +400,11 @@
 
 </div>
 
-<?php else: ?>
-
-    <h1 class="text-center" style="margin-top: 5rem; margin-bottom: 50rem; font-size: 4rem;">Silence is golden.</h1>
-
 <?php endif; ?>
 
 <?php include_once("inc/footer.php") ?>
 
-<?php print('<!--'.date("YmdHis").'-->'); $jsFiles = getFiles(); echo loadFiles($jsFiles); ?>
+<?php print('<!--'.date("YmdHis").'-->'); $jsFiles = getFiles('assets/js', 'js'); echo loadFiles($jsFiles); ?>
 
 </body>
 </html>
