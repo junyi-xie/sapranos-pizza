@@ -20,6 +20,8 @@
 
 <?php if (!isset($_SESSION['profile']['uid']) && !isset($_COOKIE['uid'])): sendLoginError(); endif; ?>
 
+<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); ?>
+
 <div class="dashboard__container">
 
     <div class="dashboard__sidebar">
@@ -84,7 +86,7 @@
                     
                     </li>
 
-                    <?php if (isset($_GET['go']) && $_GET['go'] == 'signout') accountLogout((!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid'])); ?>
+                    <?php if (isset($_GET['go']) && $_GET['go'] == 'signout') accountLogout($AccountKey); ?>
 
                 </ul>
 
@@ -114,17 +116,17 @@
 
                     <div class="dashboard__actionbar_profile">
 
-                        <?php $aAccount = queryOperator("SELECT a.*, i.* FROM accounts AS a", "images AS i ON i.id = a.image_id", "a.id = '". (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']) ."'", "a.id ASC", 1); ?>
+                        <?php $aAccounts = queryOperator("SELECT a.*, i.* FROM accounts AS a", "images AS i ON i.id = a.image_id", "a.id = '". $AccountKey ."'", "a.id ASC", 1); ?>
                         
-                        <span class="dashboard__actionbar_name"><?= $aAccount['fullname']; ?></span>
+                        <span class="dashboard__actionbar_name"><?= $aAccounts['fullname']; ?></span>
 
-                        <?php if (!empty($aAccount['link']) && !is_null($aAccount)): ?>
+                        <?php if (!empty($aAccounts['link']) && !is_null($aAccounts)): ?>
 
-                        <img class="dashboard__actionbar_avatar" src="<?= $aAccount['link']; ?>">
+                        <img class="dashboard__actionbar_avatar" src="<?= $aAccounts['link']; ?>">
 
                         <?php else: ?>
 
-                        <div class="dashboard__actionbar_avatar"><span><?php echo getNameInitials($aAccount['fullname']); ?></span></div>
+                        <div class="dashboard__actionbar_avatar"><span><?php echo getNameInitials($aAccounts['fullname']); ?></span></div>
 
                         <?php endif ?>
 
@@ -172,7 +174,13 @@
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'profile'): ?>
 
-                    <h1>Profile!</h1>
+                <h1 class="dashboard_page__heading"><?= $aAccounts['fullname']; ?>&apos;s Profile</h1>
+
+                <div class="dashboard_page__account">
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p>
+
+                </div>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'settings'): ?>
 
@@ -196,14 +204,35 @@
 
                         <div class="dashboard_section__content">
 
-                            <form action="">
+                            <form class="account_info_form" action="" accept-charset="UTF-8" method="post">
 
+                                <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
-                                <!-- put form blah blah -->
+                                <input type="hidden" name="action" value="info">
+
+                                <div class="account__user_info">
+
+                                    <div class="account__user_name">
+
+                                        <label class="form___label">Full Name</label>
+
+                                        <input class="form__textfield--input" type="text" name="user[name]" value="<?php echo (!empty($aAccounts['fullname']) ? $aAccounts['fullname'] : ''); ?>" placeholder="Your Name">
+
+                                    </div>
+
+                                    <div class="account__user_phone">
+
+                                        <label class="form___label">Phone Number</label>
+
+                                        <input class="form__textfield--input" type="phone" name="user[phone]" value="<?php echo (!empty($aAccounts['phone']) ? $aAccounts['phone'] : ''); ?>" placeholder="Your Phone">
+
+                                    </div>
+
+                                </div>
+
+                                <input class="button button-settings--update" type="submit" value="Update Info">
 
                             </form>
-
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A aspernatur aliquid architecto beatae voluptate ipsum incidunt cupiditate, saepe aperiam eaque obcaecati asperiores perspiciatis optio at reiciendis illo tempora exercitationem accusamus?</p>
 
                         </div>
                         
@@ -219,7 +248,43 @@
 
                         <div class="dashboard_section__content">
 
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ipsam earum dicta reprehenderit eos eaque quisquam mollitia natus autem nesciunt fugiat sed blanditiis dolor consequuntur, molestiae expedita, cum quo dignissimos.</p>
+                            <form class="update_email_form" action="" accept-charset="UTF-8" method="post">
+
+                            <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
+
+                            <input type="hidden" name="action" value="email">
+
+                            <div class="account__email_info">
+
+                                <div class="account__user_new_email">
+
+                                    <label class="form___label">New Email Address</label>
+
+                                    <input class="form__textfield--input" type="email" name="email[new]" placeholder="Enter Email">
+
+                                </div>
+
+                                <div class="account__user_confirm_email">
+
+                                    <label class="form___label">Confirm New Email Address</label>
+
+                                    <input class="form__textfield--input" type="email" name="email[confirm]" placeholder="Confirm Email">
+
+                                </div>
+
+                                <div class="account__user_current_password">
+
+                                    <label class="form___label">Current Password</label>
+
+                                    <input class="form__textfield--input" type="password" name="email[password]" placeholder="Enter Password">
+
+                                </div>
+
+                            </div>
+
+                            <input class="button button-settings--update" type="submit" value="Update Email">
+
+                            </form>
 
                         </div>
 
@@ -235,7 +300,43 @@
 
                         <div class="dashboard_section__content">
 
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, consequatur, atque, ipsum hic illum velit beatae ullam delectus eligendi qui at reiciendis facilis eaque adipisci. Omnis reiciendis tempora perspiciatis ratione.</p>
+                            <form class="update_password_form" action="" accept-charset="UTF-8" method="post">
+
+                                <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
+
+                                <input type="hidden" name="action" value="password">
+
+                                <div class="account__password_info">
+
+                                    <div class="account__user_new_email">
+
+                                        <label class="form___label">Current Password</label>
+
+                                        <input class="form__textfield--input" type="password" name="password[current]" placeholder="Enter Password">
+
+                                    </div>
+
+                                    <div class="account__user_new_confirm_email">
+
+                                        <label class="form___label">New Password</label>
+
+                                        <input class="form__textfield--input" type="password" name="password[new]" placeholder="Must be longer than 6 characters">
+
+                                    </div>
+
+                                    <div class="account__user_current_password">
+
+                                        <label class="form___label">Confirm New Password</label>
+
+                                        <input class="form__textfield--input" type="password" name="password[confirm]" placeholder="Confirm Password">
+
+                                    </div>
+
+                                </div>
+
+                                <input class="button button-settings--update" type="submit" value="Update Password">
+
+                            </form>
 
                         </div>
 
@@ -251,7 +352,21 @@
 
                         <div class="dashboard_section__content">
 
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quos eaque expedita quam dolor eligendi optio magnam velit perspiciatis temporibus, rem nulla. Quisquam unde quo quam ad. Laboriosam, repellendus quas.</p>
+                            <form class="update_avatar_form" action="" accept-charset="UTF-8" method="post">
+
+                                <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
+
+                                <input type="hidden" name="action" value="avatar">
+
+                                <div class="account__avatar_info">
+
+                                <!-- TO DO, AVATAR UPLOAD IMAGE SHIT -->
+
+                                </div>
+
+                                <input class="button button-settings--update" type="submit" value="Update Avatar">
+
+                            </form>
 
                         </div>
 
@@ -264,6 +379,8 @@
             </div>
 
         </section>
+
+        <?php include_once('inc/footer.php'); ?>
 
     </div>
 

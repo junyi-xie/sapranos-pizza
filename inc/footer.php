@@ -6,6 +6,8 @@
 
             <nav class="footer__nav">
 
+                <?php if (basename($_SERVER['SCRIPT_FILENAME']) !== 'dashboard.php'): ?>
+
                 <div class="site__social">
 
                     <a class="site__logo_icon" href="index.php"><img class="site__logo_image" title="Sopranos Pizzabar" src="assets/images/layout/sopranos-logo-footer.png"></a>
@@ -13,6 +15,8 @@
                     <?php // <ul class="site__social_links"><li class="site__social_link"><a class="icon__facebook_link" target="_blank" href="#"><i class="fa fa-facebook-f"></i></a></li><li class="site__social_link"><a class="icon__twitter_link" target="_blank" href="#"><i class="fa fa-twitter"></i></a></li><li class="site__social_link"><a class="icon__instagram_link" target="_blank" href="#"><i class="fa fa-instagram"></i></a></li><li class="site__social_link"><a class="icon__pinterest_link" target="_blank" href="#"><i class="fa fa-pinterest"></i></a></li></ul> ?>
 
                 </div>
+
+                <?php endif; ?>
                 
                 <ul class="nav__items">
 

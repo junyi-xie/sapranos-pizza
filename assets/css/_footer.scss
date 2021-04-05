@@ -25,9 +25,13 @@
         margin: 0 auto;
 
         .nav__items {
-            border-left: 1px solid $line;
+            border-right: 1px solid $line;
             display: inline-block;
             padding: 0px 3rem;
+
+            &:last-of-type {
+                border-right: none;
+            }
 
             .nav__header {
                 font-family: $font-secondary;
@@ -84,7 +88,8 @@
             display: flex;
             float: left;
             flex-direction: column;
-            margin-right: 1rem;
+            padding-right: 1rem;
+            border-right: 1px solid $line;
 
             .site__logo_link {
                 padding: 0;

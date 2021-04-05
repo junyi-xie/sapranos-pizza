@@ -387,9 +387,13 @@ img {
 }
 
 .footer__nav .nav__items {
-  border-left: 1px solid #edeff3;
+  border-right: 1px solid #edeff3;
   display: inline-block;
   padding: 0px 3rem;
+}
+
+.footer__nav .nav__items:last-of-type {
+  border-right: none;
 }
 
 .footer__nav .nav__items .nav__header {
@@ -451,7 +455,8 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid #edeff3;
 }
 
 .footer__nav .site__social .site__logo_link {
@@ -2969,6 +2974,8 @@ img {
           align-items: stretch;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(146, 98, 98, 0.04), 0px 18px 25px rgba(0, 0, 0, 0.06);
+          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(146, 98, 98, 0.04), 0px 18px 25px rgba(0, 0, 0, 0.06);
 }
 
 .dashboard__sidebar_heading {
@@ -3126,7 +3133,7 @@ img {
 
 .dashboard_page__heading,
 .dashboard_section__heading {
-  font-family: "Poppins", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -3161,11 +3168,12 @@ img {
 .dashboard_section__heading {
   padding: 1.1rem 1.667rem;
   margin: 0;
+  font-weight: 600;
 }
 
 .dashboard_page__heading {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .dashboard__form_message {
@@ -3199,5 +3207,66 @@ img {
 .account__password_settings,
 .account__avatar_settings {
   margin-bottom: 2.5rem;
+}
+
+.button-settings--update {
+  background-color: black;
+}
+
+.button-settings--update:hover {
+  background-color: #494ca2;
+}
+
+.account_info_form,
+.update_email_form,
+.update_password_form,
+.update_avatar_form {
+  width: 100%;
+  position: relative;
+}
+
+.account__user_info,
+.account__email_info,
+.account__password_info,
+.account__avatar_info {
+  max-width: 25rem;
+  margin-right: 6.25rem;
+}
+
+.form__textfield--input {
+  margin-top: 10px;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid #d8dae0;
+  margin-bottom: 1.25em;
+  padding: 0.625rem 0.875rem;
+  color: #0a0918;
+  border-radius: 2px;
+  background-color: white;
+  background-clip: padding-box;
+  -webkit-transition: border-color .15s, background-color .15s;
+  transition: border-color .15s, background-color .15s;
+}
+
+.form__textfield--input:focus {
+  border-color: #5ec8d5;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form___label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.account__user_name,
+.account__user_phone,
+.account__user_new_email,
+.account__user_confirm_email,
+.account__user_current_password {
+  position: relative;
+  padding: 0;
 }
 /*# sourceMappingURL=style.css.map */
