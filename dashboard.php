@@ -88,7 +88,15 @@
 
                 </ul>
 
-                <!-- account settings -->
+                <ul class="dashboard__sidebar_submenu">
+
+                    <li class="dashboard__sidebar_menu__item<?php if (isset($_GET['go']) && $_GET['go'] == 'settings'): ?> active<?php endif; ?>">
+                        
+                        <a class="dashboard__sidebar_menu__item_link" href="dashboard.php?go=settings"><i class="fas fa-cog"></i><span>Settings</span></a>
+                    
+                    </li>
+
+                </ul>
 
             </nav>
 
