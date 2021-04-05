@@ -15,22 +15,20 @@
     }
 
     .dashboard__actionbar {
-        position: absolute;
+        position: relative;
         top: 0;
-        z-index: 100;
+        right: 0;
+        width: 100%;
     }
 
     .dashboard__actionbar_inner {
         right: 0;
-        left: 0;
         width: 100%;
-        z-index: 2;
         display: flex;
         justify-content: flex-end;
-        border-bottom: 1px solid $line-alt;
+        border-bottom: 1px solid $line;
         background-color: $white;
         top: 0;
-        position: fixed;
         height: 60px;
     }
 
@@ -43,9 +41,13 @@
     }
 
     .dashboard__actionbar_name {
-        border-left: 2px solid $line;
+        border-left: 2px solid $line-alt;
         padding-left: 10px;
         margin-right: 0.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 150px;
         font-size: 16px;
         color: $black-alt;
         font-weight: 600;
@@ -57,8 +59,13 @@
         width: auto;
         display: inline-block;
         height: 50px;
-        background-color: $black-alt;
+        min-width: 50px;
+        background-color: $haze;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
         color: $white;
         position: relative;
         vertical-align: middle;
@@ -99,6 +106,11 @@
         margin-bottom: 0.5rem;
     }
 
+    .dashboard__sidebar_nav {
+        margin: 0;
+        position: relative;
+    }
+
     .dashboard__sidebar_menu {
         padding: 0;
         max-width: 100%;
@@ -112,6 +124,13 @@
         margin: 0;
         padding: 0;
         display: block;
+        outline: none;
+
+        &.active {
+            .dashboard__sidebar_menu__item_link {
+                color: $white;
+            }
+        }
     }
 
     .dashboard__sidebar_menu__item_link {
@@ -163,15 +182,104 @@
     }
 
     .dashboard__content {
-        overflow-x: hidden;
         overflow-y: auto;
+        overflow-x: hidden;
+        background: $white-alt;
         position: relative;
         flex: 1 1;
-        min-height: 100vh;
         width: 100%;
     }
 
     .dashboard__overview {
-        display: flex;
-        padding: 25px 30px;
+        width: 100%;
+        padding: 0;
+        display: block;
     }
+
+    .dashboard__overview_inner {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        height: 100%;
+    }
+
+    .dashboard__notifications {
+        position: relative;
+    }
+
+    .dashboard_page__heading,
+    .dashboard_section__heading {
+        font-family: $font-primary;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 25px;
+        letter-spacing: 0.05em;
+        color: $black;
+        margin-bottom: 1rem;
+    }
+
+    .dashboard_section__header {
+        position: relative;
+        zoom: 1;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        background-color: $white;
+        border: 1px solid $line;
+        border-bottom: 0;
+    }
+    
+
+    .dashboard_section__content {
+        zoom: 1;
+        position: relative;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        padding: 1.35rem 1.667rem;
+        background-color: $white;
+        border: 1px solid $line;
+        box-shadow: 0 2px 3px -2px $line-alt;
+    }
+
+    .dashboard_section__heading {
+        padding: 1.1rem 1.667rem;
+        margin: 0;
+    }
+
+    .dashboard_page__heading {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .dashboard__form_message {
+        background-color: $grey-alt;
+        border-radius: .3rem;
+        color: $white;
+        font-size: .875rem;
+        font-weight: 600;
+        margin: 0 0 1.25rem;
+        padding: .5rem 2rem .5rem 1rem;
+        position: relative;
+        text-align: left;
+        width: 100%;
+
+        &.dashboard__form_message--success {
+            background-color: $green-alt;
+        }
+
+        &.dashboard__form_message--alert {
+            background-color: $red-alt;
+        }
+    }
+
+    .dashboard_page__account {
+        display: block;
+        height: 100%;
+    }
+
+    .account__general_settings,
+    .account__email_settings,
+    .account__password_settings,
+    .account__avatar_settings {
+        margin-bottom: 2.5rem;
+    } 

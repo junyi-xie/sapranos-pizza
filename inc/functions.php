@@ -1007,6 +1007,55 @@
     }
 
 
+    /**
+     * Logout current account from dashboard
+     * 
+     * @return void
+     */
+    function accountLogout() {
+
+        $bCookieOut = setcookie('uid', '', 1, '/');
+        $bLoggedOut = clearSession();
+
+        if ($bLoggedOut && $bCookieOut) {
+            return redirectPage('login.php');
+        }
+    }
+
+
+    /**
+     * If the user is not logged in, send error message and redirect back to the login page.
+     * 
+     * @return void
+     */
+    function sendLoginError() {
+
+        return redirectPage('login.php');
+    }
+
+
+    /**
+     * Generate an initial avatar, based on their full name.
+     * 
+     * @params string $name
+     * 
+     * @return string
+     */
+    function getNameInitials($name = '') {
+
+        preg_match_all('#(?<=\s|\b)\pL#u', $name, $res);
+        $initials = implode('', $res[0]);
+    
+        if (strlen($initials) < 2) {
+            $initials = strtoupper(substr($name, 0, 2));
+        } else if (strlen($initials) > 2) {
+            $initials = substr($initials, 0, 2);
+        }
+
+        return strtoupper($initials);
+    }    
+
+
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
