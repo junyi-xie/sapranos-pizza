@@ -30,7 +30,7 @@
                 
                     <li class="menu__item">
 
-                        <a class="menu__link" title="Shop" href="shop.php">Shop</a>
+                        <a class="menu__link menu__link-shop--button" title="Start Shopping" href="shop.php">Start Shopping</a>
 
                     </li>
                     

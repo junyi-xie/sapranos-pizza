@@ -87,6 +87,9 @@
                     <?php if (isset($_GET['go']) && $_GET['go'] == 'signout') accountLogout((!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid'])); ?>
 
                 </ul>
+
+                <!-- account settings -->
+
             </nav>
 
         </div>
@@ -161,7 +164,11 @@
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'profile'): ?>
 
-                <h1 class="dashboard_page__heading">Profile</h1>
+                    <h1>Profile!</h1>
+
+                <?php elseif (isset($_GET['go']) && $_GET['go'] == 'settings'): ?>
+
+                <h1 class="dashboard_page__heading">Settings</h1>
 
                 <div class="dashboard__notifications">
                     

@@ -205,11 +205,8 @@ img {
   max-width: 100%;
 }
 
-header {
-  background-color: white;
-}
-
 .site__header {
+  background-color: white;
   border-bottom: 1px solid #edeff3;
 }
 
@@ -302,6 +299,16 @@ header {
   color: #ee2761;
 }
 
+.site__menu .menu__list .menu__container .menu__item .menu__link.menu__link-shop--button {
+  background-color: #ee2761;
+  color: white;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 2px;
+  display: inline-block;
+}
+
 .site__menu .menu__list .menu__container .menu__item .menu__link--highlight {
   color: #ee2761;
   font-weight: bold;
@@ -340,11 +347,8 @@ header {
   left: -0.375rem;
 }
 
-footer {
-  background: white;
-}
-
 .site__footer {
+  background-color: white;
   margin: 50px 0px 0px 0px;
   border-top: 1px solid #d8dae0;
   padding: 40px 30px;

@@ -1,8 +1,5 @@
-    header {
-        background-color: $white;   
-    }
-
     .site__header {
+        background-color: $white;   
         border-bottom: 1px solid $line;
     }
 
@@ -78,6 +75,16 @@
 
                         &:hover {
                             color: $red;
+                        }
+
+                        &.menu__link-shop--button {
+                            background-color: $red;
+                            color: $white;
+                            padding: 8px 15px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            border-radius: 2px;
+                            display: inline-block;
                         }
                     }
 
