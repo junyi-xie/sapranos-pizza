@@ -162,7 +162,8 @@
 
         .site__copyright {
             font-family: $font-quaternary;
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
+            font-weight: 400;
             font-size: 14px;
             color: $black-alt;
             text-align: center;

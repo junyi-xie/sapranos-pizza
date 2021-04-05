@@ -47,6 +47,18 @@
                 $bNewAccount = createNewAccount($_POST['signup']);
                 echo json_encode($bNewAccount);
             break;
+            case 'update_general_info':
+                printr($_POST);
+                exit();
+            break;
+            case 'update_email_address':
+                printr($_POST);
+                exit();
+            break;
+            case 'update_password':
+                printr($_POST);
+                exit();
+            break;
         }
     }    
 ?>

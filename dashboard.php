@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard | Sopranos</title>
+    <title>Sopranos</title>
     <meta charset="UTF-8">
     <meta name="author" content="Junyi Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -144,33 +144,27 @@
 
                 <?php if (!isset($_GET['go'])): ?>
 
-                    <!-- home -->
-                    <h1>Hello!</h1>
+                <h1 class="dashboard_page__heading">Dashboard</h1>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'branches'): ?>
 
-                    <!-- branches -->
-                    <h1>Branches!</h1>
+                <h1 class="dashboard_page__heading">Branches</h1>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'coupons'): ?>
 
-                    <!-- coupons -->
-                    <h1>Coupons!</h1>
+                <h1 class="dashboard_page__heading">Coupons</h1>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'stores'): ?>
 
-                    <!-- stores -->
-                    <h1>Stores!</h1>
+                <h1 class="dashboard_page__heading">Stores</h1>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'customers'): ?>
 
-                    <!-- customers -->
-                    <h1>Customers!</h1>
+                <h1 class="dashboard_page__heading">Customers</h1>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'payouts'): ?>
 
-                    <!-- payouts -->
-                    <h1>Payouts!</h1>
+                <h1 class="dashboard_page__heading">Payouts</h1>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'profile'): ?>
 
@@ -204,11 +198,11 @@
 
                         <div class="dashboard_section__content">
 
-                            <form class="account_info_form" action="" accept-charset="UTF-8" method="post">
+                            <form class="account_info_form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
 
                                 <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
-                                <input type="hidden" name="action" value="info">
+                                <input type="hidden" name="action" value="update_general_info">
 
                                 <div class="account__user_info">
 
@@ -248,11 +242,11 @@
 
                         <div class="dashboard_section__content">
 
-                            <form class="update_email_form" action="" accept-charset="UTF-8" method="post">
+                            <form class="update_email_form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
 
                             <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
-                            <input type="hidden" name="action" value="email">
+                            <input type="hidden" name="action" value="update_email_address">
 
                             <div class="account__email_info">
 
@@ -300,11 +294,11 @@
 
                         <div class="dashboard_section__content">
 
-                            <form class="update_password_form" action="" accept-charset="UTF-8" method="post">
+                            <form class="update_password_form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
 
                                 <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
-                                <input type="hidden" name="action" value="password">
+                                <input type="hidden" name="action" value="update_password">
 
                                 <div class="account__password_info">
 
@@ -324,7 +318,7 @@
 
                                     </div>
 
-                                    <div class="account__user_current_password">
+                                    <div class="account__user_confirm_password">
 
                                         <label class="form___label">Confirm New Password</label>
 
@@ -335,36 +329,6 @@
                                 </div>
 
                                 <input class="button button-settings--update" type="submit" value="Update Password">
-
-                            </form>
-
-                        </div>
-
-                    </section>
-
-                    <section class="account__avatar_settings">
-
-                        <div class="dashboard_section__header">
-                            
-                            <h1 class="dashboard_section__heading">Change Your Avatar</h1>
-                    
-                        </div>
-
-                        <div class="dashboard_section__content">
-
-                            <form class="update_avatar_form" action="" accept-charset="UTF-8" method="post">
-
-                                <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
-
-                                <input type="hidden" name="action" value="avatar">
-
-                                <div class="account__avatar_info">
-
-                                <!-- TO DO, AVATAR UPLOAD IMAGE SHIT -->
-
-                                </div>
-
-                                <input class="button button-settings--update" type="submit" value="Update Avatar">
 
                             </form>
 

@@ -226,7 +226,7 @@
     .dashboard__overview_inner {
         display: flex;
         flex-direction: column;
-        padding: 2rem;
+        padding: 2rem 2rem 0;
         height: 100%;
     }
 
@@ -307,8 +307,7 @@
 
     .account__general_settings,
     .account__email_settings,
-    .account__password_settings,
-    .account__avatar_settings {
+    .account__password_settings {
         margin-bottom: 2.5rem;
     } 
 
@@ -322,16 +321,14 @@
 
     .account_info_form,
     .update_email_form,
-    .update_password_form,
-    .update_avatar_form {
+    .update_password_form {
         width: 100%;
         position: relative;
     }
 
     .account__user_info,
     .account__email_info,
-    .account__password_info,
-    .account__avatar_info {
+    .account__password_info {
         max-width: 25rem;
         margin-right: 6.25rem;
     }
@@ -360,13 +357,4 @@
         font-weight: 500;
         font-size: 14px;
         line-height: 1;
-    }
-
-    .account__user_name,
-    .account__user_phone,
-    .account__user_new_email,
-    .account__user_confirm_email,
-    .account__user_current_password {
-        position: relative;
-        padding: 0;
     }
