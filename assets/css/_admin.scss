@@ -279,6 +279,21 @@
         font-weight: bold;
     }
 
+    .dashboard_section__title {
+        text-align: left;
+    }
+
+    .dashboard_section__edit {
+        float: right;
+        font-size: 14px;
+        color: $red;
+        font-weight: 600;
+
+        &:hover {
+            color: $red-alt;
+        }
+    }
+
     .dashboard__form_message {
         background-color: $grey-alt;
         border-radius: .3rem;
@@ -357,4 +372,79 @@
         font-weight: 500;
         font-size: 14px;
         line-height: 1;
+    }
+
+    .profile__user_container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        position: relative;
+        width: 100%;
+    }
+
+    .profile__user_avatar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        margin-right: 1rem;
+        height: 100%;
+
+        .profile__user_thumbnail {
+            display: flex;
+            height: auto;
+            max-width: 250px;
+            width: 250px;
+            min-height: 250px;
+            background-color: $haze;
+            overflow: hidden;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            border-radius: 2px;
+            color: $space-grey;
+
+            .profile__user_no_photo {
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+
+                i {
+                    font-size: 3em;
+                }
+
+                span {
+                    font-weight: 700;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .profile__user_general {
+        position: relative;
+        display: block;
+
+        .profile__user_fullname,
+        .profile__user_email,
+        .profile__user_phone,
+        .profile__user_joined {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1.1rem;
+        }
+
+        label {
+            text-align: left;
+            font-weight: 600;
+            font-size: 1em;
+            line-height: 1;
+            margin-bottom: 0.3125rem;
+        }
+
+        span {
+            text-align: left;
+
+        }
     }

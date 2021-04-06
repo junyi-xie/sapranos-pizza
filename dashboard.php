@@ -146,6 +146,26 @@
 
                 <h1 class="dashboard_page__heading">Dashboard</h1>
 
+                <div class="dashboard_section__header">
+                    
+                    <h1 class="dashboard_section__heading">Welcome, <?= $aAccounts['fullname']; ?>!!!</h1>
+
+                </div>
+
+                    <div class="dashboard_section__content">
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
+
+                </div>
+
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'branches'): ?>
 
                 <h1 class="dashboard_page__heading">Branches</h1>
@@ -168,11 +188,65 @@
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'profile'): ?>
 
-                <h1 class="dashboard_page__heading"><?= $aAccounts['fullname']; ?>&apos;s Profile</h1>
+                <h1 class="dashboard_page__heading">
+                
+                    <span class="dashboard_section__title"><?php echo $aAccounts['fullname']; ?>&apos;s Profile</span>
+
+                    <a class="dashboard_section__edit" href="dashboard.php?go=settings">Edit Profile</a>
+                
+                </h1>
 
                 <div class="dashboard_page__account">
+            
+                    <div class="dashboard_section__content">
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p>
+                        <div class="profile__user_container">
+                        
+                            <div class="profile__user_avatar">
+                        
+                                <?php echo (!empty($aAccounts['link']) && !is_null($aAccounts['link']) ? '<img class="profile__user_thumbnail" src="'.$aAccounts['link'].'"></img>' : '<div class="profile__user_thumbnail"><div class="profile__user_no_photo"><i class="fas fa-camera"></i><span>No Picture</span></div></div>'); ?>
+            
+                            </div>
+
+                            <div class="profile__user_general">
+                            
+                                <div class="profile__user_fullname">
+                                
+                                    <label>Full Name</label>
+                                    
+                                    <span><?= (!empty($aAccounts['fullname']) ? $aAccounts['fullname'] : 'The Fool'); ?> | <?= (isset($aAccounts['admin']) && $aAccounts['admin'] === 1 ? '(Admin)' : '(Guest)'); ?></span>
+                                
+                                </div>
+
+                                <div class="profile__user_email">
+
+                                    <label>Email</label>
+                                
+                                    <span><?= (!empty($aAccounts['email']) ? $aAccounts['email'] : '-'); ?></span>
+
+                                </div>
+
+                                <div class="profile__user_phone">
+
+                                    <label>Phone Number</label>
+
+                                    <span><?= (!empty($aAccounts['phone']) ? $aAccounts['phone'] : '-'); ?></span>
+
+                                </div>
+
+                                <div class="profile__user_joined">
+
+                                    <label>Date Joined</label>
+
+                                    <span><?= (isset($aAccounts['account_created']) ? date("M j, Y", strtotime($aAccounts['account_created'])) : '-')?></span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    
+                    </div>
 
                 </div>
 

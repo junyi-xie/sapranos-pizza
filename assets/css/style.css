@@ -3177,6 +3177,21 @@ img {
   font-weight: bold;
 }
 
+.dashboard_section__title {
+  text-align: left;
+}
+
+.dashboard_section__edit {
+  float: right;
+  font-size: 14px;
+  color: #ee2761;
+  font-weight: 600;
+}
+
+.dashboard_section__edit:hover {
+  color: #af1e48;
+}
+
 .dashboard__form_message {
   background-color: #b8bdc5;
   border-radius: .3rem;
@@ -3257,5 +3272,112 @@ img {
   font-weight: 500;
   font-size: 14px;
   line-height: 1;
+}
+
+.profile__user_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.profile__user_avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 1rem;
+  height: 100%;
+}
+
+.profile__user_avatar .profile__user_thumbnail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: auto;
+  max-width: 250px;
+  width: 250px;
+  min-height: 250px;
+  background-color: #2c2c2c;
+  overflow: hidden;
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  vertical-align: middle;
+  border-radius: 2px;
+  color: #6c7478;
+}
+
+.profile__user_avatar .profile__user_thumbnail .profile__user_no_photo {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile__user_avatar .profile__user_thumbnail .profile__user_no_photo i {
+  font-size: 3em;
+}
+
+.profile__user_avatar .profile__user_thumbnail .profile__user_no_photo span {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.profile__user_general {
+  position: relative;
+  display: block;
+}
+
+.profile__user_general .profile__user_fullname,
+.profile__user_general .profile__user_email,
+.profile__user_general .profile__user_phone,
+.profile__user_general .profile__user_joined {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 1.1rem;
+}
+
+.profile__user_general label {
+  text-align: left;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1;
+  margin-bottom: 0.3125rem;
+}
+
+.profile__user_general span {
+  text-align: left;
 }
 /*# sourceMappingURL=style.css.map */
