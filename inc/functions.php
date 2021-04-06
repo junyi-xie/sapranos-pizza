@@ -1307,6 +1307,19 @@
         }
     }
 
+
+    /**
+     * Create new coupon code to use. Make sure certain fields are not empty. Also an expire date and valid date (when you can use them).
+     * 
+     * @params array $coupons
+     * 
+     * @return mixed
+     */
+    function createNewCoupons($coupons = array()) {
+
+        return $coupons;
+    }
+
     
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }

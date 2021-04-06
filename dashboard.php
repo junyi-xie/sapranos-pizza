@@ -209,13 +209,21 @@
                             
                             <h1 class="dashboard_section__heading">Add</h1>
                         
-                            <!-- ADD NEW COUPON CODE ETC -->
-
                         </div>
 
                         <div class="dashboard_section__content">
                         
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia harum libero aliquam atque excepturi non, labore qui cupiditate eaque ipsam architecto recusandae expedita impedit asperiores perferendis modi, sint in quas.</p>
+                            <!-- ADD NEW COUPON CODE ETC -->
+
+                            <form class="" action="inc/ajax.php" accept-charset="UTF-8" method="post">
+                        
+                                <input type="hidden" name="action" value="coupon_code_create">
+
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
+                        
+                                <input class="button button-settings--update" type="submit" value="Make Coupon">
+
+                            </form>
                         
                         </div>
 

@@ -59,6 +59,9 @@
                 $aPasswordUpdate = updateAccountPassword($_POST);
                 (isset($aPasswordUpdate['feedback']) ? flashMessage('feedback', $aPasswordUpdate['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
+            case 'coupon_code_create':
+                $aNewCouponsAdded = createNewCoupons($_POST);
+            break;
         }
 
         if (isset($_POST['url']) || isset($_POST['link'])) {
