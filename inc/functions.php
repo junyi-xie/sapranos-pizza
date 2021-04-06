@@ -1053,9 +1053,261 @@
         }
 
         return strtoupper($initials);
-    }    
+    }
+    
+    
+    /**
+     * Update accounts table with the data from dashboard. Only the fullname and phone number.
+     * 
+     * @params array $info
+     * 
+     * @return mixed
+     */
+    function updateAccountInformation($info = array()) {
+
+        if(empty($pdo)) {
+            global $pdo;
+        }
+
+        $errors = array();
+
+        if (empty($info)) {
+            $errors['feedback'] = 'Could not update your account information.'; return $errors;
+        }
 
 
+        if (count($errors) === 0) {
+            $sSql = "
+                UPDATE accounts 
+                SET
+                    fullname = :name,
+                    phone = :phone
+                    WHERE 1
+                    AND id = :id
+                    LIMIT 1
+            ";
+
+            $aUpdateSql = $pdo->prepare($sSql);
+                        
+            if (!empty($info['user']) && is_array($info['user'])) {
+                foreach($info['user'] as $key => &$val) {
+                    $aUpdateSql->bindParam($key, $val);
+                }
+            }
+                
+            $aUpdateSql->bindParam(':id', $info['token']);
+            $aUpdateSql->execute();
+        }
+        
+        return flashMessage('feedback', 'Successfully updated your account.', 'dashboard__form_message dashboard__form_message--success');
+    }
+
+
+    /**
+     * Update password. Checks if the requirements first got met before updating.
+     * 
+     * @params array $data
+     * 
+     * @return mixed
+     */
+    function updateAccountPassword($data = array()) {
+
+        if(empty($pdo)) {
+            global $pdo;
+        }
+
+        $errors = array();
+
+        if ($data['token'] <= 0) {
+            $errors['feedback'] = 'Something went wrong, please reload your browser.';
+
+            return $errors;
+        }
+
+
+        if (!empty($data)) {
+
+            if (empty($data['password']['current']) || empty($data['password']['new']) || empty($data['password']['confirm'])) {
+                $errors['feedback'] = 'Passwords textfields can\'t be empty.';
+
+                return $errors;
+            }
+
+            if (strlen($data['password']['new']) < 6) {
+                $errors['feedback'] = 'Your password isnt\'t longer than 6 characters.'; return $errors;
+            } 
+
+            $sSelectPassword = "
+                SELECT password FROM accounts
+                    WHERE 1
+                    AND id = :id
+                    LIMIT 1
+            ";
+
+            $aSelectSql = $pdo->prepare($sSelectPassword);
+
+            $aSelectSql->bindParam(':id', $data['token']);
+            $aSelectSql->execute();
+
+            $aPassword = $aSelectSql->fetch(PDO::FETCH_ASSOC);
+
+            if ($aSelectSql->rowCount() > 0 ) {
+
+                if (!empty($data['password']['current']) && !empty($data['password']['new']) && !empty($data['password']['confirm'])) {
+
+                    if (password_verify($data['password']['current'], $aPassword['password'])) {
+
+                        if ($data['password']['new'] === $data['password']['confirm']) {
+
+                            $password = $data['password']['new'];
+
+                        } else {
+                            $errors['feedback'] = 'New password doesn\'t match the confirmation one.';
+                        }
+
+                    } else {
+                        $errors['feedback'] = 'Your current password does not match with the given password.';
+                    }
+                }
+            } else {
+                $errors['feedback'] = 'Your account doesn\'t exist.';
+            } 
+
+
+            if (count($errors) > 0) {
+                return $errors;
+            }
+
+            if (count($errors) === 0) {
+
+                $sSql = "
+                    UPDATE accounts 
+                    SET
+                        password = :password
+                        WHERE 1
+                        AND id = :id
+                        LIMIT 1
+                ";
+
+                $aUpdateSql = $pdo->prepare($sSql);
+
+                $aUpdateSql->bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
+                $aUpdateSql->bindValue(':id', $data['token']);
+                $aUpdateSql->execute();
+            }
+        }
+
+        return flashMessage('feedback', 'Successfully updated your password.', 'dashboard__form_message dashboard__form_message--success');
+    }
+
+
+    /**
+     * Update email, they will need to confirm their current password before the update is getting executed.
+     * 
+     * @params array $account
+     * 
+     * @return mixed
+     */
+    function updateAccountEmail($account = array()) {
+
+        if(empty($pdo)) {
+            global $pdo;
+        }
+
+        $errors = array();
+
+        if (empty($account['email']['new']) || empty($account['email']['confirm']) || empty($account['email']['password'])) {
+            $errors['feedback'] = 'Some textfields can\'t be empty.'; return $errors;
+        }
+
+        $aSelectPassword = queryOperator("SELECT password FROM accounts", "", "id = '". $account['token'] ."'", "", 1);
+
+        if (!empty($aSelectPassword)) {
+
+            if (password_verify($account['email']['password'], $aSelectPassword['password'])) {
+
+                if ($account['email']['new'] === $account['email']['confirm']) {
+    
+                    $aDuplicateEmail = queryOperator("SELECT email FROM accounts", "", "email = '". $account['email']['new'] ."'", '', 1);
+
+                    if (!empty($aDuplicateEmail)) {
+                        $errors['feedback'] = 'Your chosen email address is unavailable.';                    
+                    }
+    
+                } else {
+                    $errors['feedback'] = 'New email address doesn\'t match the confirmation one.';
+                }
+            } else {
+                $errors['feedback'] = 'Your current password does not match with the given password.';
+            }
+
+        } else {
+            $errors['feedback'] = 'Could not retreive your current password assigned with your account.';
+        }
+
+
+        if (count($errors) > 0) {
+            return $errors;
+        }
+
+        if (count($errors) === 0) {
+
+            $sSql = "
+                UPDATE accounts
+                SET
+                    email = :email
+                    WHERE 1
+                    AND id = :id
+                    LIMIT 1
+            ";
+
+            $aUpdateSql = $pdo->prepare($sSql);
+
+            $aUpdateSql->bindParam(':email', $account['email']['new']);
+            $aUpdateSql->bindParam(':id', $account['token']);
+            $aUpdateSql->execute();
+        }
+
+        return flashMessage('feedback', 'Successfully updated your email address.', 'dashboard__form_message dashboard__form_message--success');
+    }
+
+
+    /**
+     * Function to create and display error and success messages
+     * 
+     * @params string $name
+     * @params string $message
+     * @params string $class
+     * 
+     * @return string
+     */
+    function flashMessage($name = '', $message = '', $class = 'success') {
+    
+        if (!empty($name)) {
+
+            if (!empty($message) && empty($_SESSION[$name])) {
+
+                if (!empty($_SESSION[$name])) {
+                    unset($_SESSION[$name]);
+                }
+                        
+                if (!empty($_SESSION[$name.'_class'])) {
+                    unset($_SESSION[$name.'_class']);
+                }
+
+                $_SESSION[$name] = $message;
+                $_SESSION[$name.'_class'] = $class;
+
+            } elseif (!empty($_SESSION[$name]) && empty($message)) {
+                $class = !empty($_SESSION[$name.'_class']) ? $_SESSION[$name.'_class'] : 'success';
+                echo '<div class="'.$class.'">'.$_SESSION[$name].'</div>';
+                unset($_SESSION[$name]);
+                unset($_SESSION[$name.'_class']);
+            }
+        }
+    }
+
+    
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 

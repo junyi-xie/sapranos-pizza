@@ -20,7 +20,7 @@
 
 <?php if (!isset($_SESSION['profile']['uid']) && !isset($_COOKIE['uid'])): sendLoginError(); endif; ?>
 
-<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); ?>
+<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
 
 <div class="dashboard__container">
 
@@ -181,9 +181,9 @@
                 <h1 class="dashboard_page__heading">Settings</h1>
 
                 <div class="dashboard__notifications">
-                    
-                    <div class="dashboard__form_message dashboard__form_message--success">Successfully updated your profile.</div>
-            
+
+                    <?php flashMessage('feedback'); ?>
+                                
                 </div>
 
                 <div class="dashboard_page__account">
@@ -203,6 +203,8 @@
                                 <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
                                 <input type="hidden" name="action" value="update_general_info">
+
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
                                 <div class="account__user_info">
 
@@ -247,6 +249,8 @@
                             <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
                             <input type="hidden" name="action" value="update_email_address">
+
+                            <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
                             <div class="account__email_info">
 
@@ -299,6 +303,8 @@
                                 <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
                                 <input type="hidden" name="action" value="update_password">
+
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
                                 <div class="account__password_info">
 

@@ -48,17 +48,22 @@
                 echo json_encode($bNewAccount);
             break;
             case 'update_general_info':
-                printr($_POST);
-                exit();
+                $aAccountInformation = updateAccountInformation($_POST);
+                (isset($aAccountInformation['feedback']) ? flashMessage('feedback', $aAccountInformation['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
             case 'update_email_address':
-                printr($_POST);
-                exit();
+                $aUpdatedEmail = updateAccountEmail($_POST);
+                (isset($aUpdatedEmail['feedback']) ? flashMessage('feedback', $aUpdatedEmail['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
             case 'update_password':
-                printr($_POST);
-                exit();
+                $aPasswordUpdate = updateAccountPassword($_POST);
+                (isset($aPasswordUpdate['feedback']) ? flashMessage('feedback', $aPasswordUpdate['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
+        }
+
+        if (isset($_POST['url']) || isset($_POST['link'])) {
+            redirectPage((!isset($_POST['url']) ? $_POST['link'] : $_POST['url']));
+            exit;
         }
     }    
 ?>
