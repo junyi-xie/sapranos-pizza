@@ -220,7 +220,7 @@
 
                                 <div class="profile__user_email">
 
-                                    <label>Email</label>
+                                    <label>Email Address</label>
                                 
                                     <span><?= (!empty($aAccounts['email']) ? $aAccounts['email'] : '-'); ?></span>
 
