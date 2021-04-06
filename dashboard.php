@@ -170,9 +170,58 @@
 
                 <h1 class="dashboard_page__heading">Branches</h1>
 
+                <!-- DO THIS AS WELL TOMORROW, WED 4/7/2021. -->
+
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'coupons'): ?>
 
-                <h1 class="dashboard_page__heading">Coupons</h1>
+                <h1 class="dashboard_page__heading">Coupons Overview</h1>
+
+                <div class="dashboard_page__coupons">
+
+                    <section class="coupons__manage_settings">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Manage</h1>
+
+                            <!-- VIEW AND EDIT -->
+                        
+                        </div>
+
+                        <div class="dashboard_section__content">
+
+                            <?php 
+                            
+                                $Coupons = queryOperator('SELECT * FROM coupons', '', '', '');
+                                printr($Coupons);
+
+                            ?>
+                        
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia harum libero aliquam atque excepturi non, labore qui cupiditate eaque ipsam architecto recusandae expedita impedit asperiores perferendis modi, sint in quas.</p>
+                        
+                        </div>
+
+                    </section>
+
+                    <section class="coupons__add_settings">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Add</h1>
+                        
+                            <!-- ADD NEW COUPON CODE ETC -->
+
+                        </div>
+
+                        <div class="dashboard_section__content">
+                        
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia harum libero aliquam atque excepturi non, labore qui cupiditate eaque ipsam architecto recusandae expedita impedit asperiores perferendis modi, sint in quas.</p>
+                        
+                        </div>
+
+                    </section>
+
+                </div>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'stores'): ?>
 
@@ -197,56 +246,60 @@
                 </h1>
 
                 <div class="dashboard_page__account">
-            
-                    <div class="dashboard_section__content">
 
-                        <div class="profile__user_container">
-                        
-                            <div class="profile__user_avatar">
-                        
-                                <?php echo (!empty($aAccounts['link']) && !is_null($aAccounts['link']) ? '<img class="profile__user_thumbnail" src="'.$aAccounts['link'].'"></img>' : '<div class="profile__user_thumbnail"><div class="profile__user_no_photo"><i class="fas fa-camera"></i><span>No Picture</span></div></div>'); ?>
+                    <section class="profile__account_view">
             
-                            </div>
+                        <div class="dashboard_section__content">
 
-                            <div class="profile__user_general">
+                            <div class="profile__user_container">
                             
-                                <div class="profile__user_fullname">
+                                <div class="profile__user_avatar">
+                            
+                                    <?php echo (!empty($aAccounts['link']) && !is_null($aAccounts['link']) ? '<img class="profile__user_thumbnail" src="'.$aAccounts['link'].'"></img>' : '<div class="profile__user_thumbnail"><div class="profile__user_no_photo"><i class="fas fa-camera"></i><span>No Picture</span></div></div>'); ?>
+                
+                                </div>
+
+                                <div class="profile__user_general">
                                 
-                                    <label>Full Name</label>
+                                    <div class="profile__user_fullname">
                                     
-                                    <span><?= (!empty($aAccounts['fullname']) ? $aAccounts['fullname'] : 'The Fool'); ?> | <?= (isset($aAccounts['admin']) && $aAccounts['admin'] === 1 ? '(Admin)' : '(Guest)'); ?></span>
-                                
-                                </div>
+                                        <label>Full Name</label>
+                                        
+                                        <span><?= (!empty($aAccounts['fullname']) ? $aAccounts['fullname'] : 'The Fool'); ?> | <?= (isset($aAccounts['admin']) && $aAccounts['admin'] === 1 ? '(Admin)' : '(Guest)'); ?></span>
+                                    
+                                    </div>
 
-                                <div class="profile__user_email">
+                                    <div class="profile__user_email">
 
-                                    <label>Email Address</label>
-                                
-                                    <span><?= (!empty($aAccounts['email']) ? $aAccounts['email'] : '-'); ?></span>
+                                        <label>Email Address</label>
+                                    
+                                        <span><?= (!empty($aAccounts['email']) ? $aAccounts['email'] : '-'); ?></span>
 
-                                </div>
+                                    </div>
 
-                                <div class="profile__user_phone">
+                                    <div class="profile__user_phone">
 
-                                    <label>Phone Number</label>
+                                        <label>Phone Number</label>
 
-                                    <span><?= (!empty($aAccounts['phone']) ? $aAccounts['phone'] : '-'); ?></span>
+                                        <span><?= (!empty($aAccounts['phone']) ? $aAccounts['phone'] : '-'); ?></span>
 
-                                </div>
+                                    </div>
 
-                                <div class="profile__user_joined">
+                                    <div class="profile__user_joined">
 
-                                    <label>Date Joined</label>
+                                        <label>Date Joined</label>
 
-                                    <span><?= (isset($aAccounts['account_created']) ? date("M j, Y", strtotime($aAccounts['account_created'])) : '-')?></span>
+                                        <span><?= (isset($aAccounts['account_created']) ? date("M j, Y", strtotime($aAccounts['account_created'])) : '-')?></span>
+
+                                    </div>
 
                                 </div>
 
                             </div>
-
+                        
                         </div>
-                    
-                    </div>
+
+                    </section>
 
                 </div>
 
@@ -254,11 +307,7 @@
 
                 <h1 class="dashboard_page__heading">Settings</h1>
 
-                <div class="dashboard__notifications">
-
-                    <?php flashMessage('feedback'); ?>
-                                
-                </div>
+                <div class="dashboard__notifications"><?php flashMessage('feedback'); ?></div>
 
                 <div class="dashboard_page__account">
 

@@ -3288,6 +3288,10 @@ img {
   width: 100%;
 }
 
+.profile__account_view {
+  margin-bottom: 2.5rem;
+}
+
 .profile__user_avatar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3379,5 +3383,15 @@ img {
 
 .profile__user_general span {
   text-align: left;
+}
+
+.dashboard_page__coupons {
+  display: block;
+  height: 100%;
+}
+
+.coupons__manage_settings,
+.coupons__add_settings {
+  margin-bottom: 2.5rem;
 }
 /*# sourceMappingURL=style.css.map */

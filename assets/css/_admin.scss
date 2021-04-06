@@ -382,6 +382,10 @@
         width: 100%;
     }
 
+    .profile__account_view {
+        margin-bottom: 2.5rem;
+    }
+
     .profile__user_avatar {
         display: flex;
         align-items: flex-start;
@@ -447,4 +451,14 @@
             text-align: left;
 
         }
+    }
+
+    .dashboard_page__coupons {
+        display: block;
+        height: 100%;
+    }
+
+    .coupons__manage_settings, 
+    .coupons__add_settings {
+        margin-bottom: 2.5rem;
     }
