@@ -64,11 +64,11 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `name`, `email`, `phone`, `zipcode`, `address`, `city`, `country`, `status`) VALUES
-(1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+31 655-598-586', '2585 BV', 'Burgemeester Patijnlaan 53', 'The Hague', 'The Netherlands', 1),
-(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+31 655-5929-39', '1435 HW', 'Konnetlaantje 176', 'Rotterdam', 'The Netherlands', 0),
-(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+31 655-5149-89', '1098 GT', 'Meester P.N. Arntzeniusweg 142', 'Amsterdam', 'The Netherlands', 0),
+(1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+31 655-598-586', '2585 BV', 'Patijnlaan 53', 'The Hague', 'The Netherlands', 1),
+(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+31 655-5929-39', '1435 HW', 'Bottelroos 19', 'Rotterdam', 'The Netherlands', 0),
+(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+31 655-5149-89', '1098 GT', 'De Lierhof 31', 'Amsterdam', 'The Netherlands', 0),
 (4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+31 655-538-024', '3543 CL', 'Musicalkade 37', 'Utrecht', 'The Netherlands', 0),
-(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+31 655-581-160', '2807 NP', 'Vlietpolderstraat 194', 'Gouda', 'The Netherlands', 0);
+(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+31 655-581-160', '2807 NP', 'Klipperwerf 59', 'Gouda', 'The Netherlands', 0);
 
 -- --------------------------------------------------------
 
