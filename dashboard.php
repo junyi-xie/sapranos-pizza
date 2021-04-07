@@ -222,7 +222,7 @@
                                     
                                     <div class="list_item__cell"><?= $aSopranosBranches['country']; ?></div>
 
-                                    <div class="list_item__cell"><i class="fas fa-star" title="Main Branch"></i></div>
+                                    <div class="list_item__cell"><span class="list_item__cell--main"><i class="fas fa-star" title="Main Branch"></i></span></div>
 
                                 </div>
 

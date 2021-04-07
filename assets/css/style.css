@@ -3465,6 +3465,7 @@ img {
   border-radius: 2px;
   color: #0a0918;
   font-size: 14px;
+  width: 100%;
   outline: 0;
   padding: 11px 14px;
   padding-right: 1.5em;
@@ -3549,6 +3550,11 @@ img {
 
 .list_item__cell:first-child {
   padding-left: 1.667rem;
+}
+
+.list_item__cell--main {
+  font-size: 14px;
+  color: black;
 }
 
 .list_item__cell--delete,
