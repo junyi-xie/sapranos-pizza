@@ -20,7 +20,7 @@
 
 <?php if (!isset($_SESSION['profile']['uid']) && !isset($_COOKIE['uid'])): sendLoginError(); endif; ?>
 
-<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; $CurrentDate = date("YmdHis"); ?>
 
 <div class="dashboard__container">
 
@@ -222,7 +222,7 @@
 
                                     <div class="list_item__cell"><?= $val['quantity']; ?></div>
 
-                                    <div class="list_item__cell"><?= (isset($val['status']) && ($val['status'] === 1) && $val['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
+                                    <div class="list_item__cell"><?= (isset($val['status']) && ($val['status'] === 1) && $val['quantity'] > 0 && $val['expire'] > $CurrentDate ? 'Active' : 'Inactive'); ?></div>
 
                                     <div class="list_item__cell"><span class="list_item__cell--delete js-coupon-remove-item"><i class="fas fa-times"></i></span></div>
 
@@ -254,7 +254,7 @@
 
                                 <input type="hidden" name="coupon[status]" value="1">
 
-                                <input type="hidden" name="coupon[valid]" value="<?php echo date("YmdHis"); ?>">
+                                <input type="hidden" name="coupon[valid]" value="<?php echo $CurrentDate; ?>">
                         
                                 <div class="new_coupon__code">
 
