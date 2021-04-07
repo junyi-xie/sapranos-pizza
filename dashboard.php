@@ -176,6 +176,8 @@
 
                 <h1 class="dashboard_page__heading">Coupons</h1>
 
+                <div class="dashboard__notifications"><?php flashMessage('coupons'); ?></div>
+
                 <div class="dashboard_page__coupons">
 
                     <section class="coupons__view_all">
@@ -220,7 +222,7 @@
 
                                     <div class="list_item__cell"><?= $val['quantity']; ?></div>
 
-                                    <div class="list_item__cell"><?= (isset($val['status']) && ($val['status'] === 1) ? 'Active' : 'Inactive'); ?></div>
+                                    <div class="list_item__cell"><?= (isset($val['status']) && ($val['status'] === 1) && $val['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
 
                                     <div class="list_item__cell"><span class="list_item__cell--delete js-coupon-remove-item"><i class="fas fa-times"></i></span></div>
 
@@ -250,6 +252,8 @@
 
                                 <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
+                                <input type="hidden" name="coupon[status]" value="1">
+
                                 <input type="hidden" name="coupon[valid]" value="<?php echo date("YmdHis"); ?>">
                         
                                 <div class="new_coupon__code">
@@ -276,7 +280,7 @@
 
                                 <div class="new_coupon__discount">
 
-                                    <div class="label">Amount</div>
+                                    <div class="label">Amount (%)</div>
 
                                     <input class="new_coupons__textfield js-coupon-field-required" type="number" name="coupon[discount]" placeholder="10%" min="0" max="100" id="coupon__discount">
 
@@ -294,7 +298,7 @@
 
                                     <div class="label">Expiration</div>
 
-                                    <input class="new_coupons__textfield" type="date" name="coupon[expire]" placeholder="Input Date" id="coupon__expiration">
+                                    <input class="new_coupons__textfield js-coupon-field-required" type="date" name="coupon[expire]" placeholder="Input Date" id="coupon__expiration">
 
                                 </div>
 
@@ -396,7 +400,7 @@
 
                 <h1 class="dashboard_page__heading">Settings</h1>
 
-                <div class="dashboard__notifications"><?php flashMessage('feedback'); ?></div>
+                <div class="dashboard__notifications"><?php flashMessage('settings'); ?></div>
 
                 <div class="dashboard_page__account">
 

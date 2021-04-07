@@ -49,24 +49,23 @@
             break;
             case 'update_general_info':
                 $aAccountInformation = updateAccountInformation($_POST);
-                (isset($aAccountInformation['feedback']) ? flashMessage('feedback', $aAccountInformation['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
+                (isset($aAccountInformation['feedback']) ? flashMessage('settings', $aAccountInformation['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
             case 'update_email_address':
                 $aUpdatedEmail = updateAccountEmail($_POST);
-                (isset($aUpdatedEmail['feedback']) ? flashMessage('feedback', $aUpdatedEmail['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
+                (isset($aUpdatedEmail['feedback']) ? flashMessage('settings', $aUpdatedEmail['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
             case 'update_password':
                 $aPasswordUpdate = updateAccountPassword($_POST);
-                (isset($aPasswordUpdate['feedback']) ? flashMessage('feedback', $aPasswordUpdate['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
-            break;
-            case 'coupon_code_create':
-                $aNewCouponsAdded = createNewCoupons($_POST);
-                printr($aNewCouponsAdded);
-                exit;
+                (isset($aPasswordUpdate['feedback']) ? flashMessage('settings', $aPasswordUpdate['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
             case 'remove_coupon_delete':
                 $bDeletedCouponCode = removeCouponCode($_POST['coupon_id']);
                 echo json_encode($bDeletedCouponCode);
+            break;
+            case 'coupon_code_create':
+                $aNewCouponsAdded = createNewCoupons($_POST);
+                (isset($aNewCouponsAdded['feedback']) ? flashMessage('coupons', $aNewCouponsAdded['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
         }
 

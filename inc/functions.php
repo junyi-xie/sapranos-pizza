@@ -1099,7 +1099,7 @@
             $aUpdateSql->execute();
         }
         
-        return flashMessage('feedback', 'Successfully updated your account.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('settings', 'Successfully updated your account.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1197,7 +1197,7 @@
             }
         }
 
-        return flashMessage('feedback', 'Successfully updated your password.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('settings', 'Successfully updated your password.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1268,7 +1268,7 @@
             $aUpdateSql->execute();
         }
 
-        return flashMessage('feedback', 'Successfully updated your email address.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('settings', 'Successfully updated your email address.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1317,9 +1317,44 @@
      */
     function createNewCoupons($coupons = array()) {
 
-        
+        if (empty($pdo)) {
+            global $pdo;
+        }
 
-        return $coupons;
+        $errors = array();
+
+        if (empty($coupons['coupon']['code']) || empty($coupons['coupon']['discount']) || empty($coupons['coupon']['type']) || empty($coupons['coupon']['quantity']) || empty($coupons['coupon']['status']) || empty($coupons['coupon']['valid']) || empty($coupons['coupon']['expire'])) {
+            $errors['feedback'] = 'Some textfields can\'t be empty.'; return $errors;
+        }
+
+
+        if (count($errors) === 0) {
+
+            $sSql = "
+                INSERT INTO coupons
+                SET
+                    code = :code,
+                    discount = :discount,
+                    type = :type,
+                    quantity = :quantity,
+                    status = :status,
+                    valid = :valid,
+                    expire = :expire
+            ";
+
+            $aInsertSql = $pdo->prepare($sSql);
+
+            $aInsertSql->bindValue(':code', $coupons['coupon']['code']);
+            $aInsertSql->bindValue(':discount', $coupons['coupon']['discount']); 
+            $aInsertSql->bindValue(':type', $coupons['coupon']['type']);
+            $aInsertSql->bindValue(':quantity', $coupons['coupon']['quantity']);
+            $aInsertSql->bindValue(':status', $coupons['coupon']['status']);
+            $aInsertSql->bindValue(':valid', $coupons['coupon']['valid']);
+            $aInsertSql->bindValue(':expire', date("YmdHis", strtotime($coupons['coupon']['expire'])));
+            $aInsertSql->execute();
+        }
+
+        return flashMessage('coupons', 'Successfully created a new coupon.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
