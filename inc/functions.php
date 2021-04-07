@@ -178,7 +178,7 @@
             global $pdo;
         }
 
-        $coupons = $pdo->query("SELECT * FROM coupons WHERE 1 AND valid <= '".$datetime."' AND expire >= '".$datetime."' AND quantity > 0 ORDER BY id DESC");
+        $coupons = $pdo->query("SELECT * FROM coupons WHERE 1 AND valid <= '".$datetime."' AND expire >= '".$datetime."' AND quantity > 0  AND status = 1 ORDER BY id DESC");
 
         return $coupons->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -1317,7 +1317,42 @@
      */
     function createNewCoupons($coupons = array()) {
 
+        
+
         return $coupons;
+    }
+
+
+    /**
+     * Delete coupon code with AJAX request. Returns boolean on success.
+     * 
+     * @params int $id
+     * 
+     * @return boolean
+     */
+    function removeCouponCode($id = 0) {
+
+        if (empty($pdo)) {
+            global $pdo;
+        }
+
+            if (empty($id) && !is_int($id)) return false;
+
+        $checkCoupon = queryOperator("SELECT * FROM orders", "", "coupon_id = '". $id ."'");
+
+        if (!empty($checkCoupon) && $checkCoupon > 0) {
+            $pdo->prepare("UPDATE orders SET coupon_id = NULL WHERE 1 AND coupon_id = :coupon_id")->execute(array(':coupon_id' => $id));
+        }
+
+        $stmt = $pdo->prepare("DELETE FROM coupons WHERE 1 AND id = :id LIMIT 1"); 
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+            if (!$stmt) {
+                return false;
+            }
+
+        return true;
     }
 
     

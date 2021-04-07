@@ -142,6 +142,18 @@ body {
   font-weight: normal;
 }
 
+.label {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.03em;
+  color: black;
+  font-weight: bold;
+  margin-bottom: .5em;
+}
+
 .button {
   font-size: 1rem;
   line-height: 1.5;
@@ -3355,6 +3367,11 @@ img {
   font-size: 14px;
 }
 
+.border-top-left-right {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
 .profile__user_general {
   position: relative;
   display: block;
@@ -3391,8 +3408,150 @@ img {
   height: 100%;
 }
 
-.coupons__manage_settings,
-.coupons__add_settings {
+.coupons__view_all,
+.coupons__create_new {
   margin-bottom: 2.5rem;
+}
+
+.coupons__container {
+  padding: 0;
+  margin: 0;
+}
+
+.new_coupon__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+.new_coupons__textfield {
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid #d8dae0;
+  padding: 0.625rem 0.875rem;
+  color: #0a0918;
+  border-radius: 2px;
+  background-color: white;
+  background-clip: padding-box;
+  -webkit-transition: border-color .15s, background-color .15s;
+  transition: border-color .15s, background-color .15s;
+  height: 40px;
+}
+
+.new_coupons__textfield:focus {
+  border-color: #5ec8d5;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.new_coupons__form_select {
+  background: white url(../images/layout/double_caret.png) no-repeat right 5px top 50%;
+  background-size: 14px 16px;
+  border: 1px solid #d8dae0;
+  border-radius: 2px;
+  color: #0a0918;
+  font-size: 14px;
+  outline: 0;
+  padding: 11px 14px;
+  padding-right: 1.5em;
+  height: 40px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.new_coupons__form_select:focus {
+  border-color: #5ec8d5;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.new_coupon__code,
+.new_coupon__type,
+.new_coupon__discount,
+.new_coupon__quantity,
+.new_coupon__expiration {
+  margin-right: 12px;
+  width: 100%;
+}
+
+.new_coupon__save__container {
+  position: relative;
+  margin: 0;
+}
+
+.new_coupon__save_button {
+  background-color: #0a0918;
+  border: solid 1px #0a0918;
+}
+
+.new_coupon__save_button:hover {
+  border-color: #494ca2;
+  background-color: #494ca2;
+}
+
+.new_coupon__save_button.disabled {
+  background-color: #b8bdc5;
+  border: solid 1px #b8bdc5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.list__container {
+  border-collapse: collapse;
+  display: table;
+  width: 100%;
+}
+
+.list_item {
+  border-bottom: 1px solid #edeff3;
+  display: table-row;
+}
+
+.list_item--heading {
+  border-bottom: 1px solid #edeff3;
+  font-size: 1rem;
+  font-weight: bold;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.list_item__cell {
+  padding: 1rem;
+  white-space: nowrap;
+  font-style: normal;
+  font-size: 12px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.list_item__cell:first-child {
+  padding-left: 1.667rem;
+}
+
+.list_item__cell--delete {
+  font-size: 16px;
+  height: auto;
+  width: auto;
+  color: #6c7478;
+  cursor: pointer;
+}
+
+.list_item__cell--delete:hover {
+  color: #0a0918;
 }
 /*# sourceMappingURL=style.css.map */

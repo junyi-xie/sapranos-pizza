@@ -2,6 +2,52 @@
 
     $(document).ready(function(){
 
+        $('.js-coupon-remove-item').click(function(event) {
+            event.preventDefault();
+
+            key = $(this).parent().parent().attr('coupon-id');
+
+            if (confirm('Are you sure you want to delete this coupon code?')) {
+                $.ajax({
+                    url:"inc/ajax.php",
+                    type: "post",
+                    data: {
+                        action: 'remove_coupon_delete',
+                        coupon_id: key,
+                    },
+                    success: function(result){
+                        switch (result) {
+                            case 'true':
+                                location.reload(); 
+                            break;
+                        }
+                    },
+                });
+            }
+        });
+
+
+        $('.js-coupon-field-required').on('input', function(event) {
+            event.preventDefault();
+
+            var button = $('.js-coupon-create-button');
+            var required = true;
+
+            $('.js-coupon-field-required').each(function() {
+                if (!$(this).val()) {
+
+                    required = false;
+                } 
+            });
+
+            if (required) {
+                button.addClass('disabled').removeClass('disabled');
+            } else if (!required) {
+                button.removeClass('disabled').addClass('disabled');
+            }
+        });
+
+
         $(".js-signup-email-submit").click(function(event) {
             event.preventDefault();
 

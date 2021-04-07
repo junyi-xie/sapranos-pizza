@@ -61,6 +61,12 @@
             break;
             case 'coupon_code_create':
                 $aNewCouponsAdded = createNewCoupons($_POST);
+                printr($aNewCouponsAdded);
+                exit;
+            break;
+            case 'remove_coupon_delete':
+                $bDeletedCouponCode = removeCouponCode($_POST['coupon_id']);
+                echo json_encode($bDeletedCouponCode);
             break;
         }
 

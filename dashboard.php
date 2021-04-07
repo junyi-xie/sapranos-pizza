@@ -174,54 +174,135 @@
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'coupons'): ?>
 
-                <h1 class="dashboard_page__heading">Coupons Overview</h1>
+                <h1 class="dashboard_page__heading">Coupons</h1>
 
                 <div class="dashboard_page__coupons">
 
-                    <section class="coupons__manage_settings">
+                    <section class="coupons__view_all">
 
                         <div class="dashboard_section__header">
                             
-                            <h1 class="dashboard_section__heading">Manage</h1>
+                            <h1 class="dashboard_section__heading">All Coupons</h1>
 
-                            <!-- VIEW AND EDIT -->
-                        
                         </div>
 
-                        <div class="dashboard_section__content">
-
-                            <?php 
-                            
-                                $Coupons = queryOperator('SELECT * FROM coupons', '', '', '');
-                                printr($Coupons);
-
-                            ?>
+                        <?php $Coupons = queryOperator('SELECT * FROM coupons'); ?>
                         
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia harum libero aliquam atque excepturi non, labore qui cupiditate eaque ipsam architecto recusandae expedita impedit asperiores perferendis modi, sint in quas.</p>
+                        <div class="dashboard_section__content coupons__container">
+
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">Coupon Code</div>
+                                
+                                    <div class="list_item__cell">Amount</div>
+                                
+                                    <div class="list_item__cell">Expires</div>
+                                
+                                    <div class="list_item__cell">Remaining</div>
+                                
+                                    <div class="list_item__cell">Status</div>
+
+                                    <div class="list_item__cell"></div>
+                                
+                                </div>
+
+                                <?php if (!empty($Coupons)): foreach($Coupons as $key => $val): ?>
+                            
+                                <div class="list_item" coupon-id="<?= $val['id']; ?>">
+
+                                    <div class="list_item__cell"><?= $val['code']; ?></div>
+
+                                    <div class="list_item__cell"><?= $val['discount']; ?>&percnt;</div>
+
+                                    <div class="list_item__cell"><?= (!empty($val['expire']) ? date("M j, Y", strtotime($val['expire'])) : '-'); ?></div>
+
+                                    <div class="list_item__cell"><?= $val['quantity']; ?></div>
+
+                                    <div class="list_item__cell"><?= (isset($val['status']) && ($val['status'] === 1) ? 'Active' : 'Inactive'); ?></div>
+
+                                    <div class="list_item__cell"><span class="list_item__cell--delete js-coupon-remove-item"><i class="fas fa-times"></i></span></div>
+
+                                </div>
+
+                                <?php endforeach; endif;?>
+
+                            </div>
                         
                         </div>
 
                     </section>
 
-                    <section class="coupons__add_settings">
+                    <section class="coupons__create_new">
 
                         <div class="dashboard_section__header">
                             
-                            <h1 class="dashboard_section__heading">Add</h1>
+                            <h1 class="dashboard_section__heading">Create New Coupon</h1>
                         
                         </div>
 
                         <div class="dashboard_section__content">
                         
-                            <!-- ADD NEW COUPON CODE ETC -->
+                            <form class="new_coupon__form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
 
-                            <form class="" action="inc/ajax.php" accept-charset="UTF-8" method="post">
-                        
                                 <input type="hidden" name="action" value="coupon_code_create">
 
                                 <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
+
+                                <input type="hidden" name="coupon[valid]" value="<?php echo date("YmdHis"); ?>">
                         
-                                <input class="button button-settings--update" type="submit" value="Make Coupon">
+                                <div class="new_coupon__code">
+
+                                    <div class="label">Coupon Code</div>
+
+                                    <input class="new_coupons__textfield js-coupon-field-required" type="text" name="coupon[code]" placeholder="e.g. FREE10" maxlength="15" id="coupon__code">
+
+                                </div>
+
+                                <div class="new_coupon__type">
+
+                                    <div class="label">Type</div>
+
+                                    <select class="new_coupons__form_select" name="coupon[type]" id="coupon__type">
+
+                                        <option value="1" selected>Discount</option>
+
+                                        <option disabled>To be expanded on...</option>
+                                    
+                                    </select>
+
+                                </div>
+
+                                <div class="new_coupon__discount">
+
+                                    <div class="label">Amount</div>
+
+                                    <input class="new_coupons__textfield js-coupon-field-required" type="number" name="coupon[discount]" placeholder="10%" min="0" max="100" id="coupon__discount">
+
+                                </div>
+
+                                <div class="new_coupon__quantity">
+
+                                    <div class="label">Quantity</div>
+
+                                    <input class="new_coupons__textfield js-coupon-field-required" type="number" name="coupon[quantity]" placeholder="1" min="0" id="coupon__quantity">
+
+                                </div>
+
+                                <div class="new_coupon__expiration">
+
+                                    <div class="label">Expiration</div>
+
+                                    <input class="new_coupons__textfield" type="date" name="coupon[expire]" placeholder="Input Date" id="coupon__expiration">
+
+                                </div>
+
+                                <div class="new_coupon__save__container">
+
+                                    <input class="button button--create new_coupon__save_button disabled js-coupon-create-button" type="submit" value="Add Discount">
+
+                                </div>
 
                             </form>
                         
@@ -257,7 +338,7 @@
 
                     <section class="profile__account_view">
             
-                        <div class="dashboard_section__content">
+                        <div class="dashboard_section__content border-top-left-right">
 
                             <div class="profile__user_container">
                             
@@ -297,7 +378,7 @@
 
                                         <label>Date Joined</label>
 
-                                        <span><?= (isset($aAccounts['account_created']) ? date("M j, Y", strtotime($aAccounts['account_created'])) : '-')?></span>
+                                        <span><?= (isset($aAccounts['account_created']) ? date("M j, Y", strtotime($aAccounts['account_created'])) : '-'); ?></span>
 
                                     </div>
 
