@@ -2,10 +2,35 @@
 
     $(document).ready(function(){
 
+        $('.js-branches-switch-favorite').click(function(event) {
+            event.preventDefault();
+
+            var branches_id = $(this).parent().parent().attr('branches-id');
+
+            if (confirm('Are you sure you want to make this the main branch?')) {
+                $.ajax({
+                    url:"inc/ajax.php",
+                    type: "post",
+                    data: {
+                        action: 'change_favorite_branches',
+                        key: branches_id,
+                    },
+                    success: function(result){
+                        switch (result) {
+                            case 'true':
+                                location.reload(); 
+                            break;
+                        }
+                    },
+                });
+            }
+        });
+
+
         $('.js-coupon-remove-item').click(function(event) {
             event.preventDefault();
 
-            key = $(this).parent().parent().attr('coupon-id');
+            var key = $(this).parent().parent().attr('coupon-id');
 
             if (confirm('Are you sure you want to delete this coupon code?')) {
                 $.ajax({

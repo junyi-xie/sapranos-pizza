@@ -1390,6 +1390,39 @@
         return true;
     }
 
+
+    /**
+     * Make a branch the main location / primairy shop. Email will be sent from the main branch as well.
+     * 
+     * @params int $id
+     * 
+     * @return boolean
+     */
+    function switchFavoriteBranch($id = 0) {
+
+        if (empty($pdo)) {
+            global $pdo;
+        }
+
+            if (empty($id) && !is_int($id)) return false;
+
+        $bReset = $pdo->query("UPDATE branches SET status = 0");
+
+        if (!$bReset) {
+            return false;
+        }
+
+        $stmt = $pdo->prepare("UPDATE branches SET status = 1 WHERE 1 AND id = :id LIMIT 1");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+            if (!$stmt) {
+                return false;
+            }
+
+        return true;
+    }
+
     
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }

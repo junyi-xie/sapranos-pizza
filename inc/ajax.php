@@ -67,6 +67,10 @@
                 $aNewCouponsAdded = createNewCoupons($_POST);
                 (isset($aNewCouponsAdded['feedback']) ? flashMessage('coupons', $aNewCouponsAdded['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
+            case 'change_favorite_branches':
+                $bMainBranch = switchFavoriteBranch($_POST['key']);
+                echo json_encode($bMainBranch);
+            break;
         }
 
         if (isset($_POST['url']) || isset($_POST['link'])) {

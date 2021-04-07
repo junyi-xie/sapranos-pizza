@@ -3403,17 +3403,21 @@ img {
   text-align: left;
 }
 
-.dashboard_page__coupons {
+.dashboard_page__coupons,
+.dashboard_page__branches {
   display: block;
   height: 100%;
 }
 
 .coupons__view_all,
-.coupons__create_new {
+.coupons__create_new,
+.branches_active_main,
+.branches_other_locations {
   margin-bottom: 2.5rem;
 }
 
-.coupons__container {
+.coupons__container,
+.branches__container {
   padding: 0;
   margin: 0;
 }
@@ -3519,6 +3523,10 @@ img {
   display: table-row;
 }
 
+.list_item:last-child {
+  border-bottom: none;
+}
+
 .list_item--heading {
   border-bottom: 1px solid #edeff3;
   font-size: 1rem;
@@ -3543,15 +3551,17 @@ img {
   padding-left: 1.667rem;
 }
 
-.list_item__cell--delete {
-  font-size: 16px;
+.list_item__cell--delete,
+.list_item__cell--favorite {
+  font-size: 14px;
   height: auto;
   width: auto;
   color: #6c7478;
   cursor: pointer;
 }
 
-.list_item__cell--delete:hover {
+.list_item__cell--delete:hover,
+.list_item__cell--favorite:hover {
   color: #0a0918;
 }
 /*# sourceMappingURL=style.css.map */

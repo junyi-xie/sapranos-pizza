@@ -154,6 +154,8 @@
 
                     <div class="dashboard_section__content">
 
+                    <p>Placeholder! Placeholder! Placeholder!</p><br/>
+
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
 
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, non architecto qui fugit ex provident modi quia laboriosam magni accusantium. Nemo modi voluptatem tempora voluptatibus architecto culpa voluptate commodi cumque.</p><br/>
@@ -170,7 +172,131 @@
 
                 <h1 class="dashboard_page__heading">Branches</h1>
 
-                <!-- DO THIS AS WELL TOMORROW, WED 4/7/2021. -->
+                <div class="dashboard_page__branches">
+
+                    <section class="branches_active_main">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Headquarters</h1>
+
+                        </div>
+
+                        <div class="dashboard_section__content branches__container">
+
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+    
+                                    <div class="list_item__cell">Store Name</div>
+                                    
+                                    <div class="list_item__cell">Email</div>
+                                   
+                                    <div class="list_item__cell">Phone Number</div>
+                                    
+                                    <div class="list_item__cell">Zipcode</div>
+                                    
+                                    <div class="list_item__cell">Address</div>
+                                   
+                                    <div class="list_item__cell">City</div>
+                                    
+                                    <div class="list_item__cell">Country</div>
+
+                                    <div class="list_item__cell"></div>
+
+                                </div>
+
+                                <div class="list_item" branches-id="<?= $aSopranosBranches['id']; ?>">
+
+                                    <div class="list_item__cell"><?= $aSopranosBranches['name']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $aSopranosBranches['email']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $aSopranosBranches['phone']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $aSopranosBranches['zipcode']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $aSopranosBranches['address']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $aSopranosBranches['city']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $aSopranosBranches['country']; ?></div>
+
+                                    <div class="list_item__cell"><i class="fas fa-star" title="Main Branch"></i></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="branches_other_locations">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Other Locations</h1>
+
+                        </div>
+
+                        <?php $Branches = queryOperator("SELECT * FROM branches", "", "id != '". $aSopranosBranches['id']. "'"); ?>
+
+                        <div class="dashboard_section__content branches__container">
+
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+
+                                    <div class="list_item__cell">Store Name</div>
+                                    
+                                    <div class="list_item__cell">Email</div>
+                                   
+                                    <div class="list_item__cell">Phone Number</div>
+                                    
+                                    <div class="list_item__cell">Zipcode</div>
+                                    
+                                    <div class="list_item__cell">Address</div>
+                                   
+                                    <div class="list_item__cell">City</div>
+                                    
+                                    <div class="list_item__cell">Country</div>
+
+                                    <div class="list_item__cell"></div>
+
+                                </div>
+
+                                <?php if (!empty($Branches)): foreach($Branches as $key => $item): ?>
+
+                                <div class="list_item" branches-id="<?= $item['id']; ?>">
+
+                                    <div class="list_item__cell"><?= $item['name']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['email']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['phone']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['zipcode']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['address']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['city']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['country']; ?></div>
+
+                                    <div class="list_item__cell"><span class="list_item__cell--favorite js-branches-switch-favorite"><i class="far fa-star"></i></span></div>
+
+                                </div>
+
+                                <?php endforeach; endif; ?>
+
+                            </div>
+                        
+                        </div>
+
+                    </section>
+
+                </div>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'coupons'): ?>
 
@@ -210,19 +336,19 @@
                                 
                                 </div>
 
-                                <?php if (!empty($Coupons)): foreach($Coupons as $key => $val): ?>
+                                <?php if (!empty($Coupons)): foreach($Coupons as $key => $item): ?>
                             
-                                <div class="list_item" coupon-id="<?= $val['id']; ?>">
+                                <div class="list_item" coupon-id="<?= $item['id']; ?>">
 
-                                    <div class="list_item__cell"><?= $val['code']; ?></div>
+                                    <div class="list_item__cell"><?= $item['code']; ?></div>
 
-                                    <div class="list_item__cell"><?= $val['discount']; ?><?= (($val['type'] === 1) ? '&percnt;' : ' EUR'); ?></div>
+                                    <div class="list_item__cell"><?= $item['discount']; ?><?= (($item['type'] === 1) ? '&percnt;' : ' EUR'); ?></div>
 
-                                    <div class="list_item__cell"><?= (!empty($val['expire']) ? date("M j, Y", strtotime($val['expire'])) : '-'); ?></div>
+                                    <div class="list_item__cell"><?= (!empty($item['expire']) ? date("M j, Y", strtotime($item['expire'])) : '-'); ?></div>
 
-                                    <div class="list_item__cell"><?= $val['quantity']; ?></div>
+                                    <div class="list_item__cell"><?= $item['quantity']; ?></div>
 
-                                    <div class="list_item__cell"><?= (isset($val['status']) && ($val['status'] === 1) && $val['quantity'] > 0 && $val['expire'] > $CurrentDate ? 'Active' : 'Inactive'); ?></div>
+                                    <div class="list_item__cell"><?= (isset($item['status']) && ($item['status'] === 1) && $item['quantity'] > 0 && $item['expire'] > $CurrentDate ? 'Active' : 'Inactive'); ?></div>
 
                                     <div class="list_item__cell"><span class="list_item__cell--delete js-coupon-remove-item"><i class="fas fa-times"></i></span></div>
 
