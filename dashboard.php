@@ -216,7 +216,7 @@
 
                                     <div class="list_item__cell"><?= $val['code']; ?></div>
 
-                                    <div class="list_item__cell"><?= $val['discount']; ?>&percnt;</div>
+                                    <div class="list_item__cell"><?= $val['discount']; ?><?= (($val['type'] === 1) ? '&percnt;' : ' EUR'); ?></div>
 
                                     <div class="list_item__cell"><?= (!empty($val['expire']) ? date("M j, Y", strtotime($val['expire'])) : '-'); ?></div>
 
@@ -280,7 +280,7 @@
 
                                 <div class="new_coupon__discount">
 
-                                    <div class="label">Amount (%)</div>
+                                    <div class="label">Amount</div>
 
                                     <input class="new_coupons__textfield js-coupon-field-required" type="number" name="coupon[discount]" placeholder="10%" min="0" max="100" id="coupon__discount">
 
