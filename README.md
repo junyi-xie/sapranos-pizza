@@ -12,6 +12,7 @@ I will be creating an online webshop where you can buy multiple/different types 
  ┃ ┃ ┣ 📜style.css
  ┃ ┃ ┣ 📜style.css.map
  ┃ ┃ ┣ 📜style.scss
+ ┃ ┃ ┣ 📜_admin.scss
  ┃ ┃ ┣ 📜_cart.scss
  ┃ ┃ ┣ 📜_checkout.scss
  ┃ ┃ ┣ 📜_footer.scss
@@ -64,7 +65,6 @@ I will be creating an online webshop where you can buy multiple/different types 
  ┃ ┣ 📂class
  ┃ ┃ ┣ 📂Mollie
  ┃ ┃ ┣ 📂PHPMailer
- ┃ ┃ ┗ 📂TCPDF
  ┃ ┣ 📜ajax.php
  ┃ ┣ 📜class.php
  ┃ ┣ 📜connect.php
@@ -74,6 +74,7 @@ I will be creating an online webshop where you can buy multiple/different types 
  ┣ 📜.htaccess
  ┣ 📜cart.php
  ┣ 📜checkout.php
+ ┣ 📜dashboard.php
  ┣ 📜index.php
  ┣ 📜README.md
  ┣ 📜shop.php
@@ -93,7 +94,7 @@ Although  not _required_, I will include an admin panel, which can be used to vi
 **Note:** to add an admin account, you will have to manually insert/create a new account into the database.
 
 ```php
-$pdo->exec("INSERT INTO accounts SET id = NULL, username = 'admin', password = password_hash('admin', PASSWORD_DEFAULT), email = 'admin@admin.com', phone = '123456789', admin = 1, account_created = date("YmdHis"), last_login = 0");
+$pdo->exec("INSERT INTO accounts SET id = NULL, image_id = NULL, username = 'admin', password = password_hash('admin', PASSWORD_DEFAULT), email = 'admin@admin.com', phone = '0', admin = 1, account_created = date("YmdHis"), last_login = 0");
 ```
 
 Now that you have inserted a new account, you can simply login to the admin panel with admin/admin.
