@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 01:15 PM
+-- Generation Time: Apr 01, 2021 at 02:00 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -64,11 +64,11 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `name`, `email`, `phone`, `zipcode`, `address`, `city`, `country`, `status`) VALUES
-(1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'The Hague', 'The Netherlands', 0),
-(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Rotterdam', 'The Netherlands', 0),
-(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Amsterdam', 'The Netherlands', 0),
-(4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Utrecht', 'The Netherlands', 0),
-(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+1 908-547-3800', 'NJ 08807', 'Bridgewater 97', 'Gouda', 'The Netherlands', 1);
+(1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+31 655-598-586', '2585 BV', 'Burgemeester Patijnlaan 53', 'The Hague', 'The Netherlands', 1),
+(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+31 655-5929-39', '1435 HW', 'Konnetlaantje 176', 'Rotterdam', 'The Netherlands', 0),
+(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+31 655-5149-89', '1098 GT', 'Meester P.N. Arntzeniusweg 142', 'Amsterdam', 'The Netherlands', 0),
+(4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+31 655-538-024', '3543 CL', 'Musicalkade 37', 'Utrecht', 'The Netherlands', 0),
+(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+31 655-581-160', '2807 NP', 'Vlietpolderstraat 194', 'Gouda', 'The Netherlands', 0);
 
 -- --------------------------------------------------------
 
@@ -83,6 +83,7 @@ CREATE TABLE `coupons` (
   `discount` int(11) NOT NULL DEFAULT 0,
   `type` int(11) NOT NULL DEFAULT 0,
   `quantity` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 1,
   `valid` bigint(14) NOT NULL DEFAULT 0,
   `expire` bigint(14) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -91,9 +92,9 @@ CREATE TABLE `coupons` (
 -- Dumping data for table `coupons`
 --
 
-INSERT INTO `coupons` (`id`, `code`, `discount`, `type`, `quantity`, `valid`, `expire`) VALUES
-(1, 'DISCOUNT10', 10, 1, 50, 20210209000000, 20210525000000),
-(2, 'FREE30', 30, 1, 50, 20210209120250, 20210407000000);
+INSERT INTO `coupons` (`id`, `code`, `discount`, `type`, `quantity`, `status`, `valid`, `expire`) VALUES
+(1, 'DISCOUNT10', 10, 1, 20, 1, 20210407121941, 20210508000000),
+(2, 'WELCOME20', 20, 1, 50, 1, 20210407125108, 20210406000000);
 
 -- --------------------------------------------------------
 
