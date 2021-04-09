@@ -188,7 +188,7 @@
                     if (data === true) {
 
                         login_form[0].reset();
-                        window.location.href = "dashboard.php?from=login&method?=email&auth=false"; 
+                        window.location.href = "dashboard.php?from=login&method=email&auth=false"; 
                                                
                     } else if (data !== false) {
                         $.each(data, function(key, value) {

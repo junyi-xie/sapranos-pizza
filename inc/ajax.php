@@ -71,6 +71,10 @@
                 $bMainBranch = switchFavoriteBranch($_POST['key']);
                 echo json_encode($bMainBranch);
             break;
+            case 'stores_create_new_item':
+                printr($_POST);
+                exit();
+            break;
         }
 
         if (isset($_POST['url']) || isset($_POST['link'])) {

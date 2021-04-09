@@ -430,7 +430,7 @@
 
                                 <div class="new_coupon__save__container">
 
-                                    <input class="button button--create new_coupon__save_button disabled js-coupon-create-button" type="submit" value="Add Discount">
+                                    <input class="button new_coupon__save_button disabled js-coupon-create-button" type="submit" value="Add Discount">
 
                                 </div>
 
@@ -446,21 +446,271 @@
 
                 <h1 class="dashboard_page__heading">Stores</h1>
 
+                <div class="dashboard_page__stores">
+                
+                    <section class="stores_types_wrapper">
+                    
+                        <div class="dashboard_section__header">
+                        
+                            <h1 class="dashboard_section__heading">Available Pizzas</h1>
+                        
+                        </div>
+
+                        <?php $Types = queryOperator("SELECT * FROM pizzas_type"); ?>
+
+                        <div class="dashboard_section__content stores__container">
+
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">#</div>
+
+                                    <div class="list_item__cell">Name</div>
+                                
+                                    <div class="list_item__cell">Remaining</div>
+                                
+                                    <div class="list_item__cell">Price</div>
+
+                                    <div class="list_item__cell">Status</div>
+
+                                    <div class="list_item__cell"></div>
+                                
+                                </div>
+
+                                <?php if (!empty($Types)): foreach($Types as $key => $item): ?>
+                            
+                                <div class="list_item" type-id="<?= $item['id']; ?>">
+
+                                    <div class="list_item__cell"><?= $item['id']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['name']; ?></div>
+
+                                    <div class="list_item__cell"><?= (!empty($item['quantity']) ? $item['quantity'] : '-'); ?></div>
+
+                                    <div class="list_item__cell">&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></div>
+
+                                    <div class="list_item__cell"><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
+
+                                    <div class="list_item__cell">
+                                    
+                                        <span class="list_item__cell--edit"><i class="fas fa-edit"></i></span>
+
+                                        <span class="list_item__cell--delete"><i class="fas fa-trash"></i></span>
+                                    
+                                    </div>
+                                
+                                </div>
+
+                                <?php endforeach; endif;?>
+
+                            </div>
+
+                        </div>
+                    
+                    </section>
+
+                    <section class="stores_sizes_wrapper">
+                    
+                        <div class="dashboard_section__header">
+                        
+                            <h1 class="dashboard_section__heading">All Sizes</h1>
+                        
+                        </div>
+
+                        <?php $Sizes = queryOperator("SELECT * FROM pizzas_size"); ?>
+
+                        <div class="dashboard_section__content stores__container">
+                        
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">#</div>
+
+                                    <div class="list_item__cell">Name</div>
+
+                                    <div class="list_item__cell">Size</div>
+
+                                    <div class="list_item__cell">Price</div>
+
+                                    <div class="list_item__cell">Status</div>
+
+                                    <div class="list_item__cell"></div>
+
+                                </div>
+
+                                <?php if (!empty($Sizes)): foreach($Sizes as $key => $item): ?>
+
+                                <div class="list_item" size-id="<?= $item['id']; ?>">
+
+                                    <div class="list_item__cell"><?= $item['id']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['name']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['size']; ?></div>
+
+                                    <div class="list_item__cell">&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></div>
+
+                                    <div class="list_item__cell"><?= (isset($item['status']) ? 'Active' : 'Inactive'); ?></div>
+
+                                    <div class="list_item__cell">
+                                    
+                                        <span class="list_item__cell--edit"><i class="fas fa-edit"></i></span>
+
+                                        <span class="list_item__cell--delete"><i class="fas fa-trash"></i></span>
+                                    
+                                    </div>
+
+                                </div>
+
+                                <?php endforeach; endif;?>
+
+                            </div>
+
+                        </div>
+                    
+                    </section>
+
+                    <section class="stores_toppings_wrapper">
+                    
+                        <div class="dashboard_section__header">
+                        
+                            <h1 class="dashboard_section__heading">Toppings List</h1>
+                        
+                        </div>
+
+                        <?php $Toppings = queryOperator("SELECT * FROM pizzas_topping"); ?>
+
+                        <div class="dashboard_section__content stores__container">
+
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">#</div>
+
+                                    <div class="list_item__cell">Name</div>
+                    
+                                    <div class="list_item__cell">Remaining</div>
+
+                                    <div class="list_item__cell">Price</div>
+
+                                    <div class="list_item__cell">Status</div>
+
+                                    <div class="list_item__cell"></div>
+
+                                </div>
+
+                                <?php if (!empty($Toppings)): foreach($Toppings as $key => $item): ?>
+
+                                <div class="list_item" topping-id="<?= $item['id']; ?>">
+
+                                    <div class="list_item__cell"><?= $item['id']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['name']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['quantity']; ?></div>
+
+                                    <div class="list_item__cell">&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></div>
+
+                                    <div class="list_item__cell"><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
+
+                                    <div class="list_item__cell">
+
+                                        <span class="list_item__cell--edit"><i class="fas fa-edit"></i></span>
+
+                                        <span class="list_item__cell--delete"><i class="fas fa-trash"></i></span>
+
+                                    </div>
+
+                                </div>
+
+                                <?php endforeach; endif;?>
+
+                            </div>
+
+                        </div>
+                    
+                    </section>
+
+                    <section class="stores_add_new">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Create New Item</h1>
+                        
+                        </div>
+
+                        <div class="dashboard_section__content">
+
+                            <form class="new_stores__form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
+
+                                <input type="hidden" name="action" value="stores_create_new_item">
+
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
+
+                                <div class="new_stores__name">
+
+                                    <div class="label">Name</div>
+                                
+                                    <input class="new_stores__textfield" type="text" name="item[name]" placeholder="Pepperoni" id="stores__name">
+
+                                </div>
+
+                                <div class="new_stores__quantity">
+
+                                    <div class="label">Quantity</div>
+                                
+                                    <input class="new_stores__textfield js-stores-quantity-field" type="number" name="item[quantity]" min="0" placeholder="1" id="stores__quantity">
+
+                                </div>
+
+                                <div class="new_stores__size">
+
+                                    <div class="label">Size</div>
+                                
+                                    <input class="new_stores__textfield js-stores-size-field" type="text" name="item[size]" placeholder="XL" id="stores__size">
+
+                                </div>
+
+                                <div class="new_stores__price">
+
+                                    <div class="label">Price</div>
+                                
+                                    <input class="new_stores__textfield" type="number" name="item[price]" min="0" placeholder="1.50" id="stores__price">
+
+                                </div>
+
+                                <div class="new_stores__submit_button">
+                                
+                                    <input class="button new_stores__add_item" type="submit" value="Create Item">
+
+                                </div>
+
+                            </form>
+                        
+                        </div>
+
+                    </section>
+
+                </div>
+
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'customers'): ?>
 
                 <h1 class="dashboard_page__heading">Customers</h1>
 
                 <div class="dashboard_page__customers">
 
-                    <section class="customers_most_recent">
+                    <section class="customers_view_all">
 
                         <div class="dashboard_section__header">
                             
-                            <h1 class="dashboard_section__heading">Most Recent</h1>
+                            <h1 class="dashboard_section__heading">List Of All Customers</h1>
 
                         </div>
 
-                        <?php $Customers = queryOperator("SELECT * FROM customers", "", "id > 0", "id DESC", 10); ?>
+                        <?php $Customers = queryOperator("SELECT * FROM customers"); ?>
                         
                         <div class="dashboard_section__content customers__container">
                             
@@ -468,6 +718,8 @@
 
                                 <div class="list_item list_item--heading">
                                     
+                                    <div class="list_item__cell">#</div>
+
                                     <div class="list_item__cell">Name</div>
 
                                     <div class="list_item__cell">Email</div>
@@ -476,9 +728,7 @@
 
                                     <div class="list_item__cell">Address</div>
 
-                                    <div class="list_item__cell">Zip</div>
-
-                                    <div class="list_item__cell">City</div>
+                                    <div class="list_item__cell">Zipcode</div>
 
                                     <div class="list_item__cell">Province</div>
 
@@ -488,7 +738,9 @@
 
                                 <?php if (!empty($Customers)): foreach($Customers as $key => $item): ?>
 
-                                <div class="list_item"">
+                                <div class="list_item">
+
+                                    <div class="list_item__cell"><?= $item['id']; ?></div>
 
                                     <div class="list_item__cell"><?= $item['first_name'] .' '. $item['last_name']; ?></div>
 
@@ -499,9 +751,7 @@
                                     <div class="list_item__cell"><?= $item['address']; ?></div>
 
                                     <div class="list_item__cell"><?= $item['zipcode']; ?></div>
-
-                                    <div class="list_item__cell"><?= $item['city']; ?></div>
-
+                                    
                                     <div class="list_item__cell"><?= $item['province']; ?></div>
 
                                     <div class="list_item__cell"><?= $item['country']; ?></div>
@@ -511,22 +761,6 @@
                                 <?php endforeach; endif;?>
 
                             </div>
-
-                        </div>
-
-                    </section>
-
-                    <section class="customers_view_all">
-
-                        <div class="dashboard_section__header">
-
-                            <h1 class="dashboard_section__heading">All Customers</h1>
-
-                        </div>
-
-                        <div class="dashboard_section__content">
-
-                            <?php printr($Customers); ?>
 
                         </div>
 
@@ -672,41 +906,41 @@
 
                             <form class="update_email_form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
 
-                            <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
+                                <input type="hidden" name="token" value="<?php echo $AccountKey; ?>">
 
-                            <input type="hidden" name="action" value="update_email_address">
+                                <input type="hidden" name="action" value="update_email_address">
 
-                            <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
-                            <div class="account__email_info">
+                                <div class="account__email_info">
 
-                                <div class="account__user_new_email">
+                                    <div class="account__user_new_email">
 
-                                    <label class="form___label">New Email Address</label>
+                                        <label class="form___label">New Email Address</label>
 
-                                    <input class="form__textfield--input" type="email" name="email[new]" placeholder="Enter Email">
+                                        <input class="form__textfield--input" type="email" name="email[new]" placeholder="Enter Email">
+
+                                    </div>
+
+                                    <div class="account__user_confirm_email">
+
+                                        <label class="form___label">Confirm New Email Address</label>
+
+                                        <input class="form__textfield--input" type="email" name="email[confirm]" placeholder="Confirm Email">
+
+                                    </div>
+
+                                    <div class="account__user_current_password">
+
+                                        <label class="form___label">Current Password</label>
+
+                                        <input class="form__textfield--input" type="password" name="email[password]" placeholder="Enter Password">
+
+                                    </div>
 
                                 </div>
 
-                                <div class="account__user_confirm_email">
-
-                                    <label class="form___label">Confirm New Email Address</label>
-
-                                    <input class="form__textfield--input" type="email" name="email[confirm]" placeholder="Confirm Email">
-
-                                </div>
-
-                                <div class="account__user_current_password">
-
-                                    <label class="form___label">Current Password</label>
-
-                                    <input class="form__textfield--input" type="password" name="email[password]" placeholder="Enter Password">
-
-                                </div>
-
-                            </div>
-
-                            <input class="button button-settings--update" type="submit" value="Update Email">
+                                <input class="button button-settings--update" type="submit" value="Update Email">
 
                             </form>
 
