@@ -450,6 +450,90 @@
 
                 <h1 class="dashboard_page__heading">Customers</h1>
 
+                <div class="dashboard_page__customers">
+
+                    <section class="customers_most_recent">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Most Recent</h1>
+
+                        </div>
+
+                        <?php $Customers = queryOperator("SELECT * FROM customers", "", "id > 0", "id DESC", 10); ?>
+                        
+                        <div class="dashboard_section__content customers__container">
+                            
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">Name</div>
+
+                                    <div class="list_item__cell">Email</div>
+
+                                    <div class="list_item__cell">Phone</div>
+
+                                    <div class="list_item__cell">Address</div>
+
+                                    <div class="list_item__cell">Zip</div>
+
+                                    <div class="list_item__cell">City</div>
+
+                                    <div class="list_item__cell">Province</div>
+
+                                    <div class="list_item__cell">Country</div>
+
+                                </div>
+
+                                <?php if (!empty($Customers)): foreach($Customers as $key => $item): ?>
+
+                                <div class="list_item"">
+
+                                    <div class="list_item__cell"><?= $item['first_name'] .' '. $item['last_name']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['email']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['phone']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['address']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['zipcode']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['city']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['province']; ?></div>
+
+                                    <div class="list_item__cell"><?= $item['country']; ?></div>
+
+                                </div>
+
+                                <?php endforeach; endif;?>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="customers_view_all">
+
+                        <div class="dashboard_section__header">
+
+                            <h1 class="dashboard_section__heading">All Customers</h1>
+
+                        </div>
+
+                        <div class="dashboard_section__content">
+
+                            <?php printr($Customers); ?>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'payouts'): ?>
 
                 <h1 class="dashboard_page__heading">Payouts</h1>

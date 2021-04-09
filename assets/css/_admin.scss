@@ -459,7 +459,8 @@
     }
 
     .dashboard_page__coupons,
-    .dashboard_page__branches {
+    .dashboard_page__branches,
+    .dashboard_page__customers {
         display: block;
         height: 100%;
     }
@@ -467,12 +468,15 @@
     .coupons__view_all, 
     .coupons__create_new,
     .branches_active_main,
-    .branches_other_locations {
+    .branches_other_locations,
+    .customers_most_recent,
+    .customers_view_all {
         margin-bottom: 2.5rem;
     }
 
     .coupons__container,
-    .branches__container {
+    .branches__container,
+    .customers__container {
         padding: 0;
         margin: 0;
     }
