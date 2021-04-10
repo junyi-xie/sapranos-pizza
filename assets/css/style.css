@@ -3242,7 +3242,7 @@ img {
 }
 
 .button-settings--update:hover {
-  background-color: #494ca2;
+  background-color: #212032;
 }
 
 .account_info_form,
@@ -3514,12 +3514,13 @@ img {
 
 .new_coupon__save_button {
   background-color: #0a0918;
-  border: solid 1px #0a0918;
+  border: solid 1px;
+  border-color: #0a0918;
 }
 
 .new_coupon__save_button:hover {
-  border-color: #494ca2;
-  background-color: #494ca2;
+  border-color: #212032;
+  background-color: #212032;
 }
 
 .new_coupon__save_button.disabled {
@@ -3540,7 +3541,37 @@ img {
 
 .new_stores__add_item {
   background-color: #0a0918;
-  border: solid 1px #0a0918;
+  border: solid 1px;
+  border-color: #0a0918;
+}
+
+.new_stores__add_item:hover {
+  background-color: #212032;
+  border-color: #212032;
+}
+
+.new_stores__edit_item {
+  background-color: #5ec8d5;
+  border: solid 1px;
+  border-color: #5ec8d5;
+  color: white;
+}
+
+.new_stores__edit_item:hover {
+  background-color: #428c95;
+  border-color: #428c95;
+}
+
+.new_stores__cancel_item {
+  background-color: white;
+  border: solid 1px;
+  border-color: #6a6f72;
+  color: #0a0918;
+}
+
+.new_stores__cancel_item:hover {
+  background-color: #f6f6f9;
+  border-color: #d8dae0;
 }
 
 .stores__form_container {

@@ -330,7 +330,7 @@
         background-color: $black;
 
         &:hover {
-            background-color: $ocean;
+            background-color: $blue;
         }
     }
 
@@ -555,11 +555,12 @@
 
     .new_coupon__save_button {
         background-color: $black-alt;
-        border: solid 1px $black-alt;
+        border: solid 1px;
+        border-color: $black-alt;
 
         &:hover {
-            border-color: $ocean;
-            background-color: $ocean;
+            border-color: $blue;
+            background-color: $blue;
         }
 
         &.disabled {
@@ -581,7 +582,37 @@
 
     .new_stores__add_item {
         background-color: $black-alt;
-        border: solid 1px $black-alt;
+        border: solid 1px;
+        border-color: $black-alt;
+
+        &:hover {
+            background-color: $blue;
+            border-color: $blue;
+        }
+    }
+
+    .new_stores__edit_item {
+        background-color: $blue-alt;
+        border: solid 1px;
+        border-color: $blue-alt;
+        color: $white;
+
+        &:hover {
+            background-color: $cyan;
+            border-color: $cyan;
+        }
+    }
+
+    .new_stores__cancel_item {
+        background-color: $white;
+        border: solid 1px;
+        border-color: $grey;
+        color: $black-alt;
+
+        &:hover {
+            background-color: $white-alt;
+            border-color: $line-alt;
+        }
     }
 
     .stores__form_container {

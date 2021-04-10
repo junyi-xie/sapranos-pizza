@@ -1503,5 +1503,7 @@
     $Sizes = queryOperator("SELECT * FROM pizzas_size");
     $Toppings = queryOperator("SELECT * FROM pizzas_topping");
 
+    $Status = [["status" => "Active", "key" => "1"], ["status" => "Inactive", "key" => "0"]];
+    
     $iShoppingCartCount = isset($_SESSION['sopranos']['order']) ? cartItemCount($_SESSION['sopranos']['order']) : 0;
 ?>

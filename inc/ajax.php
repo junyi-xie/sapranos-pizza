@@ -80,7 +80,8 @@
                 echo json_encode($bStoresRemoveItem);
             break;
             case 'stores_edit_valid_item':
-            
+                printr($_POST);
+                exit();
             break;
         }
 

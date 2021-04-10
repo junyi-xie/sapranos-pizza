@@ -2,15 +2,6 @@
 
     $(document).ready(function(){
 
-        $('.js-stores-edit-item').click(function(event) {
-            event.preventDefault();
-
-            var test = $(this);
-
-            console.log(test);
-        });
-
-
         $('.js-stores-remove-item').click(function(event) {
             event.preventDefault();
 
