@@ -1493,11 +1493,15 @@
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
-    $aTypePizzas = selectAllById('pizzas_type');
-    $aSizePizzas = selectAllById('pizzas_size');
-    $aToppingPizzas = selectAllById('pizzas_topping');
-
     $aSopranosBranches = queryOperator('SELECT * FROM branches', '', 'status = 1', 'id DESC', 1);
+
+    $Branches = queryOperator("SELECT * FROM branches", "", "id != '". $aSopranosBranches['id']. "'");
+    $Coupons = queryOperator('SELECT * FROM coupons');
+    $Customers = queryOperator("SELECT * FROM customers");
+
+    $Types = queryOperator("SELECT * FROM pizzas_type");
+    $Sizes = queryOperator("SELECT * FROM pizzas_size");
+    $Toppings = queryOperator("SELECT * FROM pizzas_topping");
 
     $iShoppingCartCount = isset($_SESSION['sopranos']['order']) ? cartItemCount($_SESSION['sopranos']['order']) : 0;
 ?>

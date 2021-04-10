@@ -5,6 +5,9 @@
         $('.js-stores-edit-item').click(function(event) {
             event.preventDefault();
 
+            var test = $(this);
+
+            console.log(test);
         });
 
 

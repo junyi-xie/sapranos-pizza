@@ -110,7 +110,7 @@
 
                                         <option value selected disabled hidden>Select Pizza...</option>
  
-                                        <?php foreach($aTypePizzas as $key => $aType): ?>
+                                        <?php foreach($Types as $key => $aType): ?>
 
                                             <option class="js-product_option" value="<?= $aType['id']; ?>" <?php if($aType['quantity'] == 0): ?> disabled <?php endif; ?>><?= $aType['name']; ?> - €<?= number_format((float)$aType['price'], 2, '.', ''); ?> EUR <?php if($aType['quantity'] == 0): ?>| OUT OF STOCK<?php endif; ?></option>
 
@@ -164,7 +164,7 @@
 
                                         <select class="product__size_selector_menu" name="size_id" id="shop_size_selector">
 
-                                            <?php foreach($aSizePizzas as $key => $aSize): ?>
+                                            <?php foreach($Sizes as $key => $aSize): ?>
 
                                             <option value="<?= $aSize['id']; ?>"><?= $aSize['size']; ?></option>
 
@@ -206,7 +206,7 @@
 
                                     <ul class="product__topping_list">
 
-                                        <?php foreach($aToppingPizzas as $key => $aTopping): ?>
+                                        <?php foreach($Toppings as $key => $aTopping): ?>
 
                                             <li class="product__topping_list_item">
 

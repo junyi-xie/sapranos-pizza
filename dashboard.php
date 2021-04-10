@@ -240,8 +240,6 @@
 
                         </div>
 
-                        <?php $Branches = queryOperator("SELECT * FROM branches", "", "id != '". $aSopranosBranches['id']. "'"); ?>
-
                         <div class="dashboard_section__content branches__container">
 
                             <div class="list__container">
@@ -314,8 +312,6 @@
 
                         </div>
 
-                        <?php $Coupons = queryOperator('SELECT * FROM coupons'); ?>
-                        
                         <div class="dashboard_section__content coupons__container">
 
                             <div class="list__container">
@@ -458,8 +454,6 @@
                         
                         </div>
 
-                        <?php $Types = queryOperator("SELECT * FROM pizzas_type"); ?>
-
                         <div class="dashboard_section__content stores__container">
 
                             <div class="list__container">
@@ -494,7 +488,7 @@
 
                                     <div class="list_item__cell"><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
 
-                                    <div class="list_item__cell">
+                                    <div class="list_item__cell js-stores-action-button">
                                     
                                         <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
 
@@ -588,8 +582,6 @@
                         
                         </div>
 
-                        <?php $Sizes = queryOperator("SELECT * FROM pizzas_size"); ?>
-
                         <div class="dashboard_section__content stores__container">
                         
                             <div class="list__container">
@@ -624,7 +616,7 @@
 
                                     <div class="list_item__cell"><?= (isset($item['status']) ? 'Active' : 'Inactive'); ?></div>
 
-                                    <div class="list_item__cell">
+                                    <div class="list_item__cell js-stores-action-button">
                                     
                                         <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
 
@@ -672,7 +664,7 @@
 
                                     <div class="label">Size</div>
 
-                                    <input class="new_stores__textfield js-stores-size-field" type="text" name="item[size]" placeholder="XXL" id="stores__size_size" required>
+                                    <input class="new_stores__textfield" type="text" name="item[size]" placeholder="XXL" id="stores__size_size" required>
 
                                 </div>
 
@@ -703,8 +695,6 @@
                             <h1 class="dashboard_section__heading">Toppings List</h1>
                         
                         </div>
-
-                        <?php $Toppings = queryOperator("SELECT * FROM pizzas_topping"); ?>
 
                         <div class="dashboard_section__content stores__container">
 
@@ -740,7 +730,7 @@
 
                                     <div class="list_item__cell"><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
 
-                                    <div class="list_item__cell">
+                                    <div class="list_item__cell js-stores-action-button">
 
                                         <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
 
@@ -827,8 +817,6 @@
                             <h1 class="dashboard_section__heading">List Of All Customers</h1>
 
                         </div>
-
-                        <?php $Customers = queryOperator("SELECT * FROM customers"); ?>
                         
                         <div class="dashboard_section__content customers__container">
                             
