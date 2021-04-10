@@ -484,6 +484,8 @@
     .stores__container {
         padding: 0;
         margin: 0;
+        position: relative;
+        overflow-x: auto;
     }
 
     .new_coupon__form,

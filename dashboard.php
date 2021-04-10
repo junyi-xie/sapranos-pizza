@@ -730,6 +730,8 @@
 
                                     <div class="list_item__cell">Zipcode</div>
 
+                                    <div class="list_item__cell">City</div>
+
                                     <div class="list_item__cell">Province</div>
 
                                     <div class="list_item__cell">Country</div>
@@ -752,6 +754,8 @@
 
                                     <div class="list_item__cell"><?= $item['zipcode']; ?></div>
                                     
+                                    <div class="list_item__cell"><?= $item['city']; ?></div>
+
                                     <div class="list_item__cell"><?= $item['province']; ?></div>
 
                                     <div class="list_item__cell"><?= $item['country']; ?></div>
