@@ -3419,7 +3419,7 @@ img {
 .stores_toppings_wrapper,
 .stores_sizes_wrapper,
 .stores_types_wrapper,
-.stores_add_new {
+.stores_create_item {
   margin-bottom: 2.5rem;
 }
 
@@ -3529,7 +3529,7 @@ img {
   cursor: not-allowed;
 }
 
-.news_stores__module,
+.news_stores__thumbnail,
 .new_stores__name,
 .new_stores__quantity,
 .new_stores__size,
@@ -3541,6 +3541,16 @@ img {
 .new_stores__add_item {
   background-color: #0a0918;
   border: solid 1px #0a0918;
+}
+
+.stores__form_container {
+  border-top: solid 1px #edeff3;
+  padding: 0;
+  position: relative;
+}
+
+.stores__wrapper {
+  padding: 1.1rem 1.667rem 1.1rem;
 }
 
 .list__container {

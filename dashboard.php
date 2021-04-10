@@ -446,6 +446,8 @@
 
                 <h1 class="dashboard_page__heading">Stores</h1>
 
+                <div class="dashboard__notifications"><?php flashMessage('items'); ?></div>
+
                 <div class="dashboard_page__stores">
                 
                     <section class="stores_types_wrapper">
@@ -480,7 +482,7 @@
 
                                 <?php if (!empty($Types)): foreach($Types as $key => $item): ?>
                             
-                                <div class="list_item" type-id="<?= $item['id']; ?>">
+                                <div class="list_item" key="<?= $item['id']; ?>" type="pizzas_type">
 
                                     <div class="list_item__cell"><?= $item['id']; ?></div>
 
@@ -494,9 +496,9 @@
 
                                     <div class="list_item__cell">
                                     
-                                        <span class="list_item__cell--edit"><i class="fas fa-edit"></i></span>
+                                        <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
 
-                                        <span class="list_item__cell--delete"><i class="fas fa-trash"></i></span>
+                                        <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
                                     
                                     </div>
                                 
@@ -508,6 +510,74 @@
 
                         </div>
                     
+                    </section>
+
+                    <section class="stores_create_item">
+
+                        <div class="dashboard_section__header">
+                        
+                            <h1 class="dashboard_section__heading">Create New Pizza</h1>
+                        
+                        </div>
+
+                        <div class="dashboard_section__content stores__container">
+
+                            <form class="new_stores__form stores__wrapper" action="inc/ajax.php" accept-charset="UTF-8" method="post">
+
+                                <input type="hidden" name="action" value="stores_create_new_item">
+
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
+
+                                <input type="hidden" name="table" value="pizzas_type">
+
+                                <div class="new_stores__name">
+
+                                    <div class="label">Pizza Name</div>
+
+                                    <input class="new_stores__textfield" type="text" name="item[name]" placeholder="Sopranos Suprise" id="stores__type_name" required>
+
+                                </div>
+
+                                <div class="news_stores__thumbnail">
+
+                                    <div class="label">Thumbnail</div>
+
+                                    <select class="new_stores__form_select" name="item[image_id]" placeholder="Select Image" id="stores__types_image" required>
+
+                                        <option value="1">Default</option>
+
+                                        <option disabled>To be expanded on...</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="new_stores__quantity">
+
+                                    <div class="label">Amount</div>
+
+                                    <input class="new_stores__textfield js-stores-quantity-field" type="number" name="item[quantity]" min="0" placeholder="3" id="stores__type_quantity" required>
+
+                                </div>
+
+                                <div class="new_stores__price">
+
+                                    <div class="label">Price</div>
+
+                                    <input class="new_stores__textfield" type="number" name="item[price]" min="0" step="any" placeholder="€1.50" id="stores__type_price" required>
+
+                                </div>
+
+                                <div class="new_stores__submit_button">
+
+                                    <input class="button new_stores__add_item" type="submit" value="Add New Pizza">
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
                     </section>
 
                     <section class="stores_sizes_wrapper">
@@ -542,7 +612,7 @@
 
                                 <?php if (!empty($Sizes)): foreach($Sizes as $key => $item): ?>
 
-                                <div class="list_item" size-id="<?= $item['id']; ?>">
+                                <div class="list_item" key="<?= $item['id']; ?>" type="pizzas_size">
 
                                     <div class="list_item__cell"><?= $item['id']; ?></div>
 
@@ -556,9 +626,9 @@
 
                                     <div class="list_item__cell">
                                     
-                                        <span class="list_item__cell--edit"><i class="fas fa-edit"></i></span>
+                                        <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
 
-                                        <span class="list_item__cell--delete"><i class="fas fa-trash"></i></span>
+                                        <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
                                     
                                     </div>
 
@@ -570,6 +640,60 @@
 
                         </div>
                     
+                    </section>
+
+                    <section class="stores_create_item">
+
+                        <div class="dashboard_section__header">
+                        
+                            <h1 class="dashboard_section__heading">Add New Size</h1>
+                        
+                        </div>
+
+                        <div class="dashboard_section__content stores__container">
+
+                            <form class="new_stores__form stores__wrapper" action="inc/ajax.php" accept-charset="UTF-8" method="post">
+
+                                <input type="hidden" name="action" value="stores_create_new_item">
+
+                                <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
+
+                                <input type="hidden" name="table" value="pizzas_size">
+
+                                <div class="new_stores__name">
+
+                                    <div class="label">Size Name</div>
+
+                                    <input class="new_stores__textfield" type="text" name="item[name]" placeholder="Double Extra Large" id="stores__size_name" required>
+
+                                </div>
+
+                                <div class="new_stores__size">
+
+                                    <div class="label">Size</div>
+
+                                    <input class="new_stores__textfield js-stores-size-field" type="text" name="item[size]" placeholder="XXL" id="stores__size_size" required>
+
+                                </div>
+
+                                <div class="new_stores__price">
+
+                                    <div class="label">Price</div>
+
+                                    <input class="new_stores__textfield" type="number" name="item[price]" min="0" step="any" placeholder="€6.25" id="stores__size_price" required>
+
+                                </div>
+
+                                <div class="new_stores__submit_button">
+
+                                    <input class="button new_stores__add_item" type="submit" value="Create Size">
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
                     </section>
 
                     <section class="stores_toppings_wrapper">
@@ -604,7 +728,7 @@
 
                                 <?php if (!empty($Toppings)): foreach($Toppings as $key => $item): ?>
 
-                                <div class="list_item" topping-id="<?= $item['id']; ?>">
+                                <div class="list_item" key="<?= $item['id']; ?>" type="pizzas_topping">
 
                                     <div class="list_item__cell"><?= $item['id']; ?></div>
 
@@ -618,9 +742,9 @@
 
                                     <div class="list_item__cell">
 
-                                        <span class="list_item__cell--edit"><i class="fas fa-edit"></i></span>
+                                        <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
 
-                                        <span class="list_item__cell--delete"><i class="fas fa-trash"></i></span>
+                                        <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
 
                                     </div>
 
@@ -634,62 +758,56 @@
                     
                     </section>
 
-                    <section class="stores_add_new">
+                    <section class="stores_create_item">
 
                         <div class="dashboard_section__header">
-                            
-                            <h1 class="dashboard_section__heading">Create New Item</h1>
+                        
+                            <h1 class="dashboard_section__heading">Create New Topping</h1>
                         
                         </div>
 
-                        <div class="dashboard_section__content">
+                        <div class="dashboard_section__content stores__container">
 
-                            <form class="new_stores__form" action="inc/ajax.php" accept-charset="UTF-8" method="post">
+                            <form class="new_stores__form stores__wrapper" action="inc/ajax.php" accept-charset="UTF-8" method="post">
 
                                 <input type="hidden" name="action" value="stores_create_new_item">
 
                                 <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
+                                <input type="hidden" name="table" value="pizzas_topping">
+
                                 <div class="new_stores__name">
 
-                                    <div class="label">Name</div>
-                                
-                                    <input class="new_stores__textfield" type="text" name="item[name]" placeholder="Pepperoni" id="stores__name">
+                                    <div class="label">Topping Name</div>
+
+                                    <input class="new_stores__textfield" type="text" name="item[name]" placeholder="Pepperoni" id="stores__topping_name" required>
 
                                 </div>
 
                                 <div class="new_stores__quantity">
 
-                                    <div class="label">Quantity</div>
-                                
-                                    <input class="new_stores__textfield js-stores-quantity-field" type="number" name="item[quantity]" min="0" placeholder="1" id="stores__quantity">
+                                    <div class="label">Amount</div>
 
-                                </div>
-
-                                <div class="new_stores__size">
-
-                                    <div class="label">Size</div>
-                                
-                                    <input class="new_stores__textfield js-stores-size-field" type="text" name="item[size]" placeholder="XL" id="stores__size">
+                                    <input class="new_stores__textfield js-stores-quantity-field" type="number" name="item[quantity]" min="0" placeholder="25" id="stores__topping_quantity" required>
 
                                 </div>
 
                                 <div class="new_stores__price">
 
                                     <div class="label">Price</div>
-                                
-                                    <input class="new_stores__textfield" type="number" name="item[price]" min="0" placeholder="1.50" id="stores__price">
+
+                                    <input class="new_stores__textfield" type="number" name="item[price]" min="0" step="any" placeholder="€0.75" id="stores__topping_price" required>
 
                                 </div>
 
                                 <div class="new_stores__submit_button">
-                                
-                                    <input class="button new_stores__add_item" type="submit" value="Create Item">
+
+                                    <input class="button new_stores__add_item" type="submit" value="Add Topping">
 
                                 </div>
 
                             </form>
-                        
+
                         </div>
 
                     </section>

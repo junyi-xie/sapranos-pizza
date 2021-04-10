@@ -1423,6 +1423,72 @@
         return true;
     }
 
+
+    /**
+     * Create new items for the shop, switch case to determine which item needs to be created and return appropriate feedback.
+     * 
+     * @params array $post
+     * 
+     * @return mixed
+     */
+    function storesCreateNewItem($post = array()) {
+
+        if (empty($pdo)) {
+            global $pdo;
+        }
+
+        $errors = array();
+
+        if (empty($post['table'])) {
+            $errors['feedback'] = 'Something went wrong, please try again.'; return $errors;
+        }
+
+
+        if (count($errors) === 0) {
+
+            $sInsertSql = "INSERT INTO ". $post['table'] ." SET ";
+
+            if(!empty($post['item'])) {
+                foreach($post['item'] as $key => &$val) {
+                    $sInsertSql .= "$key = '$val', ";
+                }
+            }
+
+            $sInsertSql .= "status = 1";
+
+            $pdo->query($sInsertSql);
+        }
+
+        return flashMessage('items', 'Successfully create a new Store Item.', 'dashboard__form_message dashboard__form_message--success');
+    }
+
+
+    /**
+     * Delete stores item with the assigned id and in the right table. Functions for type, size and toppings table.
+     * 
+     * @params string $table
+     * @params int $id
+     * 
+     * @return boolean
+     */
+    function storesDeleteItem($table = '', $id = 0) {
+
+        if (empty($pdo)) {
+            global $pdo;
+        }
+
+            if (!is_string($table) && !is_int($id)) return false;
+
+        $sSql = "DELETE FROM $table WHERE 1 AND id = $id LIMIT 1";
+        $bDeleteItem = $pdo->query($sSql);
+
+        if (!$bDeleteItem) {
+            return false;
+        }
+
+        return true;
+    }
+
     
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }

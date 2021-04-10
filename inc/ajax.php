@@ -72,8 +72,15 @@
                 echo json_encode($bMainBranch);
             break;
             case 'stores_create_new_item':
-                printr($_POST);
-                exit();
+                $aNewItemCreated = storesCreateNewItem($_POST);
+                (isset($aNewItemCreated['feedback']) ? flashMessage('items', $aNewItemCreated['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
+            break;
+            case 'stores_delete_item':
+                $bStoresRemoveItem = storesDeleteItem($_POST['module'], $_POST['key']);
+                echo json_encode($bStoresRemoveItem);
+            break;
+            case 'stores_edit_valid_item':
+            
             break;
         }
 
