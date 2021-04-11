@@ -14,7 +14,7 @@
      *
      * @param mixed $arr
      *
-     * @return string
+     * @return void
      */
     function printr($arr) {
         print '<code><pre style="text-align: left; margin: 10px;">'.print_r($arr, TRUE).'</pre></code>';
@@ -1279,7 +1279,7 @@
      * @params string $message
      * @params string $class
      * 
-     * @return string
+     * @return void
      */
     function flashMessage($name = '', $message = '', $class = 'success') {
     
@@ -1489,14 +1489,91 @@
         return true;
     }
 
+
+    /**
+     * Update the items, such as name, quantity, price, status and more. Make sure there is an id given before this functions.
+     * 
+     * @params array $items
+     * 
+     * @return mixed
+     */
+    function storesItemUpdate($items = array()) {
+
+        if (empty($pdo)) {
+            global $pdo;
+        }
+
+        $errors = array();
+
+        if (empty($items['module'])) {
+            $errors['feedback'] = 'Module is missing, please reload your browser.'; return $errors;
+        }
+
+        if (empty($items['key']) || $items['key'] <= 0 || !isset($items['module'])) {
+            $errors['feedback'] = 'Something went wrong, please try again.'; return $errors;
+        }
+
+
+        if (count($errors) === 0) {
+
+            switch ($items['module']) {
+                case 'pizzas_type':
+                case 'pizzas_topping':
+                    $sSql = "
+                        UPDATE ". $items['module'] ."
+                        SET
+                            name = :name,
+                            quantity = :quantity,
+                            price = :price,
+                            status = :status
+                            WHERE 1
+                            AND id = :id
+                            LIMIT 1
+                    "; 
+                break;
+                case 'pizza_size':
+                    $sSql = "
+                        UPDATE ". $items['module'] ."
+                        SET
+                            name = :name,
+                            size = :size,
+                            price = :price,
+                            status = :status
+                            WHERE 1
+                            AND id = :id
+                            LIMIT 1
+                    "; 
+                break;
+            }
+
+
+            $aUpdateSql = $pdo->prepare($sSql);
+
+            if(!empty($items['stores'])) {
+                foreach($items['stores'] as $key => &$val) {
+                    $aUpdateSql->bindParam($key, $val);
+                }
+            }
+
+            $aUpdateSql->bindParam(':id', $items['key']);
+            $aUpdateSql->execute();
+        }
+
+        return flashMessage('items', 'Successfully updated the Store Item.', 'dashboard__form_message dashboard__form_message--success');
+    }
+
     
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
-    $aSopranosBranches = queryOperator('SELECT * FROM branches', '', 'status = 1', 'id DESC', 1);
+    $aSopranosBranches = queryOperator("SELECT * FROM branches", "", "status = 1", "id DESC", 1);
+    $aSopranosTypes = queryOperator("SELECT * FROM pizzas_type", "", "status = 1");
+    $aSopranosSizes = queryOperator("SELECT * FROM pizzas_size", "", "status = 1");
+    $aSopranosToppings = queryOperator("SELECT * FROM pizzas_topping", "", "status = 1");
+
 
     $Branches = queryOperator("SELECT * FROM branches", "", "id != '". $aSopranosBranches['id']. "'");
-    $Coupons = queryOperator('SELECT * FROM coupons');
+    $Coupons = queryOperator("SELECT * FROM coupons");
     $Customers = queryOperator("SELECT * FROM customers");
 
     $Types = queryOperator("SELECT * FROM pizzas_type");

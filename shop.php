@@ -34,7 +34,7 @@
                     
                         <div class="image_stack__inner">
 
-                            <?php $aSqlTypeImages = queryOperator("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id > 0", "pt.id ASC", 100); ?>
+                            <?php $aSqlTypeImages = queryOperator("SELECT * FROM images AS i", "pizzas_type AS pt ON pt.image_id = i.id", "pt.id > 0 AND pt.status = 1", "pt.id ASC"); ?>
 
                             <div class="image_stack__images">
                             
@@ -110,7 +110,7 @@
 
                                         <option value selected disabled hidden>Select Pizza...</option>
  
-                                        <?php foreach($Types as $key => $aType): ?>
+                                        <?php foreach($aSopranosTypes as $key => $aType): ?>
 
                                             <option class="js-product_option" value="<?= $aType['id']; ?>" <?php if($aType['quantity'] == 0): ?> disabled <?php endif; ?>><?= $aType['name']; ?> - €<?= number_format((float)$aType['price'], 2, '.', ''); ?> EUR <?php if($aType['quantity'] == 0): ?>| OUT OF STOCK<?php endif; ?></option>
 
@@ -164,7 +164,7 @@
 
                                         <select class="product__size_selector_menu" name="size_id" id="shop_size_selector">
 
-                                            <?php foreach($Sizes as $key => $aSize): ?>
+                                            <?php foreach($aSopranosSizes as $key => $aSize): ?>
 
                                             <option value="<?= $aSize['id']; ?>"><?= $aSize['size']; ?></option>
 
@@ -206,7 +206,7 @@
 
                                     <ul class="product__topping_list">
 
-                                        <?php foreach($Toppings as $key => $aTopping): ?>
+                                        <?php foreach($aSopranosToppings as $key => $aTopping): ?>
 
                                             <li class="product__topping_list_item">
 

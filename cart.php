@@ -168,7 +168,7 @@
 
                                                     <select class="shopping_cart_item__size--select js-shopping_cart_item__size--select" id="shopping_cart_item--select-<?= $iKey; ?>">
 
-                                                        <?php foreach($Sizes as $key => $aSize): ?>
+                                                        <?php foreach($aSopranosSizes as $key => $aSize): ?>
 
                                                         <?php if($aSize['size'] == $aSqlSize['size']): ?>
 

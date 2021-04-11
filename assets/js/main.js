@@ -2,6 +2,48 @@
 
     $(document).ready(function(){
 
+        $('.js-stores-cancel-item').click(function(event) {
+            event.preventDefault();
+
+            var form_id = $(this).parent().parent().parent().attr('key');
+            var button = $(this).parent();
+
+            button.children().removeClass('hidden').addClass('hidden');
+            button.removeClass('hidden').addClass('hidden');
+            button.prev().addClass('hidden').removeClass('hidden');
+
+
+            $('#stores__edit_form-'+ form_id).find('.list_item__cell.js-stores-input-field').each(function() { 
+
+                $(this).find('span').addClass('hidden').removeClass('hidden');
+                $(this).find('input, select').removeClass('hidden').addClass('hidden');
+            })
+        });
+
+
+        $('.js-stores-edit-item').click(function(event) {
+            event.preventDefault();
+
+            var form_id = $(this).parent().parent().parent().attr('key');
+            var button = $(this).parent().next();
+
+            button.prev().removeClass('hidden').addClass('hidden');
+            button.addClass('hidden').removeClass('hidden');
+            // button.find('.js-stores-cancel-item').addClass('hidden').removeClass('hidden');
+            // button.find('.js-stores-update-item').removeClass('hidden').addClass('hidden');
+
+            button.find('.js-stores-update-item').addClass('hidden').removeClass('hidden');
+            button.find('.js-stores-cancel-item').removeClass('hidden').addClass('hidden');
+        
+
+            $('#stores__edit_form-'+ form_id).find('.list_item__cell.js-stores-input-field').each(function(key) { 
+
+                $(this).find('span').removeClass('hidden').addClass('hidden');
+                $(this).find('input, select').addClass('hidden').removeClass('hidden');
+            })
+        });
+
+
         $('.js-stores-remove-item').click(function(event) {
             event.preventDefault();
 

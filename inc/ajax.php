@@ -80,8 +80,8 @@
                 echo json_encode($bStoresRemoveItem);
             break;
             case 'stores_edit_valid_item':
-                printr($_POST);
-                exit();
+                $bUpdatedStoresItem = storesItemUpdate($_POST);
+                (isset($bUpdatedStoresItem['feedback']) ? flashMessage('items', $bUpdatedStoresItem['feedback'], 'dashboard__form_message dashboard__form_message--alert') : '');
             break;
         }
 
