@@ -476,7 +476,7 @@
 
                                 <?php if (!empty($Types)): foreach($Types as $key => $item): ?>
                             
-                                <form class="list_item" action="inc/ajax.php" accept-charset="UTF-8" method="post" key="<?= $item['id']; ?>" type="pizzas_type" id="stores__edit_form-<?= $item['id']; ?>">
+                                <form class="list_item" action="inc/ajax.php" accept-charset="UTF-8" method="post" key="<?= $item['id']; ?>" type="pizzas_type" id="stores__edit_form-pizzas_type-<?= $item['id']; ?>">
                                 
                                     <input type="hidden" name="action" value="stores_edit_valid_item">
 
@@ -492,7 +492,7 @@
                                         
                                         <span><?= $item['name']; ?></span>
 
-                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-name-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-type-name-<?= $item['id']; ?>">
 
                                     </div>
 
@@ -500,7 +500,7 @@
                                     
                                         <span><?= (!empty($item['quantity']) ? $item['quantity'] : '-'); ?></span>
 
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" placeholder="New Quantity..." id="stores__item_form-quantity-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" placeholder="New Quantity..." id="stores__item_form-type-quantity-<?= $item['id']; ?>">
 
                                     </div>
 
@@ -508,7 +508,7 @@
                                     
                                         <span>&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></span>
                                         
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-price-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-type-price-<?= $item['id']; ?>">
 
                                     </div>
 
@@ -516,11 +516,11 @@
 
                                         <span><?= (isset($item['status']) && ($item['status'] === 1) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></span>
 
-                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-status-<?= $item['id']; ?>"> 
+                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-type-status-<?= $item['id']; ?>"> 
 
                                             <?php foreach($Status as $key => $aStatus): ?>
 
-                                            <?php if($aStatus['key'] == $item['status']): ?>
+                                            <?php if($aStatus['key'] === $item['status']): ?>
 
                                             <option value="<?= $aStatus['key']; ?>" selected="selected"><?= $aStatus['status']; ?></option>
 
@@ -662,27 +662,85 @@
 
                                 <?php if (!empty($Sizes)): foreach($Sizes as $key => $item): ?>
 
-                                <div class="list_item" key="<?= $item['id']; ?>" type="pizzas_size">
+                                <form class="list_item" action="inc/ajax.php" accept-charset="UTF-8" method="post" key="<?= $item['id']; ?>" type="pizzas_size" id="stores__edit_form-pizzas_size-<?= $item['id']; ?>">
 
-                                    <div class="list_item__cell"><?= $item['id']; ?></div>
+                                    <input type="hidden" name="action" value="stores_edit_valid_item">
 
-                                    <div class="list_item__cell"><?= $item['name']; ?></div>
+                                    <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
-                                    <div class="list_item__cell"><?= $item['size']; ?></div>
+                                    <input type="hidden" name="key" value="<?php echo $item['id']; ?>">
 
-                                    <div class="list_item__cell">&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></div>
+                                    <input type="hidden" name="module" value="pizzas_size">
 
-                                    <div class="list_item__cell"><?= (isset($item['status']) ? 'Active' : 'Inactive'); ?></div>
+                                    <div class="list_item__cell"><span><?= $item['id']; ?></span></div>
 
-                                    <div class="list_item__cell js-stores-action-button">
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span><?= $item['name']; ?></span>
+
+                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-size-name-<?= $item['id']; ?>">
+
+                                    </div>
+
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span><?= $item['size']; ?></span>
                                     
-                                        <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
-
-                                        <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
+                                        <input class="new_stores__textfield hidden" type="text" name="stores[size]" value="<?= $item['size']; ?>" placeholder="New Size..." id="stores__item_form-size-size-<?= $item['id']; ?>">
                                     
                                     </div>
 
-                                </div>
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span>&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></span>
+                                    
+                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-size-price-<?= $item['id']; ?>">
+                                    
+                                    </div>
+
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span><?= (isset($item['status']) && ($item['status'] === 1) ? 'Active' : 'Inactive'); ?></span>
+                                    
+                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-size-status-<?= $item['id']; ?>"> 
+
+                                        <?php foreach($Status as $key => $aStatus): ?>
+
+                                        <?php if($aStatus['key'] === $item['status']): ?>
+
+                                        <option value="<?= $aStatus['key']; ?>" selected="selected"><?= $aStatus['status']; ?></option>
+
+                                        <?php continue; endif; ?>
+
+                                        <option value="<?= $aStatus['key']; ?>"><?= $aStatus['status']; ?></option>
+
+                                        <?php endforeach; ?>
+
+                                        </select>
+
+                                    </div>
+
+                                    <div class="list_item__cell">
+                                    
+                                        <div class="list_item__cell--icons js-stores-action-icon">
+                                    
+                                            <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
+
+                                            <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
+
+                                        </div>
+
+                                        <div class="list_item__cell--buttons js-stores-action-button hidden">
+
+                                            <input class="button new_stores__cancel_item js-stores-cancel-item" type="button" value="Cancel">
+
+                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Update">
+                                    
+                                        </div>
+                                    
+                                    </div>
+
+                                </form>
 
                                 <?php endforeach; endif;?>
 
@@ -776,27 +834,85 @@
 
                                 <?php if (!empty($Toppings)): foreach($Toppings as $key => $item): ?>
 
-                                <div class="list_item" key="<?= $item['id']; ?>" type="pizzas_topping">
+                                <form class="list_item" action="inc/ajax.php" accept-charset="UTF-8" method="post" key="<?= $item['id']; ?>" type="pizzas_topping" id="stores__edit_form-pizzas_topping-<?= $item['id']; ?>">
 
-                                    <div class="list_item__cell"><?= $item['id']; ?></div>
+                                    <input type="hidden" name="action" value="stores_edit_valid_item">
 
-                                    <div class="list_item__cell"><?= $item['name']; ?></div>
+                                    <input type="hidden" name="url" value="<?php echo $CurrentPage; ?>">
 
-                                    <div class="list_item__cell"><?= $item['quantity']; ?></div>
+                                    <input type="hidden" name="key" value="<?php echo $item['id']; ?>">
 
-                                    <div class="list_item__cell">&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></div>
+                                    <input type="hidden" name="module" value="pizzas_topping">
 
-                                    <div class="list_item__cell"><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></div>
+                                    <div class="list_item__cell"><span><?= $item['id']; ?></span></div>
 
-                                    <div class="list_item__cell js-stores-action-button">
-
-                                        <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
-
-                                        <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span><?= $item['name']; ?></span>
+                                
+                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-topping-name-<?= $item['id']; ?>">
 
                                     </div>
 
-                                </div>
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span><?= $item['quantity']; ?></span>
+
+                                        <input class="new_stores__textfield hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" placeholder="New Quantity..." id="stores__item_form-topping-quantity-<?= $item['id']; ?>">
+
+                                    </div>
+
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span>&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></span>
+                                    
+                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-topping-price-<?= $item['id']; ?>">
+
+                                    </div>
+
+                                    <div class="list_item__cell js-stores-input-field">
+                                        
+                                        <span><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></span>
+
+                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-topping-status-<?= $item['id']; ?>"> 
+
+                                        <?php foreach($Status as $key => $aStatus): ?>
+
+                                        <?php if($aStatus['key'] === $item['status']): ?>
+
+                                        <option value="<?= $aStatus['key']; ?>" selected="selected"><?= $aStatus['status']; ?></option>
+
+                                        <?php continue; endif; ?>
+
+                                        <option value="<?= $aStatus['key']; ?>"><?= $aStatus['status']; ?></option>
+
+                                        <?php endforeach; ?>
+
+                                        </select>
+                                    
+                                    </div>
+
+                                    <div class="list_item__cell">
+
+                                        <div class="list_item__cell--icons js-stores-action-icon">
+                                    
+                                            <span class="list_item__cell--edit js-stores-edit-item"><i class="fas fa-edit"></i></span>
+
+                                            <span class="list_item__cell--delete js-stores-remove-item"><i class="fas fa-trash"></i></span>
+
+                                        </div>
+
+                                        <div class="list_item__cell--buttons js-stores-action-button hidden">
+
+                                            <input class="button new_stores__cancel_item js-stores-cancel-item" type="button" value="Cancel">
+
+                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Update">
+                                    
+                                        </div>
+
+                                    </div>
+
+                                </form>
 
                                 <?php endforeach; endif;?>
 

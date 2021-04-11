@@ -1099,7 +1099,7 @@
             $aUpdateSql->execute();
         }
         
-        return flashMessage('settings', 'Successfully updated your account.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('settings', 'Successfully updated your Account Information.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1197,7 +1197,7 @@
             }
         }
 
-        return flashMessage('settings', 'Successfully updated your password.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('settings', 'Successfully updated your Password.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1268,7 +1268,7 @@
             $aUpdateSql->execute();
         }
 
-        return flashMessage('settings', 'Successfully updated your email address.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('settings', 'Successfully updated your Email Address.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1354,7 +1354,7 @@
             $aInsertSql->execute();
         }
 
-        return flashMessage('coupons', 'Successfully created a new coupon.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('coupons', 'Successfully created a new Coupon.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1459,7 +1459,7 @@
             $pdo->query($sInsertSql);
         }
 
-        return flashMessage('items', 'Successfully create a new Store Item.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('items', 'Successfully create a new Shop Item.', 'dashboard__form_message dashboard__form_message--success');
     }
 
 
@@ -1531,7 +1531,7 @@
                             LIMIT 1
                     "; 
                 break;
-                case 'pizza_size':
+                case 'pizzas_size':
                     $sSql = "
                         UPDATE ". $items['module'] ."
                         SET
@@ -1559,7 +1559,7 @@
             $aUpdateSql->execute();
         }
 
-        return flashMessage('items', 'Successfully updated the Store Item.', 'dashboard__form_message dashboard__form_message--success');
+        return flashMessage('items', 'Successfully updated the Shop Item.', 'dashboard__form_message dashboard__form_message--success');
     }
 
     
@@ -1567,9 +1567,9 @@
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
 
     $aSopranosBranches = queryOperator("SELECT * FROM branches", "", "status = 1", "id DESC", 1);
-    $aSopranosTypes = queryOperator("SELECT * FROM pizzas_type", "", "status = 1");
+    $aSopranosTypes = queryOperator("SELECT * FROM pizzas_type", "", "status = 1 AND quantity > 0");
     $aSopranosSizes = queryOperator("SELECT * FROM pizzas_size", "", "status = 1");
-    $aSopranosToppings = queryOperator("SELECT * FROM pizzas_topping", "", "status = 1");
+    $aSopranosToppings = queryOperator("SELECT * FROM pizzas_topping", "", "status = 1 AND quantity > 0");
 
 
     $Branches = queryOperator("SELECT * FROM branches", "", "id != '". $aSopranosBranches['id']. "'");

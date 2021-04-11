@@ -25,6 +25,7 @@
             event.preventDefault();
 
             var form_id = $(this).parent().parent().parent().attr('key');
+            var table = $(this).parent().parent().parent().attr('type');
             var button = $(this).parent().next();
 
             button.prev().removeClass('hidden').addClass('hidden');
@@ -36,7 +37,7 @@
             button.find('.js-stores-cancel-item').removeClass('hidden').addClass('hidden');
         
 
-            $('#stores__edit_form-'+ form_id).find('.list_item__cell.js-stores-input-field').each(function(key) { 
+            $('#stores__edit_form-'+ table +'-'+ form_id).find('.list_item__cell.js-stores-input-field').each(function(key) { 
 
                 $(this).find('span').removeClass('hidden').addClass('hidden');
                 $(this).find('input, select').addClass('hidden').removeClass('hidden');
