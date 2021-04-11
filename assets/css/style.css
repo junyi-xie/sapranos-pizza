@@ -3406,7 +3406,8 @@ img {
 .dashboard_page__coupons,
 .dashboard_page__branches,
 .dashboard_page__customers,
-.dashboard_page__stores {
+.dashboard_page__stores,
+.dashboard_page__payouts {
   display: block;
   height: 100%;
 }
@@ -3419,14 +3420,16 @@ img {
 .stores_toppings_wrapper,
 .stores_sizes_wrapper,
 .stores_types_wrapper,
-.stores_create_item {
+.stores_create_item,
+.payouts_view_checkout {
   margin-bottom: 2.5rem;
 }
 
 .coupons__container,
 .branches__container,
 .customers__container,
-.stores__container {
+.stores__container,
+.payouts__container {
   padding: 0;
   margin: 0;
   position: relative;
@@ -3619,7 +3622,7 @@ img {
   vertical-align: middle;
 }
 
-.list_item__cell:first-child {
+.list_item__cell:first-of-type {
   padding-left: 1.667rem;
 }
 
@@ -3642,5 +3645,11 @@ img {
 .list_item__cell--favorite:hover,
 .list_item__cell--edit:hover {
   color: #0a0918;
+}
+
+.list_item__cell--buttons,
+.list_item__cell--icons {
+  position: relative;
+  margin: 0;
 }
 /*# sourceMappingURL=style.css.map */

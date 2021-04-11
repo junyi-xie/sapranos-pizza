@@ -282,7 +282,7 @@
                                     
                                     <div class="list_item__cell"><?= $item['country']; ?></div>
 
-                                    <div class="list_item__cell"><span class="list_item__cell--favorite js-branches-switch-favorite"><i class="far fa-star"></i></span></div>
+                                    <div class="list_item__cell"><span class="list_item__cell--favorite js-branches-switch-favorite"><i class="far fa-star" title="Make Main Branch?"></i></span></div>
 
                                 </div>
 
@@ -492,7 +492,7 @@
                                         
                                         <span><?= $item['name']; ?></span>
 
-                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-type-name-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-type-name-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -500,7 +500,7 @@
                                     
                                         <span><?= (!empty($item['quantity']) ? $item['quantity'] : '-'); ?></span>
 
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" placeholder="New Quantity..." id="stores__item_form-type-quantity-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" min="0" placeholder="New Quantity..." id="stores__item_form-type-quantity-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -508,7 +508,7 @@
                                     
                                         <span>&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></span>
                                         
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-type-price-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" min="0" step="any" placeholder="New Price..." id="stores__item_form-type-price-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -516,11 +516,11 @@
 
                                         <span><?= (isset($item['status']) && ($item['status'] === 1) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></span>
 
-                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-type-status-<?= $item['id']; ?>"> 
+                                        <select class="new_stores__form_select js-stores-check-item-value hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-type-status-<?= $item['id']; ?>" required> 
 
                                             <?php foreach($Status as $key => $aStatus): ?>
 
-                                            <?php if($aStatus['key'] === $item['status']): ?>
+                                            <?php if($aStatus['key'] == $item['status']): ?>
 
                                             <option value="<?= $aStatus['key']; ?>" selected="selected"><?= $aStatus['status']; ?></option>
 
@@ -548,7 +548,7 @@
 
                                             <input class="button new_stores__cancel_item js-stores-cancel-item" type="button" value="Cancel">
 
-                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Update">
+                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Save">
                                     
                                         </div>
 
@@ -608,7 +608,7 @@
 
                                     <div class="label">Amount</div>
 
-                                    <input class="new_stores__textfield js-stores-quantity-field" type="number" name="item[quantity]" min="0" placeholder="3" id="stores__type_quantity" required>
+                                    <input class="new_stores__textfield" type="number" name="item[quantity]" min="0" placeholder="3" id="stores__type_quantity" required>
 
                                 </div>
 
@@ -678,7 +678,7 @@
                                         
                                         <span><?= $item['name']; ?></span>
 
-                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-size-name-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-size-name-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -686,7 +686,7 @@
                                         
                                         <span><?= $item['size']; ?></span>
                                     
-                                        <input class="new_stores__textfield hidden" type="text" name="stores[size]" value="<?= $item['size']; ?>" placeholder="New Size..." id="stores__item_form-size-size-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="text" name="stores[size]" value="<?= $item['size']; ?>" placeholder="New Size..." id="stores__item_form-size-size-<?= $item['id']; ?>" required>
                                     
                                     </div>
 
@@ -694,7 +694,7 @@
                                         
                                         <span>&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></span>
                                     
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-size-price-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" min="0" step="any" placeholder="New Price..." id="stores__item_form-size-price-<?= $item['id']; ?>" required>
                                     
                                     </div>
 
@@ -702,11 +702,11 @@
                                         
                                         <span><?= (isset($item['status']) && ($item['status'] === 1) ? 'Active' : 'Inactive'); ?></span>
                                     
-                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-size-status-<?= $item['id']; ?>"> 
+                                        <select class="new_stores__form_select js-stores-check-item-value hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-size-status-<?= $item['id']; ?>" required> 
 
                                         <?php foreach($Status as $key => $aStatus): ?>
 
-                                        <?php if($aStatus['key'] === $item['status']): ?>
+                                        <?php if($aStatus['key'] == $item['status']): ?>
 
                                         <option value="<?= $aStatus['key']; ?>" selected="selected"><?= $aStatus['status']; ?></option>
 
@@ -734,7 +734,7 @@
 
                                             <input class="button new_stores__cancel_item js-stores-cancel-item" type="button" value="Cancel">
 
-                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Update">
+                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Save">
                                     
                                         </div>
                                     
@@ -850,7 +850,7 @@
                                         
                                         <span><?= $item['name']; ?></span>
                                 
-                                        <input class="new_stores__textfield hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-topping-name-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="text" name="stores[name]" value="<?= $item['name']; ?>" placeholder="New Name..." id="stores__item_form-topping-name-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -858,7 +858,7 @@
                                         
                                         <span><?= $item['quantity']; ?></span>
 
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" placeholder="New Quantity..." id="stores__item_form-topping-quantity-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="number" name="stores[quantity]" value="<?= $item['quantity']; ?>" min="0" placeholder="New Quantity..." id="stores__item_form-topping-quantity-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -866,7 +866,7 @@
                                         
                                         <span>&euro;<?= number_format((float)$item['price'], 2, '.', ''); ?></span>
                                     
-                                        <input class="new_stores__textfield hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" step="any" placeholder="New Price..." id="stores__item_form-topping-price-<?= $item['id']; ?>">
+                                        <input class="new_stores__textfield js-stores-check-item-value hidden" type="number" name="stores[price]" value="<?= number_format((float)$item['price'], 2, '.', ''); ?>" min="0" step="any" placeholder="New Price..." id="stores__item_form-topping-price-<?= $item['id']; ?>" required>
 
                                     </div>
 
@@ -874,11 +874,11 @@
                                         
                                         <span><?= (isset($item['status']) && $item['quantity'] > 0 ? 'Active' : 'Inactive'); ?></span>
 
-                                        <select class="new_stores__form_select hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-topping-status-<?= $item['id']; ?>"> 
+                                        <select class="new_stores__form_select js-stores-check-item-value hidden" name="stores[status]" placeholder="New Item Status..." id="stores__item_form-topping-status-<?= $item['id']; ?>" required> 
 
                                         <?php foreach($Status as $key => $aStatus): ?>
 
-                                        <?php if($aStatus['key'] === $item['status']): ?>
+                                        <?php if($aStatus['key'] == $item['status']): ?>
 
                                         <option value="<?= $aStatus['key']; ?>" selected="selected"><?= $aStatus['status']; ?></option>
 
@@ -906,7 +906,7 @@
 
                                             <input class="button new_stores__cancel_item js-stores-cancel-item" type="button" value="Cancel">
 
-                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Update">
+                                            <input class="button new_stores__edit_item js-stores-update-item" type="submit" value="Save">
                                     
                                         </div>
 
@@ -952,7 +952,7 @@
 
                                     <div class="label">Amount</div>
 
-                                    <input class="new_stores__textfield js-stores-quantity-field" type="number" name="item[quantity]" min="0" placeholder="25" id="stores__topping_quantity" required>
+                                    <input class="new_stores__textfield" type="number" name="item[quantity]" min="0" placeholder="25" id="stores__topping_quantity" required>
 
                                 </div>
 
@@ -1055,6 +1055,40 @@
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'payouts'): ?>
 
                 <h1 class="dashboard_page__heading">Payouts</h1>
+
+                <div class="dashboard_page__customers">
+
+                    <section class="payouts_view_checkout">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Placeholder</h1>
+
+                        </div>
+                        
+                        <div class="dashboard_section__content payouts__container">
+                            
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">#</div>
+
+                                </div>
+
+                                <div class="list_item">
+
+                                    <div class="list_item__cell">1</div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
 
                 <?php elseif (isset($_GET['go']) && $_GET['go'] == 'profile'): ?>
 
