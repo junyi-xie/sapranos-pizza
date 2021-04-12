@@ -1018,7 +1018,7 @@
         $bLoggedOut = clearSession();
 
         if ($bLoggedOut && $bCookieOut) {
-            return redirectPage('login.php');
+            return redirectPage('index.php');
         }
     }
 

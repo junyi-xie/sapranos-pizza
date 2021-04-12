@@ -299,6 +299,7 @@ img {
 .site__menu .menu__list .menu__container .menu__item {
   display: inline-block;
   vertical-align: middle;
+  position: relative;
 }
 
 .site__menu .menu__list .menu__container .menu__item .menu__link {
@@ -320,6 +321,84 @@ img {
   font-weight: 700;
   border-radius: 2px;
   display: inline-block;
+}
+
+.site__menu .menu__list .menu__container .menu__item.dropdown--list {
+  top: -0.4rem;
+  margin-left: 5px;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__toggle {
+  position: relative;
+  padding: 1.4rem 2.5rem 1rem 1rem;
+  border: 1px solid transparent;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__toggle.dropdown__toggle--active {
+  border-color: #d8dae0;
+  border-bottom: 0;
+  border-top: 0;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__toggle::after {
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 0;
+  z-index: 1000;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #b8bdc5;
+  top: 55%;
+  right: 1.5rem;
+  -webkit-transition: all 150ms linear;
+  transition: all 150ms linear;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__toggle .dropdown__header_username {
+  display: inline-block;
+  line-height: 1.1;
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__menu {
+  display: none;
+  background-color: white;
+  max-height: 1000px;
+  border: 1px solid #d8dae0;
+  border-radius: 0 0 2px 2px;
+  border-top: 0;
+  overflow: visible;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__menu .dropdown__menu_links {
+  padding: .2rem 0 .3rem;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__menu .dropdown__menu_links .dropdown__menu_item {
+  padding: .2rem 2.5rem .2rem 1rem;
+  position: relative;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__menu .dropdown__menu_links .dropdown__menu_item .dropdown__menu_link {
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  color: #6a6f72;
+  display: block;
+  padding: .5rem 0;
+  cursor: pointer;
+}
+
+.site__menu .menu__list .menu__container .menu__item .dropdown__menu .dropdown__menu_links .dropdown__menu_item .dropdown__menu_link:hover {
+  color: #ee2761;
 }
 
 .site__menu .menu__list .menu__container .menu__item .menu__link--highlight {

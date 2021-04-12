@@ -2,6 +2,14 @@
 
     $(document).ready(function(){
 
+        $('.js-user-dropdown-toggle').click(function(event) {
+            event.preventDefault();
+
+            $(this).toggleClass('dropdown__toggle--active');
+            $('.js-site-user-dropdown-menu').toggle();
+        });
+
+
         $('.js-stores-check-item-value').on('input', function(event) {
             event.preventDefault();
 
@@ -9,7 +17,7 @@
             var button = $(this).parent().parent().children().last().children().last();
             var change = false;
 
-            $(form).find('.js-stores-check-item-value').each(function(value) {
+            $(form).find('.js-stores-check-item-value').each(function() {
                 var base = $(this).prop('defaultValue');
                 var value = $(this).val();
 
@@ -69,11 +77,8 @@
             button.find('.js-stores-cancel-item').addClass('hidden').removeClass('hidden');
             button.find('.js-stores-update-item').removeClass('hidden').addClass('hidden');
 
-            // button.find('.js-stores-update-item').addClass('hidden').removeClass('hidden');
-            // button.find('.js-stores-cancel-item').removeClass('hidden').addClass('hidden');
-        
 
-            $('#stores__edit_form-'+ table +'-'+ form_id).find('.js-stores-input-field').each(function(key) { 
+            $('#stores__edit_form-'+ table +'-'+ form_id).find('.js-stores-input-field').each(function() { 
 
                 $(this).find('span').removeClass('hidden').addClass('hidden');
                 $(this).find('input, select').addClass('hidden').removeClass('hidden');
@@ -464,21 +469,23 @@
         $(".js-remove_cart_item").click(function(event) {
             event.preventDefault();
 
-            $.ajax({
-                url:"inc/ajax.php",
-                type: "post",
-                data: {
-                    action: 'remove_order_item',
-                    key: $(this).attr('shopping-cart-item-id'),
-                },
-                success: function(result){
-                    switch (result) {
-                        case 'true':
-                            location.reload(); 
-                        break;
-                    }
-                },
-            });
+            if(confirm('Are you sure you want to remove this item from your shopping cart?')) {
+                $.ajax({
+                    url:"inc/ajax.php",
+                    type: "post",
+                    data: {
+                        action: 'remove_order_item',
+                        key: $(this).attr('shopping-cart-item-id'),
+                    },
+                    success: function(result){
+                        switch (result) {
+                            case 'true':
+                                location.reload(); 
+                            break;
+                        }
+                    },
+                });
+            }
         });
 
 

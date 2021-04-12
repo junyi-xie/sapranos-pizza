@@ -116,6 +116,8 @@
 
 <?php else: ?>
 
+<?php if (!empty($_COOKIE['uid']) && $_COOKIE['uid'] > 0){ $bLoggedIn = selectAllById("accounts", $_COOKIE['uid']); if(!empty($bLoggedIn)) { redirectPage('dashboard.php?from=login&method=remember&auth=false'); } } ?>
+
 <div class="authentication">
 
     <div class="authentication__header">

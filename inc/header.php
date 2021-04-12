@@ -34,11 +34,92 @@
 
                     </li>
                     
+                    <?php if (!empty($_SESSION['profile']['uid']) || !empty($_COOKIE['uid'])): ?>
+                
+                    <?php $aLoggedInAccount = selectAllById('accounts', (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid'])); ?>
+                    
+                    <li class="menu__item dropdown--list">
+
+                        <div class="dropdown__toggle menu__link js-user-dropdown-toggle ">
+                        
+                            <span class="dropdown__header_username"><?= $aLoggedInAccount['email']; ?></span>
+
+                        </div>
+
+                        <div class="dropdown__menu js-site-user-dropdown-menu">
+                            
+                            <ul class="dropdown__menu_links">
+                            
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php">Dashboard</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=profile">Profile</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=branches">My Branches</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=coupons">Coupons</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=stores">Store Items</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=customers">Customers</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=payouts">Payout List</a>
+                                
+                                </li>
+                                
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=settings">Settings</a>
+                                
+                                </li>
+
+                                <li class="dropdown__menu_item">
+                                    
+                                    <a class="dropdown__menu_link" href="dashboard.php?go=signout">Log out</a>
+                                
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    
+                    </li>
+
+                    <?php else: ?>
+
                     <li class="menu__item">
                     
                         <a class="menu__link menu__link--highlight" title="Login" href="login.php">Login</a>
-                    
+            
                     </li>
+
+                    <?php endif; ?>
                     
                     <li class="menu__item js-shopping-cart">
 
