@@ -64,11 +64,11 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `name`, `email`, `phone`, `zipcode`, `address`, `city`, `country`, `status`) VALUES
-(1, 'Sopranos Pizzabar', 'thehague@sopranos.com', '+31 655-598-586', '2585 BV', 'Patijnlaan 53', 'The Hague', 'The Netherlands', 1),
-(2, 'Sopranos Pizzabar', 'rotterdam@sopranos.com', '+31 655-5929-39', '1435 HW', 'Bottelroos 19', 'Rotterdam', 'The Netherlands', 0),
-(3, 'Sopranos Pizzabar', 'amsterdam@sopranos.com', '+31 655-5149-89', '1098 GT', 'De Lierhof 31', 'Amsterdam', 'The Netherlands', 0),
-(4, 'Sopranos Pizzabar', 'utrecht@sopranos.com', '+31 655-538-024', '3543 CL', 'Musicalkade 37', 'Utrecht', 'The Netherlands', 0),
-(5, 'Sopranos Pizzabar', 'gouda@sopranos.com', '+31 655-581-160', '2807 NP', 'Klipperwerf 59', 'Gouda', 'The Netherlands', 0);
+(1, 'Sopranos', 'thehague@sopranos.com', '+31 655-598-586', '2585 BV', 'Patijnlaan 53', 'The Hague', 'The Netherlands', 1),
+(2, 'Sopranos', 'rotterdam@sopranos.com', '+31 655-5929-39', '1435 HW', 'Bottelroos 19', 'Rotterdam', 'The Netherlands', 0),
+(3, 'Sopranos', 'amsterdam@sopranos.com', '+31 655-5149-89', '1098 GT', 'De Lierhof 31', 'Amsterdam', 'The Netherlands', 0),
+(4, 'Sopranos', 'utrecht@sopranos.com', '+31 655-538-024', '3543 CL', 'Musicalkade 37', 'Utrecht', 'The Netherlands', 0),
+(5, 'Sopranos', 'gouda@sopranos.com', '+31 655-581-160', '2807 NP', 'Klipperwerf 59', 'Gouda', 'The Netherlands', 0);
 
 -- --------------------------------------------------------
 
@@ -93,8 +93,9 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `code`, `discount`, `type`, `quantity`, `status`, `valid`, `expire`) VALUES
-(1, 'DISCOUNT10', 10, 1, 20, 1, 20210407121941, 20210508000000),
-(2, 'WELCOME20', 20, 1, 50, 1, 20210407125108, 20210406000000);
+(1, 'FREE10', 10, 1, 100, 1, 20210401000000, 20210501000000),
+(2, 'WELCOME50', 50, 1, 100, 1, 20210401000000, 20210601000000),
+(3, 'DISCOUNT20', 50, 1, 100, 1, 20210401000000, 20210701000000);
 
 -- --------------------------------------------------------
 
@@ -184,18 +185,19 @@ CREATE TABLE `pizzas_size` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `size` varchar(255) NOT NULL DEFAULT '',
-  `price` float(10,3) NOT NULL DEFAULT 0.000
+  `price` float(10,3) NOT NULL DEFAULT 0.000,
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pizzas_size`
 --
 
-INSERT INTO `pizzas_size` (`id`, `name`, `size`, `price`) VALUES
-(1, 'Small', 'S', 1.250),
-(2, 'Medium', 'M', 2.500),
-(3, 'Large', 'L', 3.750),
-(4, 'Calzone', 'XL', 5.000);
+INSERT INTO `pizzas_size` (`id`, `name`, `size`, `price`, `status`) VALUES
+(1, 'Small', 'S', 1.250, 1),
+(2, 'Medium', 'M', 2.500, 1),
+(3, 'Large', 'L', 3.750, 1),
+(4, 'Calzone', 'XL', 5.000, 1);
 
 -- --------------------------------------------------------
 
@@ -208,24 +210,25 @@ CREATE TABLE `pizzas_topping` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `quantity` int(11) NOT NULL DEFAULT 0,
-  `price` float(10,3) NOT NULL DEFAULT 0.000
+  `price` float(10,3) NOT NULL DEFAULT 0.000,
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pizzas_topping`
 --
 
-INSERT INTO `pizzas_topping` (`id`, `name`, `quantity`, `price`) VALUES
-(1, 'Pepperoni', 999, 1.000),
-(2, 'Mushrooms', 999, 0.500),
-(3, 'Onions', 999, 0.500),
-(4, 'Sausage', 999, 1.500),
-(5, 'Bacon', 999, 1.500),
-(6, 'Cheese', 999, 0.750),
-(7, 'Black Olives', 999, 0.500),
-(8, 'Green Peppers', 999, 0.500),
-(9, 'Pineapple', 999, 1.000),
-(10, 'Spinach', 999, 0.500);
+INSERT INTO `pizzas_topping` (`id`, `name`, `quantity`, `price`, `status`) VALUES
+(1, 'Pepperoni', 999, 1.000, 1),
+(2, 'Mushrooms', 999, 0.500, 1),
+(3, 'Onions', 999, 0.500, 1),
+(4, 'Sausage', 999, 1.500, 1),
+(5, 'Bacon', 999, 1.500, 1),
+(6, 'Cheese', 999, 0.750, 1),
+(7, 'Black Olives', 999, 0.500, 1),
+(8, 'Green Peppers', 999, 0.500, 1),
+(9, 'Pineapple', 999, 1.000, 1),
+(10, 'Spinach', 999, 0.500, 1);
 
 -- --------------------------------------------------------
 
@@ -239,19 +242,20 @@ CREATE TABLE `pizzas_type` (
   `image_id` int(11) DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `quantity` int(11) NOT NULL DEFAULT 0,
-  `price` float(10,3) NOT NULL DEFAULT 0.000
+  `price` float(10,3) NOT NULL DEFAULT 0.000,
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pizzas_type`
 --
 
-INSERT INTO `pizzas_type` (`id`, `image_id`, `name`, `quantity`, `price`) VALUES
-(1, 2, 'Tonno', 999, 2.150),
-(2, 3, 'Vegetariano', 999, 3.450),
-(3, 1, 'Quattro Formaggio', 999, 3.750),
-(4, 4, 'Sopranos Deluxe', 999, 4.300),
-(5, 5, 'Pepperoni', 999, 1.250);
+INSERT INTO `pizzas_type` (`id`, `image_id`, `name`, `quantity`, `price`, `status`) VALUES
+(1, 2, 'Tonno', 999, 2.850, 1),
+(2, 3, 'Vegetariano', 999, 3.450, 1),
+(3, 1, 'Quattro Formaggio', 999, 3.750, 1),
+(4, 4, 'Sopranos Deluxe', 999, 4.300, 1),
+(5, 5, 'Pepperoni', 999, 1.250, 1);
 
 -- --------------------------------------------------------
 
@@ -365,7 +369,7 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customers`
