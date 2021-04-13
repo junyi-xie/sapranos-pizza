@@ -87,17 +87,19 @@ I will be creating an online webshop where you can buy multiple/different types 
 - Able to view the products...
 - Able to see their order...
 - Able to receive an invoice/confirmation mail...
+- Able to edit any items...
+- Able to delete (select few) items..
 
-## Login to Admin Panel ##
-Although  not _required_, I will include an admin panel, which can be used to view your orders, edit products, and more. 
+## Login to Admin Panel/Dashboard ##
+In the dashboard you have few key modules, in which you can view, update or delete the items. Most of the modules are part of the webshop, for example, the price, what products you sell and how many there are left of a certain product. Just explore the dashboard for yourself. 
 
-**Note:** to add an admin account, you will have to manually insert/create a new account into the database.
+**Note:** to add an admin account, you will have to manually insert a new account into the database or you can create an account inside the webshop.
 
 ```php
 $pdo->exec("INSERT INTO accounts SET id = NULL, image_id = NULL, username = 'admin', password = password_hash('admin', PASSWORD_DEFAULT), email = 'admin@admin.com', phone = '0', admin = 1, account_created = date("YmdHis"), last_login = 0");
 ```
 
-Now that you have inserted a new account, you can simply login to the admin panel with admin/admin.
+Now that you have inserted or created a new account, you can simply login to the admin panel/dashboard with admin/admin.
 
 ## Database ## 
 📃 [sopranos.sql](https://github.com/junyi-xie/sopranos/blob/main/sopranos.sql), feel free to import it into MySQL.
