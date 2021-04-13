@@ -20,7 +20,7 @@
 
 <?php if (!isset($_SESSION['profile']['uid']) && !isset($_COOKIE['uid'])): sendLoginError(); endif; ?>
 
-<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; $CurrentDate = date("YmdHis"); ?>
+<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; $CurrentDate = date("YmdHis"); $iPayoutsTotal = 0.00; $ItemsSold = 0; $CouponsUsed = 0; $OrdersPlaced = 0; ?>
 
 <div class="dashboard__container">
 
@@ -1008,6 +1008,8 @@
 
                                     <div class="list_item__cell">Address</div>
 
+                                    <div class="list_item__cell">Address 2</div>
+
                                     <div class="list_item__cell">Zipcode</div>
 
                                     <div class="list_item__cell">City</div>
@@ -1031,6 +1033,8 @@
                                     <div class="list_item__cell"><?= $item['phone']; ?></div>
 
                                     <div class="list_item__cell"><?= $item['address']; ?></div>
+
+                                    <div class="list_item__cell"><?= (!empty($item['address_2']) ? $item['address_2'] : '-'); ?></div>
 
                                     <div class="list_item__cell"><?= $item['zipcode']; ?></div>
                                     
@@ -1062,7 +1066,7 @@
 
                         <div class="dashboard_section__header">
                             
-                            <h1 class="dashboard_section__heading">Placeholder</h1>
+                            <h1 class="dashboard_section__heading">Order Summary</h1>
 
                         </div>
                         
@@ -1074,11 +1078,152 @@
                                     
                                     <div class="list_item__cell">#</div>
 
+                                    <div class="list_item__cell">Order No.</div>
+
+                                    <div class="list_item__cell">Customer</div>
+
+                                    <div class="list_item__cell">Email</div>
+
+                                    <div class="list_item__cell">Phone</div>
+
+                                    <div class="list_item__cell">Type</div>
+
+                                    <div class="list_item__cell">Size</div>
+
+                                    <div class="list_item__cell">Toppings</div>
+
+                                    <div class="list_item__cell">Quantity</div>
+
+                                    <div class="list_item__cell">Coupon Code</div>
+
+                                    <div class="list_item__cell">Amount</div>
+
+                                    <div class="list_item__cell">Discount</div>
+
+                                    <div class="list_item__cell">Subtotal</div>
+
+                                    <div class="list_item__cell">Order Date</div>
+
+                                    <div class="list_item__cell">Checkout</div> 
+
+                                    <div class="list_item__cell">Status</div>
+
+                                </div>
+
+                                <?php if (!empty($Orders)): foreach(loopOrders($Orders) as $key => $item): ?>
+
+                                <div class="list_item">
+
+                                    <?php $iPayoutsSubtotal = 0.00; ?>
+
+                                    <div class="list_item__cell"><?= $item['id']; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $item['order_number']; ?></div>
+
+                                    <?php $OrdersPlaced = count($Orders); ?>
+
+                                    <?php $aCustomer = selectAllById("customers", $item['customer_id']); ?>
+
+                                    <div class="list_item__cell"><?= $aCustomer['first_name'] .' '. $aCustomer['last_name']; ?></div>
+
+                                    <div class="list_item__cell"><?= $aCustomer['email']; ?></div>
+
+                                    <div class="list_item__cell"><?= $aCustomer['phone']; ?></div>
+
+                                    <?php $aType = selectAllById("pizzas_type", $item['type_id']); ?>
+
+                                    <div class="list_item__cell"><?= $aType['name']; ?></div>
+
+                                    <?php $iPayoutsSubtotal += $aType['price']; ?>
+
+                                    <?php $aSize = selectAllById("pizzas_size", $item['size_id']); ?>
+
+                                    <div class="list_item__cell"><?= $aSize['size']; ?></div>
+
+                                    <?php $iPayoutsSubtotal += $aSize['price']; ?>
+
+                                    <?php $aToppings = queryOperator("SELECT * FROM toppings_combination", "", "pizza_id = '". $item['id'] ."'"); ?>
+
+                                    <div class="list_item__cell"><?= implodeToStringToppings($aToppings); ?></div>
+
+                                    <?php $iPayoutsSubtotal += calculateToppingsPrice($aToppings); ?>
+
+                                    <div class="list_item__cell"><?= $item['quantity']; ?></div>
+
+                                    <?php $ItemsSold += $item['quantity']; ?>
+
+                                    <?php $iPayoutsSubtotal = $iPayoutsSubtotal * $item['quantity']; ?>
+
+                                    <?php $aCoupon = selectAllById("coupons", $item['coupon_id']); ?>
+
+                                    <div class="list_item__cell"><?= (!empty($aCoupon) && isset($aCoupon['code']) ? $aCoupon['code'] : '-'); ?></div>
+
+                                    <?php $CouponsUsed = ''; ?>
+
+                                    <div class="list_item__cell"><?= (!empty($aCoupon) && isset($aCoupon['discount']) ? $aCoupon['discount'] . ((!empty($aCoupon) && $aCoupon['type'] === 1) ? '&percnt;' : ' EUR') : '-'); ?></div>
+
+                                    <?php $iDiscountPrice = (isset($aCoupon['discount']) && $aCoupon['type'] === 1 ? ($iPayoutsSubtotal * ($aCoupon['discount'] / 100)) : 0); ?>
+
+                                    <div class="list_item__cell">- &euro;<?= number_format((float)$iDiscountPrice, 2, '.', ''); ?></div>
+
+                                    <?php $iPayoutsSubtotal -= $iDiscountPrice; ?>
+
+                                    <div class="list_item__cell">&euro;<?= number_format((float)$iPayoutsSubtotal, 2, '.', ''); ?></div>
+
+                                    <div class="list_item__cell"><?= date("M j, Y H:i:s", strtotime($item['check_in'])); ?></div>
+
+                                    <div class="list_item__cell"><?= date("M j, Y H:i:s", strtotime($item['check_out'])); ?></div>
+
+                                    <div class="list_item__cell"><?= (!empty($item['status']) && $item['status'] === 1 ? 'Paid' : 'Open'); ?></div>
+
+                                    <?php $iPayoutsTotal += $iPayoutsSubtotal; ?>
+                                </div>
+
+                                <?php endforeach; endif;?>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="payouts_statistics_overview">
+
+                        <div class="dashboard_section__header">
+                            
+                            <h1 class="dashboard_section__heading">Statistics</h1>
+
+                        </div>
+                        
+                        <div class="dashboard_section__content payouts__container">
+                            
+                            <div class="list__container">
+
+                                <div class="list_item list_item--heading">
+                                    
+                                    <div class="list_item__cell">Total Items Sold</div>
+
+                                    <div class="list_item__cell">Total Coupons Used</div>
+
+                                    <div class="list_item__cell">Total Orders Placed</div>
+
+                                    <div class="list_item__cell">Total Price Earned</div>
+
+                                    <div class="list_item__cell">Total Open Invoice</div>
+
                                 </div>
 
                                 <div class="list_item">
 
-                                    <div class="list_item__cell">1</div>
+                                    <div class="list_item__cell"><?= $ItemsSold; ?></div>
+                                    
+                                    <div class="list_item__cell"><?= $CouponsUsed; ?></div>
+
+                                    <div class="list_item__cell"><?= $OrdersPlaced; ?></div>
+
+                                    <div class="list_item__cell">&euro;<?= number_format((float)$iPayoutsTotal, 2, '.', ''); ?></div>
+
+                                    <div class="list_item__cell"></div>
 
                                 </div>
 

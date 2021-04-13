@@ -1562,6 +1562,86 @@
         return flashMessage('items', 'Successfully updated the Shop Item.', 'dashboard__form_message dashboard__form_message--success');
     }
 
+
+    /**
+     * Implode and make it fancier for format by adding a comma between each item.
+     * 
+     * @params array $Toppings
+     * 
+     * @return float
+     */
+    function calculateToppingsPrice($Toppings = array()) {
+
+        $price = 0.00;
+
+        if (!empty($Toppings)) {
+            foreach($Toppings as $Topping) {
+                $aTopping = selectAllById('pizzas_topping', $Topping['topping_id']);
+             
+                $price += $aTopping['price'];
+            }
+        } 
+
+        return $price;
+    }
+
+
+    /**
+     * Put the array into one huge multidimensional array to make it easier for a foreach loop.
+     * 
+     * @params array $payouts
+     * 
+     * @return array
+     */
+    function loopOrders($payouts = array()) {
+
+        $Orders = array();
+
+        if (!empty($payouts)) {
+            foreach($payouts as $value) {
+                $Orders[$value['id']] = [
+                    'id' => $value['id'],
+                    'order_id' => $value['order_id'],
+                    'order_number' => $value['order_number'],
+                    'customer_id' => $value['customer_id'],
+                    'type_id' => $value['type_id'],
+                    'size_id' => $value['size_id'],
+                    'quantity' => $value['quantity'],
+                    'coupon_id' => $value['coupon_id'],
+                    'check_in' => $value['check_in'],
+                    'check_out' => $value['check_out'],
+                    'status' => $value['status'],
+                ];
+            }
+        }
+
+        return $Orders;
+    }
+
+
+    /**
+     * Implode and make it fancier for format by adding a comma between each item.
+     * 
+     * @params array $Toppings
+     * 
+     * @return string
+     */
+    function implodeToStringToppings($Toppings = array()) {
+
+        $string = array();
+
+        if (!empty($Toppings)) {
+            foreach($Toppings as $Topping) {
+                $aTopping = selectAllById('pizzas_topping', $Topping['topping_id']);
+                $string[] = '<span>'. $aTopping['name'] .'</span>';
+            }
+
+            return implode(', ', $string);
+        } 
+
+        return '-';
+    }
+
     
 
     if(!isset($_SESSION['sopranos']['number'])) { saveInSession('number', generateUniqueId()); }
@@ -1579,6 +1659,8 @@
     $Types = queryOperator("SELECT * FROM pizzas_type");
     $Sizes = queryOperator("SELECT * FROM pizzas_size");
     $Toppings = queryOperator("SELECT * FROM pizzas_topping");
+
+    $Orders = queryOperator("SELECT op.id, op.order_id, op.size_id, op.type_id, op.quantity, op.status, o.customer_id, o.coupon_id, o.order_number, o.check_in, o.check_out FROM orders_pizza AS op", "orders AS o ON o.id = op.order_id");
 
     $Status = [["status" => "Active", "key" => "1"], ["status" => "Inactive", "key" => "0"]];
     
