@@ -20,7 +20,7 @@
 
 <?php if (!isset($_SESSION['profile']['uid']) && !isset($_COOKIE['uid'])): sendLoginError(); endif; ?>
 
-<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; $CurrentDate = date("YmdHis"); $iPayoutsTotal = 0.00; $ItemsSold = 0; $CouponsUsed = 0; $OrdersPlaced = 0; ?>
+<?php $AccountKey = (!isset($_COOKIE['uid']) ? $_SESSION['profile']['uid'] : $_COOKIE['uid']); $CurrentPage = "$_SERVER[REQUEST_SCHEME]://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; $CurrentDate = date("YmdHis"); $iPayoutsTotal = 0.00; $ItemsSold = 0; $CouponsUsed = 0; $OrdersPlaced = 0; $DuplicateOrder = 0; ?>
 
 <div class="dashboard__container">
 
@@ -1117,7 +1117,7 @@
                                     <?php $iPayoutsSubtotal = 0.00; ?>
 
                                     <div class="list_item__cell"><?= $item['id']; ?></div>
-                                    
+
                                     <div class="list_item__cell"><?= $item['order_number']; ?></div>
 
                                     <?php $OrdersPlaced = count($Orders); ?>
@@ -1158,7 +1158,7 @@
 
                                     <div class="list_item__cell"><?= (!empty($aCoupon) && isset($aCoupon['code']) ? $aCoupon['code'] : '-'); ?></div>
 
-                                    <?php $CouponsUsed = ''; ?>
+                                    <?php (!empty($aCoupon) && isset($aCoupon['discount']) && $DuplicateOrder !== $item['order_number'] ? $CouponsUsed++ : ''); ?>
 
                                     <div class="list_item__cell"><?= (!empty($aCoupon) && isset($aCoupon['discount']) ? $aCoupon['discount'] . ((!empty($aCoupon) && $aCoupon['type'] === 1) ? '&percnt;' : ' EUR') : '-'); ?></div>
 
@@ -1174,9 +1174,12 @@
 
                                     <div class="list_item__cell"><?= date("M j, Y H:i:s", strtotime($item['check_out'])); ?></div>
 
-                                    <div class="list_item__cell"><?= (!empty($item['status']) && $item['status'] === 1 ? 'Paid' : 'Open'); ?></div>
+                                    <div class="list_item__cell"><?= (!empty($item['status']) && $item['status'] === 1 ? 'Open' : 'Paid'); ?></div>
+
+                                    <?php $DuplicateOrder = $item['order_number']; ?>
 
                                     <?php $iPayoutsTotal += $iPayoutsSubtotal; ?>
+
                                 </div>
 
                                 <?php endforeach; endif;?>
@@ -1207,9 +1210,7 @@
 
                                     <div class="list_item__cell">Total Orders Placed</div>
 
-                                    <div class="list_item__cell">Total Price Earned</div>
-
-                                    <div class="list_item__cell">Total Open Invoice</div>
+                                    <div class="list_item__cell">Total Money Earned</div>
 
                                 </div>
 
@@ -1222,8 +1223,6 @@
                                     <div class="list_item__cell"><?= $OrdersPlaced; ?></div>
 
                                     <div class="list_item__cell">&euro;<?= number_format((float)$iPayoutsTotal, 2, '.', ''); ?></div>
-
-                                    <div class="list_item__cell"></div>
 
                                 </div>
 
