@@ -820,7 +820,7 @@
 
 
     /**
-     * Send a mail to the customer with their purchase information and stuff. Uses PHPMailer to send the mail.
+     * Create a mail template based on the information that has been given. Loop through the information and display them correctly in the template.
      * 
      * @params array $order
      * @params int|null $coupon
