@@ -2072,7 +2072,7 @@
     $Sizes = queryOperator("SELECT * FROM pizzas_size");
     $Toppings = queryOperator("SELECT * FROM pizzas_topping");
 
-    $Orders = queryOperator("SELECT op.id, op.order_id, op.size_id, op.type_id, op.quantity, op.status, o.customer_id, o.coupon_id, o.order_number, o.check_in, o.check_out FROM orders_pizza AS op", "orders AS o ON o.id = op.order_id");
+    $Orders = queryOperator("SELECT op.id, op.order_id, op.size_id, op.type_id, op.quantity, op.status, o.customer_id, o.coupon_id, o.order_number, o.check_in, o.check_out FROM orders_pizza AS op", "orders AS o ON o.id = op.order_id", (isset($_GET['ordernumber']) && !empty($_GET['ordernumber']) ? "o.order_number = '". $_GET['ordernumber'] ."'" : ''));
 
     $Status = [["status" => "Active", "key" => "1"], ["status" => "Inactive", "key" => "0"]];
     

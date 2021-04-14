@@ -1118,7 +1118,7 @@
 
                                     <div class="list_item__cell"><?= $item['id']; ?></div>
 
-                                    <div class="list_item__cell"><?= $item['order_number']; ?></div>
+                                    <div class="list_item__cell"><a class="list_item__cell--link" href="<?= $CurrentPage .'&ordernumber='. $item['order_number']; ?>"><?= $item['order_number']; ?></a></div>
 
                                     <?php $OrdersPlaced = count($Orders); ?>
 
@@ -1126,9 +1126,9 @@
 
                                     <div class="list_item__cell"><?= $aCustomer['first_name'] .' '. $aCustomer['last_name']; ?></div>
 
-                                    <div class="list_item__cell"><?= $aCustomer['email']; ?></div>
+                                    <div class="list_item__cell"><a class="list_item__cell--link" href="mailto:<?= $aCustomer['email']; ?>"><?= $aCustomer['email']; ?></a></div>
 
-                                    <div class="list_item__cell"><?= $aCustomer['phone']; ?></div>
+                                    <div class="list_item__cell"><a class="list_item__cell--link" href="tel:<?= $aCustomer['phone']; ?>"><?= $aCustomer['phone']; ?></a></div>
 
                                     <?php $aType = selectAllById("pizzas_type", $item['type_id']); ?>
 

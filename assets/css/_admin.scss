@@ -666,6 +666,15 @@
         }
     }
 
+    .list_item__cell--link {
+        color: $black-alt;
+        font-weight: normal;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     .list_item__cell--main {
         font-size: 14px;
         color: $black;

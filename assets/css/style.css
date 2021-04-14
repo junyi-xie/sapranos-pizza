@@ -3708,6 +3708,15 @@ img {
   padding-left: 1.667rem;
 }
 
+.list_item__cell--link {
+  color: #0a0918;
+  font-weight: normal;
+}
+
+.list_item__cell--link:hover {
+  text-decoration: underline;
+}
+
 .list_item__cell--main {
   font-size: 14px;
   color: black;
