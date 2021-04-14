@@ -89,8 +89,8 @@
         $('.js-stores-remove-item').click(function(event) {
             event.preventDefault();
 
-            var table = $(this).parent().parent().attr('type');
-            var id = $(this).parent().parent().attr('key');
+            var table = $(this).parent().parent().parent().attr('type');
+            var id = $(this).parent().parent().parent().attr('key');
 
             if (confirm('Are you sure you want to delete this item?')) {
                 $.ajax({
